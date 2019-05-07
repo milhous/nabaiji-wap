@@ -1,0 +1,33 @@
+D .
+R 14589CA2 bg.jpg
+R 5B4F6BEA btns.json
+R FF93B489 btns.png
+R 247868A2 icons.json
+R 849E21CF icons.png
+R 63F31896 images.png
+R 1C2EE0C loading.gif
+R F27C8CD7 mask.png
+R EE9C6830 pic-demo.png
+R 1DD18725 pic_blank.png
+R 12B06B3B pop.json
+R 3F3F7ABB pop.png
+R 7284533B words.json
+R 82528BE0 words.png
+D btns
+P C90BDB52 btn-again.png
+P 02A9CD14 btn-rephotograph.png
+P 5DE57A4F btn-upload.png
+D icons
+P 840D1BFA icon-loading_blue.png
+P 4C2DB5D2 icon-loading_gray.png
+P 72AA7C55 icon-succeed.png
+P FE972E6A icon-upload.png
+D pop
+P 663884D5 bg_pop_share.png
+D words
+P FCC629EE word-ellipsis.png
+P 7AD9BF5A word-loading.png
+P EA237E61 word-preview.png
+P 62196797 word-succeed1.png
+P 82492ADA word-succeed2.png
+P CC2C2010 word-upload.png

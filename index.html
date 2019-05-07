@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title>晒出最美泳姿 赢迪卡侬大奖</title>
+    <meta name='viewport' content='width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no' />
+    <meta name='apple-mobile-web-app-capable' content='yes' />
+    <meta name='full-screen' content='true' />
+    <meta name='screen-orientation' content='portrait' />
+    <meta name='x5-fullscreen' content='true' />
+    <meta name='360-fullscreen' content='true' />
+    <meta http-equiv='expires' content='0' />
+    <link rel="stylesheet" href="css/libs/normalize.css" />
+    <link rel="stylesheet" href="css/plugins/swiper.min.css" />
+    <link rel="stylesheet" href="css/public/common.css" />
+    <link rel="stylesheet" href="css/views/index.css" />
+    <script src="js/libs/zepto.min.js"></script>
+    <script src="js/plugins/flexible.js"></script>
+    <script src="js/plugins/swiper.min.js"></script>
+    <script src="js/plugins/EventEmitter.min.js"></script>
+    <script src="js/plugins/polyfill.min.js"></script>
+    <script src="js/plugins/alloy_paper.js"></script>
+    <script src="js/plugins/alloy_finger.js"></script>
+    <script src="js/plugins/exif.js"></script>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="scene-flipper">
+            <div class="scene-flipper_front">
+                <section class="stage stage-landing flex flex-direction_column flex-justify_between flex-align_center">
+                    <a class="btns btn-photoWall" href="javascript:;">照片墙</a>
+                    <h2 class="words word-landing_title">晒出最美泳姿 赢迪卡侬大奖</h2>
+                    <ul class="flex flex-justify_center flex-align_center">
+                        <li><a class="btns btn-start" href="javascript:;">晒照赢奖</a></li>
+                        <li><a class="btns btn-buy" href="javascript:;">购买泳衣</a></li>
+                    </ul>
+                    <a class="btns btn-rule translate_centerX" href="javascript:;">活动规则</a>
+                </section>
+            </div>
+            <div class="scene-flipper_back">
+                <!-- js create element -->
+            </div>
+        </div>
+    </div>
+    <ul class="stage-list">
+        <li>
+            <section class="stage stage-landing flex flex-direction_column flex-justify_between flex-align_center">
+                <a class="btns btn-photoWall" href="javascript:;">照片墙</a>
+                <h2 class="words word-landing_title">晒出最美泳姿 赢迪卡侬大奖</h2>
+                <ul class="flex flex-justify_center flex-align_center">
+                    <li><a class="btns btn-start" href="javascript:;">晒照赢奖</a></li>
+                    <li><a class="btns btn-buy" href="javascript:;">购买泳衣</a></li>
+                </ul>
+                <a class="btns btn-rule translate_centerX" href="javascript:;">活动规则</a>
+            </section>
+        </li>
+        <li>
+            <section class="stage stage-theme flex flex-direction_column flex-justify_between flex-align_center">
+                <h2 class="words word-theme_title">选择一个你最想去的场景</h2>
+                <div class="theme-swiper">
+                    <ul class="theme-list">
+                        <li class="theme-sandbeach theme-ani">
+                            <div>
+                                <img src="images/theme-sandbeach1_pic.jpg" />
+                            </div>
+                        </li>
+                        <li class="theme-sandbeach">
+                            <div>
+                                <img src="images/theme-sandbeach2_pic.jpg" />
+                            </div>
+                        </li>
+                        <li class="theme-pool">
+                            <div>
+                                <img src="images/theme-pool1_pic.jpg" />
+                            </div>
+                        </li>
+                        <li class="theme-pool">
+                            <div>
+                                <img src="images/theme-pool2_pic.jpg" />
+                            </div>
+                        </li>
+                        <li class="theme-underwater">
+                            <div>
+                                <img src="images/theme-underwater1_pic.jpg" />
+                            </div>
+                        </li>
+                        <li class="theme-underwater">
+                            <div>
+                                <img src="images/theme-underwater2_pic.jpg" />
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="theme-dot flex flex-justify_center flex-align_center">
+                        <li class="theme-ani"></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+                <div class="theme-panel">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"></div>
+                            <div class="swiper-slide"></div>
+                            <div class="swiper-slide"></div>
+                            <div class="swiper-slide"></div>
+                            <div class="swiper-slide"></div>
+                            <div class="swiper-slide"></div>
+                        </div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                </div>
+                <a class="theme-btn btn-confirm" href="javascript:;">
+                    <span class="words word-theme_sandbeach theme-ani"></span>
+                    <span class="words word-theme_sandbeach"></span>
+                    <span class="words word-theme_pool"></span>
+                    <span class="words word-theme_pool"></span>
+                    <span class="words word-theme_underwater"></span>
+                    <span class="words word-theme_underwater"></span>
+                </a>
+            </section>
+        </li>
+        <li>
+            <section class="stage stage-photo flex flex-direction_column flex-justify_center flex-align_center">
+                <div class="photo-container">
+                    <div class="photo-canvas"><!-- js create elem --></div>
+                    <div class="photo-template"><!-- js create elem --></div>
+                </div>
+                <ul class="photo-btn flex flex-justify_center flex-align_center">
+                    <li><div class="btns btn-submit">上传泳照<input id="photograph" type="file" accept="image/*"></div></li>
+                    <li><a class="btns btn-create" href="javascript:;">生成海报</a></li>
+                </ul>
+            </section>
+        </li>
+    </ul>
+    <img id="say" src="" />
+    <img id="avatar" src="" />
+    <div class="pop">
+        <section class="pop-buy">
+            <div class="pop-buy_box flex flex-direction_column flex-justify_center flex-align_center">
+                <div></div>
+                <ul class="flex flex-justify_center flex-align_center">
+                    <li><a class="btns btn-decathlon" href="javascript:;">迪卡侬官网</a></li>
+                    <li><a class="btns btn-tmall" href="javascript:;">天猫商城</a></li>
+                </ul>
+            </div>
+            <a class="btns btn-close btn-pop_close" href="javascript:;" title="关闭" data-close=".pop-tnc">关闭</a>
+        </section>
+        <section class="pop-tmall">
+            <div class="pop-tmall_box flex flex-direction_column flex-justify_center flex-align_center">
+                <div></div>
+                <div>
+                    <h3 class="words word-tmall_title">复制淘口令，打开天猫</h3>
+                    <p>復|制这段描述￥o5VaY0wrOCD￥后到☞淘♂寳♀☜</p>
+                </div>
+            </div>
+            <a class="btns btn-close btn-pop_close" href="javascript:;" title="关闭" data-close=".pop-tnc">关闭</a>
+        </section>
+        <section class="pop-tnc">
+            <div>
+                <img src="images/pop/pop-tnc_pic.jpg" alt="授权许可使用书" />
+            </div>
+            <a class="btns btn-close btn-pop_close" href="javascript:;" title="关闭" data-close=".pop-tnc">关闭</a>
+        </section>
+    </div>
+    <script src="js/public/common.js"></script>
+    <script src="js/views/index.js"></script>
+    <script src="js/plugins/jsonToCss.js"></script>
+</body>
+
+</html>
