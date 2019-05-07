@@ -2,7 +2,9 @@
     // 人形抠像
     var REQUEST_SEGMENT = 'http://nabaiji.yuncoupons.com/interface/get_body_seq.php';
     // 保存图片
-    var REQUEST_SAVE = 'http://nabaiji.yuncoupons.com/interface/save_img.php'
+    var REQUEST_SAVE = 'http://nabaiji.yuncoupons.com/interface/save_img.php';
+    // 获取参数
+    var REQUEST_WX = 'http://nabaiji.yuncoupons.com/interface/get_wx_tickets.php'
 
     // 模板人脸数据
     var templateFaceData = null;
@@ -737,6 +739,72 @@
         });
     };
 
+    var getShareInfo = function(){
+        var link = location.href.split('#')[0];
+
+        $.ajax({
+            url: REQUEST_WX,
+            type: 'post',
+            cache: false,
+            data: {
+                link: link
+            },
+            dataType:'json',
+            success: function (data) {
+                if(data.error_code==0){
+                    wx.config({
+                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                        appId: data.appid, // 必填，公众号的唯一标识
+                        timestamp: data.timestamp, // 必填，生成签名的时间戳
+                        nonceStr: data.nonceStr, // 必填，生成签名的随机串
+                        signature: data.signature,// 必填，签名
+                        jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] // 必填，需要使用的JS接口列表
+                    });
+
+                    initShare();
+                }else{
+                    alert(data.error_msg);
+                }
+            },
+            error:function(data){
+                alert("获取失败,请刷新重试!");
+            }
+        });
+    }
+
+    // 定义分享
+    var initShare = function() {
+        var title = '晒出最美泳姿 赢迪卡侬大奖';
+        var link = 'http://nabaiji.yuncoupons.com';
+        var desc = '暗夜精灵泳衣，SHOW出你的美';
+        var imgUrl = 'http://nabaiji.yuncoupons.com/share.png';
+
+        wx.ready(function(){
+            // 自定义“分享给朋友”及“分享到QQ”按钮的分享内容
+            wx.updateAppMessageShareData({ 
+                title: title, // 分享标题
+                desc: desc, // 分享描述
+                link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: imgUrl, // 分享图标
+                success: function () {
+                  // 设置成功
+                  console.log('自定义“分享给朋友”及“分享到QQ”按钮的分享内容设置成功');
+                }
+            });
+
+            // 自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容
+            wx.updateTimelineShareData({ 
+                title: title, // 分享标题
+                link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: imgUrl, // 分享图标
+                success: function () {
+                  // 设置成功
+                  console.log('自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容设置成功');
+                }
+            })
+        });
+    };
+
     // 初始化事件
     var initEvent = function() {
         // 场景 - 首页
@@ -758,6 +826,14 @@
 
             // 显示弹层
             ee.trigger(cmd.SHOW_POP, ['.pop-tmall']);
+        });
+
+        // 活动规则
+        $(document).on('click', '.btn-rule', function(evt) {
+            evt.preventDefault();
+
+            // 显示弹层
+            ee.trigger(cmd.SHOW_POP, ['.pop-rule']);
         });
 
         // 场景 - 确定场景
@@ -846,6 +922,8 @@
     // 初始化
     var init = function() {
         initEvent();
+
+        getShareInfo();
 
         // 预加载资源图片
         $(document).ready(preloadAssets);
