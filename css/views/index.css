@@ -50,6 +50,9 @@
 
 .stage-theme .theme-panel{position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 100;}
 .stage-theme .theme-list{position: relative; width: 4.46rem; height: 6.54rem;}
+.stage-theme .theme-list{
+  box-shadow: .1rem .1rem .1rem rgba(0, 0, 0, .18);
+}
 .stage-theme .theme-list:before,
 .stage-theme .theme-list:after{content: '.'; display: block; position: absolute; width: .6rem; height: 1.08rem; background-repeat: no-repeat; background-position: center center; background-size: cover; text-indent: -999rem;}
 .stage-theme .theme-list:before{left: -.5rem; top: -.4rem; background-image: url(../../images/theme-border-left.png);}
@@ -59,8 +62,8 @@
 .stage-theme .theme-list li{
   -webkit-transition: -webkit-transform .3s;
   transition: transform .3s;
-  -webkit-transform: scale(0, 0);
-  transform: scale(0, 0);
+  -webkit-transform: scale(1, 1);
+  transform: scale(1, 1);
   -webkit-transform-origin: center 70%;
   transform-origin: center 70%;
 }
@@ -74,14 +77,8 @@
   -webkit-transform-origin: center 70%;
   transform-origin: center 70%;
 }
-.stage-theme .theme-list li.theme-ani > div{
-  -webkit-animation: themeRubberBand 1.2s both;
-  animation: themeRubberBand 1.2s both;
-}
+.stage-theme .theme-list li.theme-ani > div{}
 .stage-theme .theme-list img{display: block;}
-.stage-theme .theme-list img{
-  box-shadow: .1rem .1rem .1rem rgba(0, 0, 0, .18);
-}
 .stage-theme .theme-list img:last-child{z-index: 50;}
 .stage-theme .theme-list img:last-child{
   -webkit-transform: translate3d(0, 0, 0);
@@ -192,7 +189,7 @@
   box-shadow: .06rem .08rem .07rem rgba(0, 0, 0, .18);
 }
 .stage-wall .wall-item dl span{color: #606162; font-size: .24rem; line-height: .34rem;}
-.stage-wall .wall-item
+.stage-wall .wall-item{}
 
 #template{
   -webkit-transform-origin: left top;

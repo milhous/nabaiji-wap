@@ -151,6 +151,22 @@
                 <div class="wall-list flex flex-wrap_wrap flex-justify_center"><!-- js create elem --></div>
             </section>
         </li>
+        <li>
+            <section class="stage stage-swiper flex flex-direction_column flex-justify_center flex-align_center">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"></div>
+                        <div class="swiper-slide"></div>
+                        <div class="swiper-slide"></div>
+                        <div class="swiper-slide"></div>
+                        <div class="swiper-slide"></div>
+                        <div class="swiper-slide"></div>
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </section>
+        </li>
     </ul>
     <img id="say" src="" />
     <img id="avatar" src="" />
@@ -192,11 +208,21 @@
                     <dd>2.截至北京时间2019年7月31日24时止，点赞排名前6位的用户，可获得迪卡侬送出的相应奖品。</dd>
                     <dd><span>（*每个微信ID仅可中奖1次，本次活动仅限中国大陆地区消</span></dd>
                 </dl>
-                <p class="flex flex-justify_center flex-align_center"><i class="icons icon-checked"></i><span>同意迪卡侬使用上传照片用于商业宣传 (如同意请勾选)</span></p>
+                <p>
+                    <input type="checkbox" id="agreement" name="agreement" />
+                    <label class="flex flex-justify_center flex-align_center" for="agreement"><i class="icons"></i><span>同意迪卡侬使用上传照片用于商业宣传 (如同意请勾选)</span></label>
+                </p>
                 <h3 class="flex flex-justify_center flex-align_center"><i class="icons icon-prize"></i><span>活动奖品设置</span></h3>
                 <p>一等奖：第1名</p>
                 <p>价值5000元SEAISEE水下魅力写真拍摄一组</p>
-                <div class="rule-pic"><img src="images/pic-prize1.jpg" alt="一等奖：价值5000元SEAISEE水下魅力写真拍摄一组" /></div>
+                <div class="rule-banner">
+                    <img src="images/pic-prize1_banner2.jpg" alt="一等奖：价值5000元SEAISEE水下魅力写真拍摄一组" />
+                    <img class="rule-banner_anim" src="images/pic-prize1_banner1.jpg" alt="一等奖：价值5000元SEAISEE水下魅力写真拍摄一组" />
+                    <ul class="flex flex-justify_center flex-align_center">
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
                 <input type="checkbox" id="rule-more1" name="rule-more1">
                 <div class="prize-notice flex flex-direction_column flex-justify_center flex-align_center">
                     <label for="rule-more1">点击了解更多</label>

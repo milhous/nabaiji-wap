@@ -7,6 +7,10 @@
     var REQUEST_WX = 'http://nabaiji.yuncoupons.com/interface/get_wx_tickets.php';
     // 获取照片
     var REQUEST_PHOTO = 'http://nabaiji.yuncoupons.com/interface/get_my_photos.php';
+    // 设置协议状态
+    var REQUEST_SET_AGREE = 'http://nabaiji.yuncoupons.com/interface/set_agree_status.php';
+    // 获取协议状态
+    var REQUEST_GET_AGREE = 'http://nabaiji.yuncoupons.com/interface/get_agree_status.php';
 
     // 模板人脸数据
     var templateFaceData = null;
@@ -27,6 +31,8 @@
     var sceneIndex = 0;
     // 场景数量
     var sceneNums = $elem.stageList.length;
+    // 是否初次
+    var isNewer = true; 
 
     // swiper
     var swiper = null;
@@ -54,8 +60,8 @@
         mobile: null,
         // 性别
         gender: null,
-        // 信条
-        belief: null,
+        // 文案
+        word: null,
         // 主题
         theme: null,
         // 照片
@@ -70,6 +76,16 @@
         '3': 'pool2',
         '4': 'underwater1',
         '5': 'underwater2'
+    };
+
+    // 主题文案
+    var themeSay = {
+        '0': '单身不是缺憾单调才是',
+        '1': '单身不是缺憾单调才是',
+        '2': '美丽的皮囊千篇一律\n有趣的灵魂万里挑一',
+        '3': '美丽的皮囊千篇一律\n有趣的灵魂万里挑一',
+        '4': '不一定要瘦\n但一定要享受',
+        '5': '不一定要瘦\n但一定要享受'
     };
 
     // 主题资源
@@ -410,21 +426,12 @@
         return true;
     };
 
-    // 记录用户信条
-    var recordBeliefInfo = function() {
-        var str = $('#belief').val();
-
-        $('#belief-txt').html(str);
-
-        info.belief = str;
-
-        console.log('belief', info);
-    };
-
     // 记录用户主题
     var recordThemeInfo = function(index) {
         if (typeof theme[index] !== 'undefined') {
             info.theme = theme[index];
+            info.word = themeSay[index];
+
         }
 
         console.log('theme', info);
@@ -743,7 +750,7 @@
     };
 
     // 获取分享信息
-    var getShareInfo = function(){
+    var getShareInfo = function() {
         var link = location.href.split('#')[0];
 
         $.ajax({
@@ -753,57 +760,100 @@
             data: {
                 link: link
             },
-            dataType:'json',
-            success: function (data) {
-                if(data.error_code==0){
+            dataType: 'json',
+            success: function(data) {
+                if (data.error_code == 0) {
                     wx.config({
                         debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                         appId: data.appid, // 必填，公众号的唯一标识
                         timestamp: data.timestamp, // 必填，生成签名的时间戳
                         nonceStr: data.nonceStr, // 必填，生成签名的随机串
-                        signature: data.signature,// 必填，签名
+                        signature: data.signature, // 必填，签名
                         jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] // 必填，需要使用的JS接口列表
                     });
 
                     initShare();
-                }else{
+                } else {
                     alert(data.error_msg);
                 }
             },
-            error:function(data){
+            error: function(data) {
                 alert("获取失败,请刷新重试!");
             }
         });
     };
 
     // 获取照片
-    var getMyImgs = function(){
+    var getMyImgs = function() {
         $.ajax({
             url: REQUEST_PHOTO,
             type: 'post',
             cache: false,
-            dataType:'json',
-            success: function (data) {
-                if(data.error_code==0){
+            dataType: 'json',
+            success: function(data) {
+                if (data.error_code == 0) {
                     var arr = [];
 
                     for (var i = 0, len = data.photos.length; i < len; i++) {
                         var item = data.photos[i];
                         var str = '<div class="wall-item">';
-                            str += '<div><img src="' + item.image + '" /></div>';
-                            str += '<dl><dt><img src="' + item.headimg + '" /><span>' + item.nickname + '</span></dt>';
-                            str += '<dd><span>' + item.tickets + '</span>票</dd></dl></div>';
+                        str += '<div><img src="' + item.image + '" /></div>';
+                        str += '<dl><dt><img src="' + item.headimg + '" /><span>' + item.nickname + '</span></dt>';
+                        str += '<dd><span>' + item.tickets + '</span>票</dd></dl></div>';
 
                         arr.push(str);
                     }
 
                     $('.wrap .wall-list').html(arr.join(''));
-                }else{
+                } else {
                     alert(data.error_msg);
                 }
             },
-            error:function(data){
+            error: function(data) {
                 alert("获取失败,请刷新重试!");
+            }
+        });
+    };
+
+    // 获取协议状态
+    var getAgreeStatus = function() {
+        $.ajax({
+            url: REQUEST_GET_AGREE,
+            type: 'post',
+            cache: false,
+            dataType: 'json',
+            success: function(data) {
+                if (data.error_code == 0) {
+                    $('#agreement').prop('checked', true);
+                } else {
+                    alert(data.error_msg);
+                }
+            },
+            error: function(data) {
+                alert("获取失败,请刷新重试!");
+            }
+        });
+    };
+
+    // 设置协议状态
+    var setAgreeStatus = function(agreement) {
+        $.ajax({
+            url: REQUEST_SET_AGREE,
+            type: 'post',
+            cache: false,
+            data: {
+                agree_rule: agreement
+            },
+            dataType: 'json',
+            success: function(data) {
+                if (data.error_code == 0) {
+
+                } else {
+                    alert(data.error_msg);
+                }
+            },
+            error: function(data) {
+                alert("设置失败,请刷新重试!");
             }
         });
     };
@@ -815,27 +865,27 @@
         var desc = '暗夜精灵泳衣，SHOW出你的美';
         var imgUrl = 'http://nabaiji.yuncoupons.com/share.png';
 
-        wx.ready(function(){
+        wx.ready(function() {
             // 自定义“分享给朋友”及“分享到QQ”按钮的分享内容
-            wx.updateAppMessageShareData({ 
+            wx.updateAppMessageShareData({
                 title: title, // 分享标题
                 desc: desc, // 分享描述
                 link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                 imgUrl: imgUrl, // 分享图标
-                success: function () {
-                  // 设置成功
-                  console.log('自定义“分享给朋友”及“分享到QQ”按钮的分享内容设置成功');
+                success: function() {
+                    // 设置成功
+                    console.log('自定义“分享给朋友”及“分享到QQ”按钮的分享内容设置成功');
                 }
             });
 
             // 自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容
-            wx.updateTimelineShareData({ 
+            wx.updateTimelineShareData({
                 title: title, // 分享标题
                 link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                 imgUrl: imgUrl, // 分享图标
-                success: function () {
-                  // 设置成功
-                  console.log('自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容设置成功');
+                success: function() {
+                    // 设置成功
+                    console.log('自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容设置成功');
                 }
             })
         });
@@ -843,8 +893,22 @@
 
     // 初始化事件
     var initEvent = function() {
+        // 弹层 - 协议状态
+        $(document).on('change', '#agreement', function(evt) {
+            var isChecked = $(this).prop('checked');
+
+            setAgreeStatus(isChecked);
+        });
+
         // 场景 - 首页
         $(document).on('click', '.btn-start', function() {
+            if (isNewer) {
+                isNewer = false;
+
+                // 显示弹层
+                ee.trigger(cmd.SHOW_POP, ['.pop-rule']);
+            }
+
             goToNextScene(initSwiper);
         });
 
@@ -897,67 +961,6 @@
         $(document).on('click', '.btn-create', function() {
             createPhoto();
         });
-
-        // 场景 - 填写表单
-        // $(document).on('click', '.btn-next', function() {
-        //     if (recordBaseInfo()) {
-        //         goToNextScene(recordBeliefInfo);
-        //     }
-        // });
-
-        // // 场景 - 选择信条
-        // $(document).on('click', '.btn-choose', function() {
-        //     recordBeliefInfo();
-
-        //     goToNextScene();
-
-        //     initSwiper();
-
-        //     createSayPhoto();
-        // });
-
-        // // 场景 - 上传成功
-        // $(document).on('click', '.stage-choose .btn-back', function() {
-        //     goToScene(SCENE.FORM);
-        // });
-
-        // $(document).on('change', '#belief', function() {
-        //     recordBeliefInfo();
-        // });
-
-        // // 场景 - 上传照片
-        // $(document).on('click', '.btn-rephotograph', function() {
-        //     goToScene(SCENE.PHOTO);
-        // });
-
-        // $(document).on('click', '.btn-upload', function() {
-        //     goToNextScene(function() {
-        //         setTimeout(function() {
-        //             goToNextScene();
-
-        //             console.log('succeed', info);
-        //         }, 6600);
-        //     });
-        // });
-
-        // $(document).on('click', '.stage-photo .btn-back', function() {
-        //     goToScene(SCENE.THEME);
-
-        //     initSwiper();
-        // });
-
-        // // 场景 - 上传成功
-        // $(document).on('click', '.btn-again', function() {
-        //     goToScene(SCENE.LANDING);
-
-        // });
-
-
-        // $(document).on('click', '.stage-succeed .btn-back', function() {
-        //     $('#preview').attr('src', info.photo);
-
-        //     goToScene(SCENE.PREVIEW);
-        // });
     };
 
     // 初始化
@@ -965,6 +968,8 @@
         initEvent();
 
         getShareInfo();
+
+        getAgreeStatus();
 
         // 预加载资源图片
         $(document).ready(preloadAssets);
