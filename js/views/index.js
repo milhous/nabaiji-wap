@@ -626,6 +626,8 @@
 
         getSegmentData(file, function(url) {
             compoundPhoto();
+
+            ee.trigger(cmd.CLOSE_POP, ['.pop-loading']);
         });
     };
 
@@ -775,7 +777,6 @@
         });
 
         $('#template').css('transform', 'scale(' + $('.photo-canvas').width() / themeAssets.width + ')');
-        ee.trigger(cmd.CLOSED_POP, ['.pop-loading']);
     };
 
     // 生成模板图片
