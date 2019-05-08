@@ -4,7 +4,9 @@
     // 保存图片
     var REQUEST_SAVE = 'http://nabaiji.yuncoupons.com/interface/save_img.php';
     // 获取参数
-    var REQUEST_WX = 'http://nabaiji.yuncoupons.com/interface/get_wx_tickets.php'
+    var REQUEST_WX = 'http://nabaiji.yuncoupons.com/interface/get_wx_tickets.php';
+    // 获取照片
+    var REQUEST_PHOTO = 'http://nabaiji.yuncoupons.com/interface/get_my_photos.php';
 
     // 模板人脸数据
     var templateFaceData = null;
@@ -40,9 +42,8 @@
         LANDING: 0,
         THEME: 1,
         PHOTO: 2,
-        PREVIEW: 3,
-        UPLOAD: 4,
-        SUCCEED: 5
+        SAVE: 3,
+        WALL: 4
     };
 
     // 用户信息
@@ -534,7 +535,9 @@
             dataType: 'json',
             success: function(data) {
                 if (data.error_code == 0) {
-
+                    goToNextScene(function() {
+                        $('.wrap .stage-save').find('img').attr('src', data.url);
+                    });
                 } else {
                     alert(data.error_msg);
                 }
@@ -739,6 +742,7 @@
         });
     };
 
+    // 获取分享信息
     var getShareInfo = function(){
         var link = location.href.split('#')[0];
 
@@ -770,7 +774,39 @@
                 alert("获取失败,请刷新重试!");
             }
         });
-    }
+    };
+
+    // 获取照片
+    var getMyImgs = function(){
+        $.ajax({
+            url: REQUEST_PHOTO,
+            type: 'post',
+            cache: false,
+            dataType:'json',
+            success: function (data) {
+                if(data.error_code==0){
+                    var arr = [];
+
+                    for (var i = 0, len = data.photos.length; i < len; i++) {
+                        var item = data.photos[i];
+                        var str = '<div class="wall-item">';
+                            str += '<div><img src="' + item.image + '" /></div>';
+                            str += '<dl><dt><img src="' + item.headimg + '" /><span>' + item.nickname + '</span></dt>';
+                            str += '<dd><span>' + item.tickets + '</span>票</dd></dl></div>';
+
+                        arr.push(str);
+                    }
+
+                    $('.wrap .wall-list').html(arr.join(''));
+                }else{
+                    alert(data.error_msg);
+                }
+            },
+            error:function(data){
+                alert("获取失败,请刷新重试!");
+            }
+        });
+    };
 
     // 定义分享
     var initShare = function() {
@@ -836,6 +872,11 @@
             ee.trigger(cmd.SHOW_POP, ['.pop-rule']);
         });
 
+        // 照片墙
+        $(document).on('click', '.btn-photoWall', function() {
+            goToScene(SCENE.WALL, getMyImgs);
+        });
+
         // 场景 - 确定场景
         $(document).on('click', '.btn-confirm', function(evt) {
             evt.preventDefault();
@@ -852,7 +893,7 @@
             previewPhoto(this.files[0]);
         });
 
-        // // 场景 - 生成海报
+        // 场景 - 生成海报
         $(document).on('click', '.btn-create', function() {
             createPhoto();
         });

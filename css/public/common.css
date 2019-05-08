@@ -406,7 +406,6 @@ textarea{resize:none;}
   display: -webkit-box;
   display: -webkit-flex; 
   display: -moz-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -583,6 +582,8 @@ textarea{resize:none;}
 .word-theme_pool{width: 1.8rem; height: .4rem; background-image: url(../../images/theme-pool_word.png);}
 .word-theme_underwater{width: 1.74rem; height: .42rem; background-image: url(../../images/theme-underwater_word.png);}
 .word-photo_tips{width: 2.64rem; height: .88rem; background-image: url(../../images/word-photo_tips.png);}
+.word-save_title{width: 4.18rem; height: .38rem; background-image: url(../../images/word-save_title.png)}
+.word-wall_title{width: 2.78rem; height: .4rem; background-image: url(../../images/word-wall_title.png);}
 
 /* POP */
 .pop{display: none; position: fixed; left: 0; right: 0; top: 0; bottom: 0; z-index: 1000; background-color: rgba(0, 0, 0, .8); opacity: 0;}
