@@ -210,6 +210,8 @@
         </li>
         <li>
             <section class="stage stage-save flex flex-direction_column flex-justify_center flex-align_center">
+                <a class="btns btn-photoWall" href="javascript:;">照片墙</a>
+                <a class="btns btn-restart" href="javascript:;">再玩一次</a>
                 <div>
                     <img src="">
                 </div>
@@ -219,23 +221,19 @@
         <li>
             <section class="stage stage-wall">
                 <span class="words word-wall_title">照片墙个人海报</span>
+                <a class="btns btn-home" href="javascript:;">首页</a>
                 <div class="wall-list flex flex-wrap_wrap flex-justify_center"><!-- js create elem --></div>
             </section>
         </li>
         <li>
-            <section class="stage stage-swiper flex flex-direction_column flex-justify_center flex-align_center">
+            <section class="stage stage-playbill flex flex-direction_column flex-justify_center flex-align_center">
+                <a class="btns btn-photoWall" href="javascript:;">照片墙</a>
                 <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide"></div>
-                        <div class="swiper-slide"></div>
-                        <div class="swiper-slide"></div>
-                        <div class="swiper-slide"></div>
-                        <div class="swiper-slide"></div>
-                        <div class="swiper-slide"></div>
-                    </div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
+                    <div class="swiper-wrapper"><!-- js create elem --></div>
                 </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <span class="words word-playbill_title translate_centerX">7月15日将开启投票通道点赞前六名可获得迪卡侬大奖</span>
             </section>
         </li>
     </ul>
@@ -287,10 +285,10 @@
                 <p>一等奖：第1名</p>
                 <p>价值5000元SEAISEE水下魅力写真拍摄一组</p>
                 <div class="rule-banner">
-                    <img src="images/pic-prize1_banner2.jpg" alt="一等奖：价值5000元SEAISEE水下魅力写真拍摄一组" />
-                    <img class="rule-banner_anim" src="images/pic-prize1_banner1.jpg" alt="一等奖：价值5000元SEAISEE水下魅力写真拍摄一组" />
+                    <img class="active" src="images/pic-prize1_banner2.jpg" alt="一等奖：价值5000元SEAISEE水下魅力写真拍摄一组" />
+                    <img src="images/pic-prize1_banner1.jpg" alt="一等奖：价值5000元SEAISEE水下魅力写真拍摄一组" />
                     <ul class="flex flex-justify_center flex-align_center">
-                        <li></li>
+                        <li class="active"></li>
                         <li></li>
                     </ul>
                 </div>

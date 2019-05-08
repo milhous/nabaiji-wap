@@ -12,10 +12,11 @@
     // 获取协议状态
     var REQUEST_GET_AGREE = 'http://nabaiji.yuncoupons.com/interface/get_agree_status.php';
 
-    // 模板人脸数据
-    var templateFaceData = null;
-    // 默认人脸base64
-    var templateImageData = null;
+    // 计时器
+    var timer = null;
+
+    // 海报照片
+    var photos = [];
 
     // 元素
     var $elem = {
@@ -32,7 +33,7 @@
     // 场景数量
     var sceneNums = $elem.stageList.length;
     // 是否初次
-    var isNewer = true; 
+    var isNewer = true;
 
     // swiper
     var swiper = null;
@@ -49,7 +50,8 @@
         THEME: 1,
         PHOTO: 2,
         SAVE: 3,
-        WALL: 4
+        WALL: 4,
+        PLAYBILL: 5
     };
 
     // 用户信息
@@ -80,7 +82,7 @@
 
     // 主题文案
     var themeSay = {
-        '0': '单身不是缺憾单调才是',
+        '0': '单身不是缺憾\n单调才是',
         '1': '单身不是缺憾单调才是',
         '2': '美丽的皮囊千篇一律\n有趣的灵魂万里挑一',
         '3': '美丽的皮囊千篇一律\n有趣的灵魂万里挑一',
@@ -137,10 +139,10 @@
         },
         say: {
             file: null,
-            width: 560,
-            height: 860,
-            x: 0,
-            y: 0
+            width: 400,
+            height: 80,
+            x: 50,
+            y: 735
         }
     };
 
@@ -312,6 +314,36 @@
         });
     };
 
+    // 初始化海报swiper
+    var initPlaybillSwiper = function(index) {
+        var arr = [];
+
+        for (var i = 0, len = photos.length; i < len; i++) {
+            var item = photos[i];
+
+            arr.push('<div class="swiper-slide"><img src="' + item.image + '" /></div>');
+        }
+
+        $('.wrap .swiper-container').find('.swiper-wrapper').html(arr.join(''));
+
+        swiper = new Swiper('.wrap .swiper-container', {
+            speed: 600,
+            loop: true,
+            on: {
+                init: function() {
+                    console.log('elem', this)
+
+                    this.slideTo(Number(index) + 1, 1);
+                },
+                slideChange: function() {}
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev'
+            }
+        });
+    };
+
     /*
      * 进入下一个场景
      * @param (function) callback 回调函数
@@ -471,6 +503,7 @@
         arr.push('<span class="photo-item photo-item_QRcode"></span>');
         arr.push('<span class="photo-item photo-item_tag"></span>');
         arr.push('<span class="words word-photo_tips"></span>');
+        arr.push('<textarea class="photo-item photo-item_word" rows="2" cols="20" wrap="hard" maxlength="20">' + info.word + '</textarea>');
 
         $('.photo-template').html(arr.join('')).css('display', 'block');
     };
@@ -591,6 +624,8 @@
 
     // 合成图片
     var compoundPhoto = function() {
+        createSayPhoto();
+
         // 清空模板
         $('.wrap .photo-template').css('display', 'none');
         $('.wrap .photo-canvas canvas').remove();
@@ -613,6 +648,7 @@
         var rectTag = [0, 0, themeAssets.tag.width, themeAssets.tag.height, 0, 0, themeAssets.tag.width, themeAssets.tag.height];
         var rectPanel = [0, 0, themeAssets.panel.width, themeAssets.panel.height, 0, 0, themeAssets.panel.width, themeAssets.panel.height];
         var rectAvatar = [0, 0, bodyImg.width, bodyImg.height, 0, 0, bodyImg.width, bodyImg.height];
+        var rectSay = [0, 0, themeAssets.say.width, themeAssets.say.height, 0, 0, themeAssets.say.width, themeAssets.say.height];
 
         var stage = new Stage('#template');
         stage.autoUpdate = false;
@@ -646,6 +682,7 @@
             var border = new Bitmap(ld.get('border'), rectBorder);
             var QRcode = new Bitmap(ld.get('QRcode'), rectQRcode);
             var tag = new Bitmap(ld.get('tag'), rectTag);
+            var say = new Bitmap($('#say')[0], rectSay);
             var panel = new Bitmap(ld.get('panel'), rectPanel);
 
             pic.originX = 0.5;
@@ -684,6 +721,12 @@
             tag.x = themeAssets.tag.x + themeAssets.tag.width / 2;
             tag.y = themeAssets.tag.y + themeAssets.tag.height / 2;
             stage.add(tag);
+
+            say.originX = 0.5;
+            say.originY = 0.5;
+            say.x = themeAssets.say.x + themeAssets.say.width / 2;
+            say.y = themeAssets.say.y + themeAssets.say.height / 2;
+            stage.add(say);
 
             panel.originX = 0.5;
             panel.originY = 0.5;
@@ -733,12 +776,45 @@
         canvas.width = themeAssets.say.width;
         canvas.height = themeAssets.say.height;
         var ctx = canvas.getContext("2d");
+        var text = $('.photo-item_word').val();
+        var arr = text.split('\n');
 
-        ctx.font = '30px VerlagBook, FZZhunYuan';
-        ctx.fillStyle = '#767676';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(info.name + '：' + info.belief, 280, 780, themeAssets.say.width);
+        ctx.font = 'bold 30px SourceHanSansCN';
+        ctx.fillStyle = '#fff';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'top';
+
+        var txt1 = arr[0];
+        var txt2 = typeof arr[1] === 'string' ? arr[1] : ''; 
+
+        if (txt1.length > 10) {
+            txt2 = txt1.substring(10) + txt2;
+            txt1 = txt1.substring(0, 10);
+        }
+
+        if (txt2.length > 10) {
+            txt2 = txt2.substring(0, 10);
+        }
+
+        if (txt1.length) {
+            var x = 0;
+
+            for (var i = 0, len = txt1.length; i < len; i++) {
+                ctx.fillText(txt1[i], x, 0, themeAssets.say.width);
+
+                x += 40;
+            }
+        }
+
+        if (txt2.length) {
+            var x = 0;
+
+            for (var i = 0, len = txt2.length; i < len; i++) {
+                ctx.fillText(txt2[i], x, 40, themeAssets.say.width);
+
+                x += 40;
+            }
+        }
 
         var data = canvas.toDataURL('image/png');
 
@@ -792,14 +868,17 @@
             dataType: 'json',
             success: function(data) {
                 if (data.error_code == 0) {
+                    photos = data.photos;
+
                     var arr = [];
 
                     for (var i = 0, len = data.photos.length; i < len; i++) {
                         var item = data.photos[i];
-                        var str = '<div class="wall-item">';
+                        var str = '<div class="wall-item" data-index="' + i + '">';
                         str += '<div><img src="' + item.image + '" /></div>';
                         str += '<dl><dt><img src="' + item.headimg + '" /><span>' + item.nickname + '</span></dt>';
-                        str += '<dd><span>' + item.tickets + '</span>票</dd></dl></div>';
+                        str += '<dd> </dd></dl></div>';
+                        // str += '<dd><span>' + item.tickets + '</span>票</dd></dl></div>';
 
                         arr.push(str);
                     }
@@ -891,6 +970,25 @@
         });
     };
 
+    // 播放轮播
+    var playBanner = function() {
+        var index = 0;
+
+        timer = setInterval(function() {
+            index++;
+
+            index = index % 2;
+
+            $('.rule-banner img').removeClass('active').eq(index).addClass('active');
+            $('.rule-banner li').removeClass('active').eq(index).addClass('active');
+        }, 2000);
+    };
+
+    // 停止轮播
+    var stopBanner = function() {
+        clearInterval(timer);
+    };
+
     // 初始化事件
     var initEvent = function() {
         // 弹层 - 协议状态
@@ -900,6 +998,11 @@
             setAgreeStatus(isChecked);
         });
 
+        // 关闭协议
+        $(document).on('click', '.pop-rule .btn-pop_close', function(evt) {
+            stopBanner();
+        });
+
         // 场景 - 首页
         $(document).on('click', '.btn-start', function() {
             if (isNewer) {
@@ -907,6 +1010,8 @@
 
                 // 显示弹层
                 ee.trigger(cmd.SHOW_POP, ['.pop-rule']);
+
+                playBanner();
             }
 
             goToNextScene(initSwiper);
@@ -934,11 +1039,32 @@
 
             // 显示弹层
             ee.trigger(cmd.SHOW_POP, ['.pop-rule']);
+
+            playBanner();
         });
 
         // 照片墙
         $(document).on('click', '.btn-photoWall', function() {
             goToScene(SCENE.WALL, getMyImgs);
+        });
+
+        // 再玩一次
+        $(document).on('click', '.btn-restart', function() {
+            goToScene(SCENE.THEME, initSwiper);
+        });
+
+        // 首页
+        $(document).on('click', '.btn-home', function() {
+            goToScene(SCENE.LANDING);
+        });
+
+        // 海报
+        $(document).on('click', '.wall-item', function() {
+            var index = $(this).attr('data-index');
+
+            goToScene(SCENE.PLAYBILL, function() {
+                initPlaybillSwiper(index);
+            });
         });
 
         // 场景 - 确定场景

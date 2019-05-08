@@ -10,6 +10,7 @@
 .stage-photo{background: #fff url(../../images/bg-photo.jpg) no-repeat center bottom; background-size: 100%;}
 .stage-save{background: #fff url(../../images/bg-save.jpg) no-repeat center bottom; background-size: 100%;}
 .stage-wall{padding: 1.45rem 0 .7rem; background: #fff url(../../images/bg-wall.jpg) no-repeat fixed top; background-size: 100%;}
+.stage-playbill{background: #fff url(../../images/bg-playbill.jpg) no-repeat center bottom; background-size: 100%;}
 
 .stage-form_input{width: 5.58rem; height: .62rem; margin: .2rem auto .4rem; border: 1px solid #8c8c8c; background-color: #fff;}
 .stage-form_input input{padding: 0 .1rem; text-align: center;}
@@ -136,6 +137,7 @@
 .stage-photo .photo-pool2_mask{left: 1.7rem; bottom: 2rem; width: 2.48rem; height: 5.2rem; background-image: url(../../images/theme/theme-pool2_mask.png);}
 .stage-photo .photo-underwater1_mask{left: .6rem; top: 1.4rem; width: 3.78rem; height: 7.08rem; background-image: url(../../images/theme/theme-underwater1_mask.png);}
 .stage-photo .photo-underwater2_mask{left: .56rem; top: 1.6rem; width: 4.44rem; height: 7.1rem; background-image: url(../../images/theme/theme-underwater2_mask.png);}
+.stage-photo .photo-item_word{left: .5rem; top: 7.35rem; width: 4rem; height: .8rem; background-color: transparent; color: #fff; font-weight: 700; font-size: .3rem; line-height: .4rem; letter-spacing: .1rem;}
 
 .stage-save div{width: 6.17rem; height: 9.06rem;}
 .stage-save div{
@@ -143,8 +145,11 @@
 }
 .stage-save div img{display: block; width: 100%; height: 100%;}
 .stage-save .word-save_title{position: absolute; left: 50%; bottom: .26rem;}
+.stage-save .btn-photoWall{position: absolute; right: .25rem; top: .25rem;}
+.stage-save .btn-restart{position: absolute; right: 2.1rem; top: .25rem;}
 
 .stage-wall{overflow: auto;}
+.stage-wall .btn-home{position: absolute; right: .4rem; top: .4rem;}
 .stage-wall .word-wall_title{position: absolute; left: .4rem; top: .4rem;}
 .stage-wall .wall-item{width: 2.94rem; margin: 0 .2rem .4rem; background-color: #fff;}
 .stage-wall .wall-item{
@@ -189,7 +194,14 @@
   box-shadow: .06rem .08rem .07rem rgba(0, 0, 0, .18);
 }
 .stage-wall .wall-item dl span{color: #606162; font-size: .24rem; line-height: .34rem;}
-.stage-wall .wall-item{}
+
+.stage-playbill .btn-photoWall{position: absolute; right: .25rem; top: .25rem;}
+.stage-playbill .word-playbill_title{position: absolute; left: 50%; bottom: .26rem;}
+.stage-playbill .swiper-container{width: 4.86rem; height: 7.12rem;}
+.stage-playbill img{display: block; width: 100%; height: 100%;}
+.stage-playbill .swiper-container{
+  box-shadow: .1rem .1rem .1rem rgba(0, 0, 0, .18);
+}
 
 #template{
   -webkit-transform-origin: left top;
