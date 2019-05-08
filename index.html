@@ -156,19 +156,14 @@
             </section>
         </li>
         <li>
-            <section class="stage stage-swiper flex flex-direction_column flex-justify_center flex-align_center">
+            <section class="stage stage-playbill flex flex-direction_column flex-justify_center flex-align_center">
+                <a class="btns btn-photoWall" href="javascript:;">照片墙</a>
                 <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide"></div>
-                        <div class="swiper-slide"></div>
-                        <div class="swiper-slide"></div>
-                        <div class="swiper-slide"></div>
-                        <div class="swiper-slide"></div>
-                        <div class="swiper-slide"></div>
-                    </div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
+                    <div class="swiper-wrapper"><!-- js create elem --></div>
                 </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <span class="words word-playbill_title translate_centerX">7月15日将开启投票通道点赞前六名可获得迪卡侬大奖</span>
             </section>
         </li>
     </ul>
@@ -259,10 +254,22 @@
             </div>
             <a class="btns btn-close btn-pop_close" href="javascript:;" title="关闭" data-close=".pop-rule">关闭</a>
         </section>
+        <section class="pop-tips" data-close=".pop-tmall">
+            <div class="pop-tips_box flex flex-justify_center flex-align_center">
+                <p class="words word-tips_upload">请上传泳照</p>
+            </div>
+        </section>
+        <section class="pop-loading">
+            <div class="pop-loading_box flex flex-justify_center flex-align_center">
+                <dl class="flex flex-justify_center flex-align_center">
+                    <dt><span class="words word-loading_title"></span></dt>
+                    <dd><</dd>
+                </dl>
+            </div>
+        </section>
     </div>
     <script src="js/public/common.js"></script>
     <script src="js/views/index.js"></script>
-
-</html>
+</body>
 
 </html>

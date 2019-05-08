@@ -239,6 +239,8 @@ textarea{resize:none;}
 
 .stage-list{display: none;}
 
+.loading-dot{display: block; width: .83rem; height: .15rem; background: url(../../images/bg-loading_dot.png) no-repeat left top; background-size: .83rem .55rem;}
+
 .flex{
   display: -webkit-box;
   display: -webkit-flex; 
@@ -424,6 +426,8 @@ textarea{resize:none;}
 .word-save_title{width: 4.18rem; height: .38rem; background-image: url(../../images/word-save_title.png)}
 .word-wall_title{width: 2.78rem; height: .38rem; background-image: url(../../images/word-wall_title.png);}
 .word-playbill_title{width: 4.74rem; height: .82rem; background-image: url(../../images/word-playbill_title.png);}
+.word-tips_upload{width: 2.38rem; height: .48rem; background-image: url(../../images/word-tips_upload.png);}
+.word-loading_title{width: 2.7rem; height: 1.3rem; background-image: url(../../images/word-loading_title.png);}
 
 /* POP */
 .pop{display: none; position: fixed; left: 0; right: 0; top: 0; bottom: 0; z-index: 1000; background-color: rgba(0, 0, 0, .8); opacity: 0;}
@@ -512,6 +516,16 @@ textarea{resize:none;}
 .pop .pop-rule dd span{color: #597e93; font-size: .2rem; line-height: .4rem;}
 .pop .pop-rule ul{padding-top: .2rem;}
 .pop .pop-rule li{font-size: .26rem; line-height: .46rem;}
+
+.pop .pop-tips{overflow: hidden; width: 4.24rem; height: 1.64rem; border-radius: .1rem; background-color: #e7eef8;}
+.pop .pop-tips_box{width: 100%; height: 100%;}
+
+.pop .pop-loading{position: absolute; left: 0; right: 0; top: 0; bottom: 0; width: 100%; height: 100%;}
+.pop .pop-loading_box{width: 100%; height: 100%;}
+.pop section.pop-loading{
+  -webkit-transform: translate(0 , 0);
+  transform: translate(0 , 0);
+}
 
 /* FORM */
 

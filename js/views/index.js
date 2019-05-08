@@ -560,7 +560,12 @@
         var canvas = document.getElementById('template');
 
         if (canvas === null) {
-            alert('请上传泳照');
+            // 显示弹层
+            ee.trigger(cmd.SHOW_POP, ['.pop-tips']);
+
+            setTimeout(function() {
+                ee.trigger(cmd.CLOSE_POP, ['.pop-tips']);
+            }, 2000);
 
             return;
         }
@@ -616,6 +621,8 @@
 
             return;
         }
+
+        ee.trigger(cmd.SHOW_POP, ['.pop-loading']);
 
         getSegmentData(file, function(url) {
             compoundPhoto();
@@ -768,6 +775,7 @@
         });
 
         $('#template').css('transform', 'scale(' + $('.photo-canvas').width() / themeAssets.width + ')');
+        ee.trigger(cmd.CLOSED_POP, ['.pop-loading']);
     };
 
     // 生成模板图片

@@ -324,10 +324,22 @@
             </div>
             <a class="btns btn-close btn-pop_close" href="javascript:;" title="关闭" data-close=".pop-rule">关闭</a>
         </section>
+        <section class="pop-tips" data-close=".pop-tmall">
+            <div class="pop-tips_box flex flex-justify_center flex-align_center">
+                <p class="words word-tips_upload">请上传泳照</p>
+            </div>
+        </section>
+        <section class="pop-loading">
+            <div class="pop-loading_box flex flex-justify_center flex-align_center">
+                <dl class="flex flex-justify_center flex-align_center">
+                    <dt><span class="words word-loading_title"></span></dt>
+                    <dd><</dd>
+                </dl>
+            </div>
+        </section>
     </div>
     <script src="js/public/common.js"></script>
     <script src="js/views/index.js"></script>
-
-</html>
+</body>
 
 </html>
