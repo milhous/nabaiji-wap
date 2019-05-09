@@ -910,7 +910,7 @@
             dataType: 'json',
             success: function(data) {
                 if (data.error_code == 0) {
-                    $('#agreement').prop('checked', true);
+                    $('#agreement').prop('checked', data.is_agree);
                 } else {
                     alert(data.error_msg);
                 }
