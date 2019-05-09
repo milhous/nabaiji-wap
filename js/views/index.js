@@ -557,11 +557,23 @@
                     };
                     img.src = data.url;
                 } else {
-                    alert('抠图失败,请刷新重试!');
+                    ee.trigger(cmd.SHOW_POP, ['.pop-error']);
+
+                    timer = setTimeout(function() {
+                        ee.trigger(cmd.CLOSE_POP, ['.pop-error']);
+
+                        goToScene(SCENE.THEME);
+                    }, 2000);
                 }
             },
             error: function(data) {
-                alert("抠图失败,请刷新重试!");
+                ee.trigger(cmd.SHOW_POP, ['.pop-error']);
+
+                timer = setTimeout(function() {
+                    ee.trigger(cmd.CLOSE_POP, ['.pop-error']);
+
+                    goToScene(SCENE.THEME);
+                }, 2000);
             }
         });
     };
@@ -645,8 +657,6 @@
     // 合成图片
     var compoundPhoto = function() {
         createSayPhoto();
-
-        console.log(shadow.width);
 
         // 清空模板
         $('.wrap .photo-template').css('display', 'none');
@@ -818,7 +828,7 @@
         ctx.textBaseline = 'top';
 
         var txt1 = arr[0];
-        var txt2 = typeof arr[1] === 'string' ? arr[1] : ''; 
+        var txt2 = typeof arr[1] === 'string' ? arr[1] : '';
 
         if (txt1.length > 10) {
             txt2 = txt1.substring(10) + txt2;
@@ -1045,6 +1055,13 @@
         // 关闭协议
         $(document).on('click', '.pop-rule .btn-pop_close', function(evt) {
             stopBanner();
+        });
+
+        // 关闭报错
+        $(document).on('click', '.pop-error', function(evt) {
+            clearTimeout(timer);
+
+            goToScene(SCENE.THEME);
         });
 
         // 场景 - 首页

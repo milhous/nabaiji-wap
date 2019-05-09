@@ -181,11 +181,41 @@
   animation: fadeOut .6s linear both;
 }
 
-.animation-loading-fadeOut{
-  -webkit-animation: fadeOut .6s linear both;
-  animation: fadeOut .6s linear both;
+@-webkit-keyframes loading {
+  0% {
+    background-position: 0 0
+  }
+  33%{
+    background-position: 0 -.2rem;
+  }
+  66%{
+    background-position: 0 -.4rem;
+  }
+  100%{
+    background-position: 0 0;
+  }
 }
 
+@keyframes loading {
+  0% {
+    background-position: 0 0
+  }
+  33%{
+    background-position: 0 -1.05rem;
+  }
+  66%{
+    background-position: 0 -2.1rem;
+  }
+  100%{
+    background-position: 0 0;
+  }
+}
+
+.animation-loading{display: block; width: 1.8rem; height: 1.05rem; background: url(../../images/bg-loading_dot.png) no-repeat 0 0; background-size: 1.8rem 3.15rem;}
+.animation-loading{
+  -webkit-animation: loading 2s steps(1) both infinite;
+  animation: loading 2s steps(1) both infinite;
+}
 
 /* RESET */
 body,
@@ -201,7 +231,7 @@ textarea{margin: 0; padding: 0; border: none; background-color: transparent; col
 input[type="tel"],
 input[type="text"],
 input[type="password"],
-textarea{width:100%; height:100%; font-family: VerlagBook, FZZhunYuan, Arial, Microsoft Yahei;}
+textarea{width:100%; height:100%; font-family: Arial, Microsoft Yahei;}
 input{
   box-sizing: border-box;
 }
@@ -428,6 +458,7 @@ textarea{resize:none;}
 .word-playbill_title{width: 4.74rem; height: .82rem; background-image: url(../../images/word-playbill_title.png);}
 .word-tips_upload{width: 2.38rem; height: .48rem; background-image: url(../../images/word-tips_upload.png);}
 .word-loading_title{width: 2.7rem; height: 1.3rem; background-image: url(../../images/word-loading_title.png);}
+.word-tips_error{width: 5.76rem; height: 1.48rem; background-image: url(../../images/word-tips_error.png);}
 
 /* POP */
 .pop{display: none; position: fixed; left: 0; right: 0; top: 0; bottom: 0; z-index: 1000; background-color: rgba(0, 0, 0, .8); opacity: 0;}
@@ -523,6 +554,17 @@ textarea{resize:none;}
 .pop .pop-loading{position: absolute; left: 0; right: 0; top: 0; bottom: 0; width: 100%; height: 100%;}
 .pop .pop-loading_box{width: 100%; height: 100%;}
 .pop section.pop-loading{
+  -webkit-transform: translate(0 , 0);
+  transform: translate(0 , 0);
+}
+.pop .pop-loading dd{
+  -webkit-transform: translateX(-.4rem);
+  transform: translateX(-.4rem);
+}
+
+.pop .pop-error{position: absolute; left: 0; right: 0; top: 0; bottom: 0; width: 100%; height: 100%;}
+.pop .pop-error_box{width: 100%; height: 100%;}
+.pop section.pop-error{
   -webkit-transform: translate(0 , 0);
   transform: translate(0 , 0);
 }
