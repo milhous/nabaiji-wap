@@ -32,8 +32,6 @@
     var sceneIndex = 0;
     // 场景数量
     var sceneNums = $elem.stageList.length;
-    // 是否初次
-    var isNewer = true;
 
     // swiper
     var swiper = null;
@@ -1014,8 +1012,11 @@
 
         // 场景 - 首页
         $(document).on('click', '.btn-start', function() {
-            if (isNewer) {
-                isNewer = false;
+            // 是否初次
+            var isNewer = localStorage.getItem('isNewer');
+
+            if (isNewer === null || isNewer !== '0') {
+                localStorage.setItem('isNewer', 0);
 
                 // 显示弹层
                 ee.trigger(cmd.SHOW_POP, ['.pop-rule']);
