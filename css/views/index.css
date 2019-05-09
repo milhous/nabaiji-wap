@@ -194,6 +194,7 @@
   box-shadow: .06rem .08rem .07rem rgba(0, 0, 0, .18);
 }
 .stage-wall .wall-item dl span{color: #606162; font-size: .24rem; line-height: .34rem;}
+.stage-wall .wall-item_empty{width: 2.94rem; margin: 0 .2rem .4rem;}
 
 .stage-playbill .btn-photoWall{position: absolute; right: .25rem; top: .25rem;}
 .stage-playbill .word-playbill_title{position: absolute; left: 50%; bottom: .26rem;}

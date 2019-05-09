@@ -78,6 +78,12 @@
         '5': 'underwater2'
     };
 
+    // 合成图片文字阴影
+    var shadow = {
+        width: 0,
+        height: 0
+    };
+
     // 主题文案
     var themeSay = {
         '0': '单身不是缺憾\n单调才是',
@@ -109,10 +115,10 @@
         },
         tag: {
             file: 'theme-tag.png',
-            width: 100,
-            height: 57,
-            x: 484,
-            y: 822
+            width: 165,
+            height: 110,
+            x: 452,
+            y: 795
         },
         slogan: {
             file: 'theme-slogan.png',
@@ -123,10 +129,17 @@
         },
         QRcode: {
             file: 'theme-QRcode.png',
-            width: 78,
-            height: 80,
-            x: 495,
-            y: 740
+            width: 81,
+            height: 81,
+            x: 494,
+            y: 742
+        },
+        sayShadow: {
+            file: 'theme-shadow.png',
+            width: 432,
+            height: 197,
+            x: 0,
+            y: 663
         },
         panel: {
             file: 'theme-panel.png',
@@ -633,6 +646,8 @@
     var compoundPhoto = function() {
         createSayPhoto();
 
+        console.log(shadow.width);
+
         // 清空模板
         $('.wrap .photo-template').css('display', 'none');
         $('.wrap .photo-canvas canvas').remove();
@@ -653,6 +668,7 @@
         var rectBorder = [0, 0, themeAssets.border.width, themeAssets.border.height, 0, 0, themeAssets.border.width, themeAssets.border.height];
         var rectQRcode = [0, 0, themeAssets.QRcode.width, themeAssets.QRcode.height, 0, 0, themeAssets.QRcode.width, themeAssets.QRcode.height];
         var rectTag = [0, 0, themeAssets.tag.width, themeAssets.tag.height, 0, 0, themeAssets.tag.width, themeAssets.tag.height];
+        var rectSayShadow = [0, 0, themeAssets.sayShadow.width, themeAssets.sayShadow.height, 0, 0, shadow.width, themeAssets.sayShadow.height];
         var rectPanel = [0, 0, themeAssets.panel.width, themeAssets.panel.height, 0, 0, themeAssets.panel.width, themeAssets.panel.height];
         var rectAvatar = [0, 0, bodyImg.width, bodyImg.height, 0, 0, bodyImg.width, bodyImg.height];
         var rectSay = [0, 0, themeAssets.say.width, themeAssets.say.height, 0, 0, themeAssets.say.width, themeAssets.say.height];
@@ -679,6 +695,9 @@
             id: 'tag',
             src: themeAssets.path + themeAssets.tag.file
         }, {
+            id: 'sayShadow',
+            src: themeAssets.path + themeAssets.sayShadow.file
+        }, {
             id: 'panel',
             src: themeAssets.path + themeAssets.panel.file
         }]);
@@ -689,6 +708,7 @@
             var border = new Bitmap(ld.get('border'), rectBorder);
             var QRcode = new Bitmap(ld.get('QRcode'), rectQRcode);
             var tag = new Bitmap(ld.get('tag'), rectTag);
+            var sayShadow = new Bitmap(ld.get('sayShadow'), rectSayShadow);
             var say = new Bitmap($('#say')[0], rectSay);
             var panel = new Bitmap(ld.get('panel'), rectPanel);
 
@@ -710,6 +730,12 @@
             slogan.x = themeAssets.slogan.x + themeAssets.slogan.width / 2;
             slogan.y = themeAssets.slogan.y + themeAssets.slogan.height / 2;
             stage.add(slogan);
+
+            sayShadow.originX = 0.5;
+            sayShadow.originY = 0.5;
+            sayShadow.x = themeAssets.sayShadow.x + themeAssets.sayShadow.width / 2;
+            sayShadow.y = themeAssets.sayShadow.y + themeAssets.sayShadow.height / 2;
+            stage.add(sayShadow);
 
             border.originX = 0.5;
             border.originY = 0.5;
@@ -799,8 +825,14 @@
             txt1 = txt1.substring(0, 10);
         }
 
+        shadow.width = 40 * txt1.length + 132;
+
         if (txt2.length > 10) {
             txt2 = txt2.substring(0, 10);
+        }
+
+        if (txt1.length < txt2.length) {
+            shadow.width = 40 * txt2.length + 132;
         }
 
         if (txt1.length) {
@@ -878,8 +910,9 @@
                     photos = data.photos;
 
                     var arr = [];
+                    var len = data.photos.length;
 
-                    for (var i = 0, len = data.photos.length; i < len; i++) {
+                    for (var i = 0; i < len; i++) {
                         var item = data.photos[i];
                         var str = '<div class="wall-item" data-index="' + i + '">';
                         str += '<div><img src="' + item.image + '" /></div>';
@@ -888,6 +921,10 @@
                         // str += '<dd><span>' + item.tickets + '</span>票</dd></dl></div>';
 
                         arr.push(str);
+                    }
+
+                    if (len % 2 === 1) {
+                        arr.push('<div class="wall-item_empty"></div>');
                     }
 
                     $('.wrap .wall-list').html(arr.join(''));
