@@ -142,20 +142,19 @@
 
 @keyframes flash {
   0%,
-  10%,
-  20%,
-  100% {
+  25%,
+  75% {
     opacity: 1;
   }
-  5%,
-  15% {
+  50%,
+  100% {
     opacity: 0;
   }
 }
 
 .animation-flash {
-  -webkit-animation: flash 5s both infinite;
-  animation: flash 5s both infinite;
+  -webkit-animation: flash 2s both infinite alternate;
+  animation: flash 2s both infinite alternate;
 }
 
 @-webkit-keyframes fadeOut {
@@ -268,6 +267,13 @@ textarea{resize:none;}
 .swiper-button-next{background-image: url(../../images/btn-next.png);}
 
 .stage-list{display: none;}
+
+.tab{position: absolute; left: .1rem; top: .45rem;}
+.tab li{position: relative; padding: 0 .2rem}
+.tab li:first-child:before{content: '.'; position: absolute; right: 0; top: 50%; width: .03rem; height: .46rem; background-color: #224663; text-indent: -999rem;}
+.tab li:first-child:before{
+  transform: translateY(-50%);
+}
 
 .loading-dot{display: block; width: .83rem; height: .15rem; background: url(../../images/bg-loading_dot.png) no-repeat left top; background-size: .83rem .55rem;}
 
@@ -433,6 +439,9 @@ textarea{resize:none;}
 .btns{display: block; position: relative; cursor: pointer; border: none; background-repeat: no-repeat; background-position: 0 0; text-indent: -99rem; background-size: 100% 100%;}
 .btn-buy{width: 2.62rem; height: .94rem; background-image: url(../../images/btn-buy.png);}
 .btn-photoWall{width: 1.6rem; height: .4rem; background-image: url(../../images/btn-photoWall.png);}
+.btn-photoWall_disable{width: 1.6rem; height: .4rem; background-image: url(../../images/btn-photoWall_disable.png);}
+.btn-playbill{width: 2.24rem; height: .42rem; background-image: url(../../images/btn-playbill.png);}
+.btn-playbill_disable{width: 2.24rem; height: .42rem; background-image: url(../../images/btn-playbill_disable.png);}
 .btn-rule{width: 1.46rem; height: .38rem; background-image: url(../../images/btn-rule.png);}
 .btn-start{width: 2.62rem; height: .94rem; background-image: url(../../images/btn-start.png);}
 .btn-close{width: .58rem; height: .58rem; background-image: url(../../images/btn-close.png);}

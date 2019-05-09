@@ -7,6 +7,8 @@
     var REQUEST_WX = 'http://nabaiji.yuncoupons.com/interface/get_wx_tickets.php';
     // 获取照片
     var REQUEST_PHOTO = 'http://nabaiji.yuncoupons.com/interface/get_my_photos.php';
+    // 获取所有照片
+    var REQUEST_ALL = 'http://nabaiji.yuncoupons.com/interface/get_all_photos.php';
     // 设置协议状态
     var REQUEST_SET_AGREE = 'http://nabaiji.yuncoupons.com/interface/set_agree_status.php';
     // 获取协议状态
@@ -14,9 +16,6 @@
 
     // 计时器
     var timer = null;
-
-    // 海报照片
-    var photos = [];
 
     // 元素
     var $elem = {
@@ -87,7 +86,7 @@
     // 主题文案
     var themeSay = {
         '0': '单身不是缺憾\n单调才是',
-        '1': '单身不是缺憾单调才是',
+        '1': '单身不是缺憾\n单调才是',
         '2': '美丽的皮囊千篇一律\n有趣的灵魂万里挑一',
         '3': '美丽的皮囊千篇一律\n有趣的灵魂万里挑一',
         '4': '不一定要瘦\n但一定要享受',
@@ -326,11 +325,12 @@
     };
 
     // 初始化海报swiper
-    var initPlaybillSwiper = function(index) {
+    var initPlaybillSwiper = function(list) {
         var arr = [];
+        var len = list.length;
 
-        for (var i = 0, len = photos.length; i < len; i++) {
-            var item = photos[i];
+        for (var i = 0; i < len; i++) {
+            var item = list[i];
 
             arr.push('<div class="swiper-slide"><img src="' + item.image + '" /></div>');
         }
@@ -341,11 +341,7 @@
             speed: 600,
             loop: true,
             on: {
-                init: function() {
-                    console.log('elem', this)
-
-                    this.slideTo(Number(index) + 1, 1);
-                },
+                init: function() {},
                 slideChange: function() {}
             },
             navigation: {
@@ -514,6 +510,8 @@
         arr.push('<span class="photo-item photo-item_QRcode"></span>');
         arr.push('<span class="photo-item photo-item_tag"></span>');
         arr.push('<span class="words word-photo_tips"></span>');
+        arr.push('<span class="photo-item photo-item_shadow"></span>');
+        arr.push('<span class="photo-item photo-item_cursor animation-flash ' + info.theme + '"></span>');
         arr.push('<textarea class="photo-item photo-item_word" rows="2" cols="20" wrap="hard" maxlength="20">' + info.word + '</textarea>');
 
         $('.photo-template').html(arr.join('')).css('display', 'block');
@@ -908,17 +906,15 @@
         });
     };
 
-    // 获取照片
-    var getMyImgs = function() {
+    // 获取所有人海报照片
+    var getAllImgs = function() {
         $.ajax({
-            url: REQUEST_PHOTO,
+            url: REQUEST_ALL,
             type: 'post',
             cache: false,
             dataType: 'json',
             success: function(data) {
                 if (data.error_code == 0) {
-                    photos = data.photos;
-
                     var arr = [];
                     var len = data.photos.length;
 
@@ -938,6 +934,26 @@
                     }
 
                     $('.wrap .wall-list').html(arr.join(''));
+                } else {
+                    alert(data.error_msg);
+                }
+            },
+            error: function(data) {
+                alert("获取失败,请刷新重试!");
+            }
+        });
+    };
+
+    // 获取个人海报照片
+    var getMyImgs = function() {
+        $.ajax({
+            url: REQUEST_PHOTO,
+            type: 'post',
+            cache: false,
+            dataType: 'json',
+            success: function(data) {
+                if (data.error_code == 0) {
+                    initPlaybillSwiper(data.photos);
                 } else {
                     alert(data.error_msg);
                 }
@@ -1064,6 +1080,11 @@
             goToScene(SCENE.THEME);
         });
 
+        // 输入框
+        $(document).on('focus', '.photo-item_word', function(evt) {
+            $('.photo-item_cursor').hide();
+        })
+
         // 场景 - 首页
         $(document).on('click', '.btn-start', function() {
             // 是否初次
@@ -1108,8 +1129,13 @@
         });
 
         // 照片墙
-        $(document).on('click', '.btn-photoWall', function() {
-            goToScene(SCENE.WALL, getMyImgs);
+        $(document).on('click', 'a.btn-photoWall, a.btn-photoWall_disable', function() {
+            goToScene(SCENE.WALL, getAllImgs);
+        });
+
+        // 个人海报
+        $(document).on('click', 'a.btn-playbill, a.btn-playbill_disable', function() {
+            goToScene(SCENE.PLAYBILL, getMyImgs);
         });
 
         // 再玩一次
@@ -1125,10 +1151,6 @@
         // 海报
         $(document).on('click', '.wall-item', function() {
             var index = $(this).attr('data-index');
-
-            goToScene(SCENE.PLAYBILL, function() {
-                initPlaybillSwiper(index);
-            });
         });
 
         // 场景 - 确定场景

@@ -131,6 +131,7 @@
 .stage-photo .photo-item_slogan{left: 4.3rem; top: .5rem; width: 1.4rem; height: 2.3rem; background-image: url(../../images/theme/theme-slogan.png);}
 .stage-photo .photo-item_QRcode{left: 4.95rem; top: 7.4rem; width: .78rem; height: .8rem; background-image: url(../../images/theme/theme-QRcode.png);}
 .stage-photo .photo-item_tag{left: 4.52rem; top: 7.95rem; width: 1.65rem; height: 1.1rem; background-image: url(../../images/theme/theme-tag.png);}
+.stage-photo .photo-item_shadow{left: 0; top: 6.63rem; width: 4.32rem; height: 1.97rem; background-image: url(../../images/theme/theme-shadow.png);}
 .stage-photo .photo-sandbeach1_mask{left: 1.85rem; bottom: 0; width: 2.56rem; height: 7.32rem; background-image: url(../../images/theme/theme-sandbeach1_mask.png);}
 .stage-photo .photo-sandbeach2_mask{left: 2rem; bottom: 0; width: 2.3rem; height: 7.53rem; background-image: url(../../images/theme/theme-sandbeach2_mask.png);}
 .stage-photo .photo-pool1_mask{left: 1.9rem; bottom: 1.1rem; width: 3.72rem; height: 4.4rem; background-image: url(../../images/theme/theme-pool1_mask.png);}
@@ -138,6 +139,16 @@
 .stage-photo .photo-underwater1_mask{left: .6rem; top: 1.4rem; width: 3.78rem; height: 7.08rem; background-image: url(../../images/theme/theme-underwater1_mask.png);}
 .stage-photo .photo-underwater2_mask{left: .56rem; top: 1.6rem; width: 4.44rem; height: 7.1rem; background-image: url(../../images/theme/theme-underwater2_mask.png);}
 .stage-photo .photo-item_word{left: .5rem; top: 7.35rem; width: 4rem; height: .8rem; background-color: transparent; color: #fff; font-weight: 700; font-size: .3rem; line-height: .4rem; letter-spacing: .1rem;}
+.stage-photo .photo-item_cursor{width: .03rem; height: .38rem; bottom: .93rem; background-color: #fff;}
+.stage-photo .photo-item_cursor{
+  box-shadow: .1rem .1rem .1rem rgba(0, 0, 0, .18);
+}
+.stage-photo .photo-item_cursor.sandbeach1,
+.stage-photo .photo-item_cursor.sandbeach2{left: 2.1rem;}
+.stage-photo .photo-item_cursor.pool1,
+.stage-photo .photo-item_cursor.pool2{left: 4.1rem;}
+.stage-photo .photo-item_cursor.underwater1,
+.stage-photo .photo-item_cursor.underwater2{left: 3rem;}
 
 .stage-save div{width: 6.17rem; height: 9.06rem;}
 .stage-save div{
@@ -196,7 +207,7 @@
 .stage-wall .wall-item dl span{color: #606162; font-size: .24rem; line-height: .34rem;}
 .stage-wall .wall-item_empty{width: 2.94rem; margin: 0 .2rem .4rem;}
 
-.stage-playbill .btn-photoWall{position: absolute; right: .25rem; top: .25rem;}
+.stage-playbill .btn-home{position: absolute; right: .4rem; top: .4rem;}
 .stage-playbill .word-playbill_title{position: absolute; left: 50%; bottom: .26rem;}
 .stage-playbill .swiper-container{width: 4.86rem; height: 7.12rem;}
 .stage-playbill img{display: block; width: 100%; height: 100%;}
