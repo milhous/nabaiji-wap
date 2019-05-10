@@ -4,6 +4,7 @@
 }
 .stage .btn-back{position: absolute; left: .25rem; top: .2rem; z-index: 200;}
 
+.stage-coming{background: #fff url(../../images/bg-comming.jpg) no-repeat center bottom; background-size: 100%;}
 .stage-landing{padding: .9rem 0 .7rem; background: #fff url(../../images/bg-landing.jpg) no-repeat center bottom; background-size: 100%}
 .stage-theme{padding: .85rem 0 .4rem; background: #fff url(../../images/bg-theme.jpg) no-repeat center bottom; background-size: 100%;}
 .stage-form{padding-top: .5rem;}

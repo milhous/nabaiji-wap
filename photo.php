@@ -204,7 +204,10 @@
                 </div>
                 <ul class="photo-btn flex flex-justify_center flex-align_center">
                     <li><div class="btns btn-submit">上传泳照<input id="photograph" type="file" accept="image/*"></div></li>
-                    <li><a class="btns btn-create" href="javascript:;">生成海报</a></li>
+                    <li>
+                        <a class="btns btn-change" href="javascript:;">更换场景</a>
+                        <a class="btns btn-create hide" href="javascript:;">生成海报</a>
+                    </li>
                 </ul>
             </section>
         </li>

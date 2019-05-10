@@ -545,6 +545,12 @@
 
                         var base64 = getImageBaset64(img);
 
+                        if (base64 === null) {
+                            showError();
+
+                            return;
+                        }
+
                         $('#avatar').attr('src', base64);
 
                         if (!$('.wrap .btn-submit').hasClass('btn-reset')) {
@@ -555,25 +561,24 @@
                     };
                     img.src = data.url;
                 } else {
-                    ee.trigger(cmd.SHOW_POP, ['.pop-error']);
-
-                    timer = setTimeout(function() {
-                        ee.trigger(cmd.CLOSE_POP, ['.pop-error']);
-
-                        goToScene(SCENE.THEME);
-                    }, 2000);
+                    showError();
                 }
             },
             error: function(data) {
-                ee.trigger(cmd.SHOW_POP, ['.pop-error']);
-
-                timer = setTimeout(function() {
-                    ee.trigger(cmd.CLOSE_POP, ['.pop-error']);
-
-                    goToScene(SCENE.THEME);
-                }, 2000);
+                showError();
             }
         });
+    };
+
+    // 报错提示
+    var showError = function() {
+        ee.trigger(cmd.SHOW_POP, ['.pop-error']);
+
+        timer = setTimeout(function() {
+            ee.trigger(cmd.CLOSE_POP, ['.pop-error']);
+
+            goToScene(SCENE.THEME, initSwiper);
+        }, 2000);
     };
 
     // 生成图片
@@ -626,7 +631,16 @@
         var ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
 
-        data = canvas.toDataURL('image/png');
+        var imageData = ctx.getImageData(0, 0, canvas.width, canvas.width);
+        var nums = 0;
+
+        for (var i = 0, len = imageData.data.length; i < len; i++) {
+            nums += imageData.data[i];
+        }
+
+        if (nums > 0) {
+            data = canvas.toDataURL('image/png');
+        }
 
         return data;
     };
@@ -649,6 +663,9 @@
             compoundPhoto();
 
             ee.trigger(cmd.CLOSE_POP, ['.pop-loading']);
+
+            $('.btn-change').addClass('hide');
+            $('.btn-create').removeClass('hide');
         });
     };
 
@@ -1077,7 +1094,7 @@
         $(document).on('click', '.pop-error', function(evt) {
             clearTimeout(timer);
 
-            goToScene(SCENE.THEME);
+            goToScene(SCENE.THEME, initSwiper);
         });
 
         // 输入框
@@ -1139,7 +1156,7 @@
         });
 
         // 再玩一次
-        $(document).on('click', '.btn-restart', function() {
+        $(document).on('click', '.btn-restart, .btn-change', function() {
             goToScene(SCENE.THEME, initSwiper);
         });
 
