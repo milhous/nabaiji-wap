@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title>晒出最美泳姿 赢迪卡侬大奖</title>
+    <meta name='viewport' content='width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no' />
+    <meta name='apple-mobile-web-app-capable' content='yes' />
+    <meta name='full-screen' content='true' />
+    <meta name='screen-orientation' content='portrait' />
+    <meta name='x5-fullscreen' content='true' />
+    <meta name='360-fullscreen' content='true' />
+    <meta http-equiv='expires' content='0' />
+    <link rel="stylesheet" href="css/libs/normalize.css" />
+    <link rel="stylesheet" href="css/public/common.css" />
+    <link rel="stylesheet" href="css/views/vote.css" />
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+    <script src="js/libs/zepto.min.js"></script>
+    <script src="js/plugins/flexible.js"></script>
+    <script src="js/plugins/EventEmitter.min.js"></script>
+    <script src="js/plugins/polyfill.min.js"></script>
+</head>
+
+<body>
+    <div class="wrap">
+        <section class="stage stage-vote flex flex-direction_column flex-justify_center flex-align_center">
+            <dl class="vote-candidate">
+                <dt><img class="vote-candidate_avatar" src="" alt="头像" /></dt>
+                <dd><span class="vote-candidate_name"><!-- js create element --></span></dd>
+            </dl>
+            <div class="vote-playbill">
+                <img class="vote-playbill_img" src="" />
+            </div>
+            <ul>
+                <li class="vote-btn"><!-- js create element --></li>
+                <li class="vote-bank"><!-- js create element --></li>
+            </ul>
+            <a class="btns btn-find" href="javascript:;" title="发现你的美">发现你的美</a>
+        </section>
+    </div>
+    <div class="pop">
+        <section class="pop-error" data-close=".pop-error">
+            <div class="pop-error_box flex flex-justify_center flex-align_center">
+                <span class="words word-tips_error">Opps，您的图片无法识别试试背景更干净的美照吧~</span>
+            </div>
+        </section>
+    </div>
+    <script src="js/public/common.js"></script>
+    <script src="js/views/vote.js"></script>
+</body>
+
+</html>

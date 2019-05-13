@@ -1,0 +1,12 @@
+.stage{position: absolute; left: 0; top: 0; width: 100%; height: 100%;}
+.stage{
+  box-sizing: border-box;
+}
+.stage-vote{background: #fff url(../../images/bg-vote.jpg) no-repeat center bottom; background-size: 100%;}
+
+.vote-playbill{width: 4.71rem; height: 6.91rem; background-color: #fff;}
+.vote-playbill{
+  box-shadow: .1rem .1rem .1rem rgba(0, 0, 0, .18);
+}
+.vote-playbill img{display: block; width: 100%; height: 100%;}
+

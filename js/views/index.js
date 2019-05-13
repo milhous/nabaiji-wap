@@ -332,7 +332,7 @@
         for (var i = 0; i < len; i++) {
             var item = list[i];
 
-            arr.push('<div class="swiper-slide"><img src="' + item.image + '" /></div>');
+            arr.push('<div class="swiper-slide" data-pid="' + item.id + '" data-uid="' + item.uid + '"><img src="' + item.image + '" /></div>');
         }
 
         $('.wrap .swiper-container').find('.swiper-wrapper').html(arr.join(''));
@@ -937,8 +937,9 @@
 
                     for (var i = 0; i < len; i++) {
                         var item = data.photos[i];
-                        var str = '<div class="wall-item" data-index="' + i + '">';
-                        str += '<div><img src="' + item.image + '" /></div>';
+                        var imgArr = item.image.split('.'); 
+                        var str = '<div class="wall-item" data-index="' + i + '" data-pid="' + item.id + '" data-uid="' + item.uid + '">';
+                        str += '<div><img src="' + imgArr[0] + '_thumb.' + imgArr[1] + '" /></div>';
                         str += '<dl><dt><img src="' + item.headimg + '" /><span>' + item.nickname + '</span></dt>';
                         str += '<dd> </dd></dl></div>';
                         // str += '<dd><span>' + item.tickets + '</span>票</dd></dl></div>';
