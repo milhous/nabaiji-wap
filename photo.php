@@ -272,25 +272,7 @@
         </section>
         <section class="pop-rule">
             <div class="pop-rule_box">
-                <h2>活动规则</h2>
-                <h3 class="flex flex-justify_center flex-align_center"><i class="icons icon-time"></i><span>活动时间</span></h3>
-                <p>5月10日—7月31日期间，活动分为2个阶段。</p>
-                <h3 class="flex flex-justify_center flex-align_center"><i class="icons icon-time"></i><span>参与方式</span></h3>
-                <dl>
-                    <dt>第一阶段（5.10-7.14）【晒照互动】：</dt>
-                    <dd>1.上传穿着迪卡侬暗夜精灵泳衣的照片，选择心仪模板，可生成个性泳装海报，保存海报即可晒出。</dd>
-                    <dd><span>（*特别说明：穿着其他服装也可参与晒图互动，但不具备后期领奖资格）</span></dd>
-                </dl>
-                <dl>
-                    <dt>第二阶段（7.15-7.31）【投票开启】：</dt>
-                    <dd>1.点击首页“照片墙”，进入个人海报页并分享该页面链接，即可邀请好友点赞投票。</dd>
-                    <dd>2.截至北京时间2019年7月31日24时止，点赞排名前6位的用户，可获得迪卡侬送出的相应奖品。</dd>
-                    <dd><span>（*每个微信ID仅可中奖1次，本次活动仅限中国大陆地区消</span></dd>
-                </dl>
-                <p>
-                    <input type="checkbox" id="agreement" name="agreement" />
-                    <label class="flex flex-justify_center flex-align_center" for="agreement"><i class="icons"></i><span>同意迪卡侬使用上传照片用于商业宣传 (如同意请勾选)</span></label>
-                </p>
+                <h2>活动大奖</h2>
                 <h3 class="flex flex-justify_center flex-align_center"><i class="icons icon-prize"></i><span>活动奖品设置</span></h3>
                 <p>一等奖：第1名</p>
                 <p>价值5000元SEAISEE水下魅力写真拍摄一组</p>
@@ -310,7 +292,7 @@
                     <p>2.<strong>使用时间：</strong>截止2019年8月15日止, 具体拍摄时间由获奖用户与迪卡侬官方协商决定。</p>
                     <p>3.获奖者为上海地区居民，选择迪卡侬指定交通方式, 则个人往返费用由迪卡侬承担。若获奖者为上海地区外居民, 选择迪卡侬指定交通及住宿方式，则个人往返费用及住宿费用（一晚）由迪卡侬承担。</p>
                     <p>4.拍摄时须潜入水中, 获奖者需熟悉水性, 并确认无影响安全的身心疾病, 拍摄前请在家自行练习水中睁眼能力。</p>
-                    <p>5.拍摄共计三套服装，包含一件暗夜精灵系列泳衣及两套可选择的拍摄现场服装道具,  自备服装可提前</p>
+                    <p>5.拍摄共计三套服装，包含一件暗夜精灵系列泳衣及两套可选择的拍摄现场服装道具,  自备服装可提前联系迪卡侬官方由专业摄影团队确认可行后使用。</p>
                 </div>
                 <p>二等奖：第2-3名</p>
                 <p>价值2000 元专业游泳教程一套，共计两名。</p>
@@ -325,6 +307,25 @@
                 <p>三等奖：第4-6名</p>
                 <p>价值 1000元迪卡侬清凉一夏礼品卡一张，共计三名。</p>
                 <div class="rule-pic"><img src="images/pic-prize3.jpg" alt="价值 1000元迪卡侬清凉一夏礼品卡一张，共计三名。" /></div>
+                <h3 class="flex flex-justify_center flex-align_center"><i class="icons icon-time"></i><span>活动时间</span></h3>
+                <p>5月10日—7月31日期间，活动分为2个阶段。</p>
+                <h3 class="flex flex-justify_center flex-align_center"><i class="icons icon-time"></i><span>参与方式</span></h3>
+                <dl>
+                    <dt>第一阶段（5.10-7.14）【晒照互动】：</dt>
+                    <dd>1.上传穿着迪卡侬暗夜精灵泳衣的照片，选择心仪模板，可生成个性泳装海报，保存海报即可晒出。</dd>
+                    <dd><span>（*特别说明：穿着其他服装也可参与晒图互动，但不具备后期领奖资格）</span></dd>
+                </dl>
+                <dl>
+                    <dt>第二阶段（7.15-7.31）【投票开启】：</dt>
+                    <dd>1.点击首页“照片墙”，进入个人海报页并分享该页面链接，即可邀请好友点赞投票。</dd>
+                    <dd>2.截至北京时间2019年7月31日24时止，点赞排名前6位的用户，可获得迪卡侬送出的相应奖品。</dd>
+                    <dd>3.每个微信ID仅可给同一张海报投票1次。</dd>
+                    <dd><span>（*每个微信ID仅可中奖1次，本次活动仅限中国大陆地区消费者参与）</span></dd>
+                </dl>
+                <p>
+                    <input type="checkbox" id="agreement" name="agreement" />
+                    <label class="flex flex-justify_center flex-align_center" for="agreement"><i class="icons"></i><span>同意迪卡侬使用上传照片用于商业宣传 (如同意请勾选)</span></label>
+                </p>
                 <h3 class="flex flex-justify_center flex-align_center"><i class="icons icon-notice"></i><span>获奖须知</span></h3>
                 <ul>
                     <li>1、中奖中户需如实填写信息，如信息填写错误或在3个工作日内未填写，则视为自动放弃。</li>
