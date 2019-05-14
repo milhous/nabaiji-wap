@@ -102,12 +102,12 @@
             <div class="scene-flipper_front">
                 <section class="stage stage-landing flex flex-direction_column flex-justify_between flex-align_center">
                     <a class="btns btn-photoWall" href="javascript:;">照片墙</a>
+                    <a class="btns btn-rule" href="javascript:;">活动规则</a>
                     <h2 class="words word-landing_title">晒出最美泳姿 赢迪卡侬大奖</h2>
                     <ul class="flex flex-justify_center flex-align_center">
                         <li><a class="btns btn-start" href="javascript:;">晒照赢奖</a></li>
                         <li><a class="btns btn-buy" href="javascript:;">购买泳衣</a></li>
                     </ul>
-                    <a class="btns btn-rule translate_centerX" href="javascript:;">活动规则</a>
                 </section>
             </div>
             <div class="scene-flipper_back">
@@ -119,12 +119,12 @@
         <li>
             <section class="stage stage-landing flex flex-direction_column flex-justify_between flex-align_center">
                 <a class="btns btn-photoWall" href="javascript:;">照片墙</a>
+                <a class="btns btn-rule" href="javascript:;">活动规则</a>
                 <h2 class="words word-landing_title">晒出最美泳姿 赢迪卡侬大奖</h2>
                 <ul class="flex flex-justify_center flex-align_center">
                     <li><a class="btns btn-start" href="javascript:;">晒照赢奖</a></li>
                     <li><a class="btns btn-buy" href="javascript:;">购买泳衣</a></li>
                 </ul>
-                <a class="btns btn-rule translate_centerX" href="javascript:;">活动规则</a>
             </section>
         </li>
         <li>
@@ -331,6 +331,9 @@
                     <li>2、第1-3名中奖用户，迪卡侬将在收到信息后的10个工作日内与您联系领奖。</li>
                     <li>3、第4-6名中奖用户，迪卡侬将在收到正确收货信息后的10个工作日内为您寄出礼品。</li>
                 </ul>
+            </div>
+            <div class="pop-rule_btn flex flex-justify_center flex-align_center">
+                <a class="btns btn-pop_start" href="javascript:;">晒照赢奖</a>
             </div>
             <a class="btns btn-close btn-pop_close" href="javascript:;" title="关闭" data-close=".pop-rule">关闭</a>
         </section>

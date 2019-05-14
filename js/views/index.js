@@ -1115,9 +1115,16 @@
                 ee.trigger(cmd.SHOW_POP, ['.pop-rule']);
 
                 playBanner();
+            } else {
+                goToNextScene(initSwiper);
             }
+        });
 
-            goToNextScene(initSwiper);
+        $(document).on('click', '.btn-pop_start', function() {
+            // 隐藏弹层
+            ee.trigger(cmd.CLOSE_POP, ['.pop-rule']);
+
+            goToScene(SCENE.THEME, initSwiper);
         });
 
         // 购买泳装

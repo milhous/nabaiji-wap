@@ -48,7 +48,7 @@
 
 .stage-landing li{margin: 0 .1rem;}
 .stage-landing .btn-photoWall{position: absolute; right: .2rem; top: .2rem;}
-.stage-landing .btn-rule{position: absolute; left: 50%; bottom: .2rem;}
+.stage-landing .btn-rule{position: absolute; right: 2.2rem; top: .24rem;}
 
 .stage-theme .theme-panel{position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 100;}
 .stage-theme .theme-list{position: relative; width: 4.46rem; height: 6.54rem;}
