@@ -263,9 +263,10 @@
         <section class="pop-tmall">
             <div class="pop-tmall_box flex flex-direction_column flex-justify_center flex-align_center">
                 <div></div>
-                <div>
+                <div class="flex flex-direction_column flex-justify_center flex-align_center">
                     <h3 class="words word-tmall_title">复制淘口令，打开天猫</h3>
                     <p>復|制这段描述￥o5VaY0wrOCD￥后到☞淘♂寳♀☜</p>
+                    <a class="btns btn-pop_copy" href="javascript:;" title="一键复制">一键复制</a>
                 </div>
             </div>
             <a class="btns btn-close btn-pop_close" href="javascript:;" title="关闭" data-close=".pop-tmall">关闭</a>
@@ -354,6 +355,11 @@
         <section class="pop-error" data-close=".pop-error">
             <div class="pop-error_box flex flex-justify_center flex-align_center">
                 <span class="words word-tips_error">Opps，您的图片无法识别试试背景更干净的美照吧~</span>
+            </div>
+        </section>
+        <section class="pop-copy" data-close=".pop-copy">
+            <div class="pop-copy_box flex flex-justify_center flex-align_center">
+                <span class="words word-tips_copy">复制成功</span>
             </div>
         </section>
     </div>

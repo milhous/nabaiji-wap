@@ -937,7 +937,7 @@
 
                     for (var i = 0; i < len; i++) {
                         var item = data.photos[i];
-                        var imgArr = item.image.split('.'); 
+                        var imgArr = item.image.split('.');
                         var str = '<div class="wall-item" data-index="' + i + '" data-pid="' + item.id + '" data-uid="' + item.uid + '">';
                         str += '<div><img src="' + imgArr[0] + '_thumb.' + imgArr[1] + '" /></div>';
                         str += '<dl><dt><img src="' + item.headimg + '" /><span>' + item.nickname + '</span></dt>';
@@ -1198,6 +1198,34 @@
         $(document).on('click', '.btn-create', function() {
             createPhoto();
         });
+
+        // 按钮 - 一键复制
+        $(document).on('click', '.btn-pop_copy', function() {
+            var input = document.createElement('input');
+            input.setAttribute('readonly', 'readonly');
+            input.setAttribute('value', '復|制这段描述￥o5VaY0wrOCD￥后到☞淘♂寳♀☜');
+            document.body.appendChild(input);
+            input.setSelectionRange(0, 9999);
+
+            if (document.execCommand('copy')) {
+                document.execCommand('copy');
+
+                // 显示弹层
+                ee.trigger(cmd.SHOW_POP, ['.pop-copy']);
+
+                timer = setTimeout(function() {
+                    ee.trigger(cmd.CLOSE_POP, ['.pop-copy']);
+                }, 2000);
+
+                console.log('复制成功');
+            }
+
+            document.body.removeChild(input);
+        });
+
+        if (document.execCommand('copy')) {
+            $('.btn-pop_copy').addClass('hide');
+        }
     };
 
     // 初始化
