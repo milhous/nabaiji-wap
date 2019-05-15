@@ -51,6 +51,7 @@
 .stage-landing .btn-rule{position: absolute; right: 2.2rem; top: .24rem;}
 
 .stage-theme .theme-panel{position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 100;}
+.stage-theme .theme-item{width: 4.46rem; height: 6.54rem; margin: 0 auto;}
 .stage-theme .theme-list{position: relative; width: 4.46rem; height: 6.54rem;}
 .stage-theme .theme-list{
   box-shadow: .1rem .1rem .1rem rgba(0, 0, 0, .18);

@@ -175,12 +175,12 @@
                 <div class="theme-panel">
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"></div>
-                            <div class="swiper-slide"></div>
-                            <div class="swiper-slide"></div>
-                            <div class="swiper-slide"></div>
-                            <div class="swiper-slide"></div>
-                            <div class="swiper-slide"></div>
+                            <div class="swiper-slide flex flex-justify_center flex-align_center"><div class="theme-item"></div></div>
+                            <div class="swiper-slide flex flex-justify_center flex-align_center"><div class="theme-item"></div></div>
+                            <div class="swiper-slide flex flex-justify_center flex-align_center"><div class="theme-item"></div></div>
+                            <div class="swiper-slide flex flex-justify_center flex-align_center"><div class="theme-item"></div></div>
+                            <div class="swiper-slide flex flex-justify_center flex-align_center"><div class="theme-item"></div></div>
+                            <div class="swiper-slide flex flex-justify_center flex-align_center"><div class="theme-item"></div></div>
                         </div>
                         <div class="swiper-button-prev"></div>
                         <div class="swiper-button-next"></div>

@@ -1179,7 +1179,7 @@
         });
 
         // 场景 - 确定场景
-        $(document).on('click', '.btn-confirm', function(evt) {
+        $(document).on('click', '.btn-confirm, .theme-item', function(evt) {
             evt.preventDefault();
 
             updateThemeAssets();
