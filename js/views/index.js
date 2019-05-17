@@ -67,7 +67,9 @@
         // 主题
         theme: null,
         // 照片
-        photo: null
+        photo: null,
+        // 口号类型
+        sloganType: 0
     };
 
     // 主题信息
@@ -94,6 +96,21 @@
         '3': '美丽的皮囊千篇一律\n有趣的灵魂万里挑一',
         '4': '不一定要瘦\n但一定要享受',
         '5': '不一定要瘦\n但一定要享受'
+    };
+
+    var slogaData = {
+        '0': {
+            word: '单身不是缺憾\n单调才是',
+            class: 'sandbeach1'
+        },
+        '1': {
+            word: '美丽的皮囊千篇一律\n有趣的灵魂万里挑一',
+            class: 'pool1'
+        },
+        '2': {
+            word: '不一定要瘦\n但一定要享受',
+            class: 'underwater1'
+        }
     };
 
     // 主题资源
@@ -473,7 +490,7 @@
         if (typeof theme[index] !== 'undefined') {
             info.theme = theme[index];
             info.word = themeSay[index];
-
+            info.sloganType = index % 3;
         }
 
         console.log('theme', info);
@@ -516,6 +533,8 @@
         arr.push('<span class="photo-item photo-item_shadow"></span>');
         arr.push('<span class="photo-item photo-item_cursor animation-flash ' + info.theme + '"></span>');
         arr.push('<textarea class="photo-item photo-item_word" rows="2" cols="20" wrap="hard" maxlength="20">' + info.word + '</textarea>');
+        arr.push('<span class="photo-item btns btn-slogan_prev"></span>');
+        arr.push('<span class="photo-item btns btn-slogan_next"></span>');
 
         $('.photo-template').html(arr.join('')).css('display', 'block');
     };
@@ -1257,6 +1276,58 @@
         if (document.execCommand('copy')) {
             $('.btn-pop_copy').addClass('hide');
         }
+
+        // 按钮 - 上一个口号
+        $(document).on('click', '.btn-slogan_prev', function() {
+            var index = info.sloganType;
+
+            index--;
+
+            if (index < 0) {
+                index = 2;
+            }
+                
+            var str = slogaData[index].word;
+            $('.photo-item_word').val(str);
+
+            $('.photo-item_cursor').removeClass('sandbeach1')
+                .removeClass('sandbeach2')
+                .removeClass('pool1')
+                .removeClass('pool2')
+                .removeClass('underwater1')
+                .removeClass('underwater2')
+                .addClass(slogaData[index].class);
+
+            info.sloganType = index;
+            info.word = str;
+
+            console.log(info);
+        });
+
+        // 按钮 - 下一个口号
+        $(document).on('click', '.btn-slogan_next', function() {
+            var index = info.sloganType;
+
+            index++;
+
+            if (index > 2) {
+                index = 0;
+            }
+
+            var str = slogaData[index].word;
+            $('.photo-item_cursor').removeClass('sandbeach1')
+                .removeClass('sandbeach2')
+                .removeClass('pool1')
+                .removeClass('pool2')
+                .removeClass('underwater1')
+                .removeClass('underwater2')
+                .addClass(slogaData[index].class);
+            
+            info.sloganType = index;
+            info.word = str;
+
+            console.log(info);
+        });
     };
 
     // 初始化

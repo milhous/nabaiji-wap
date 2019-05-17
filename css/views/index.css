@@ -152,6 +152,8 @@
 .stage-photo .photo-item_cursor.underwater1,
 .stage-photo .photo-item_cursor.underwater2{left: 3rem;}
 .stage-photo .word-tips_photo{margin-bottom: .15rem;}
+.stage-photo .btn-slogan_prev{left: -.15rem; top: 7.5rem;}
+.stage-photo .btn-slogan_next{left: 4rem; top: 7.5rem;}
 
 .stage-save div{width: 6.17rem; height: 9.06rem;}
 .stage-save div{

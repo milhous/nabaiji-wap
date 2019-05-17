@@ -457,6 +457,8 @@ textarea{resize:none;}
 .btn-home{width: 1.16rem; height: .42rem; background-image: url(../../images/btn-home.png);}
 .btn-change{width: 2.72rem; height: 1.04rem; background-image: url(../../images/btn-change.png);}
 .btn-pop_copy{width: 2.3rem; height: .82rem; background-image: url(../../images/btn-copy.png);}
+.btn-slogan_prev{width: .6rem; height: .6rem; background-image: url(../../images/btn-slogan_prev.png);}
+.btn-slogan_next{width: .6rem; height: .6rem; background-image: url(../../images/btn-slogan_next.png);}
 
 /* WORDS */
 .words{display: block; position: relative; border: none; background-repeat: no-repeat; background-position: 0 0; text-indent: -99rem; background-size: 100% 100%;}
