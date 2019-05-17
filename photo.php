@@ -198,6 +198,7 @@
         </li>
         <li>
             <section class="stage stage-photo flex flex-direction_column flex-justify_center flex-align_center">
+                <span class="words word-tips_photo"></span>
                 <div class="photo-container">
                     <div class="photo-canvas"><!-- js create elem --></div>
                     <div class="photo-template"><!-- js create elem --></div>
@@ -360,6 +361,16 @@
         <section class="pop-copy" data-close=".pop-copy">
             <div class="pop-copy_box flex flex-justify_center flex-align_center">
                 <span class="words word-tips_copy">复制成功</span>
+            </div>
+        </section>
+        <section class="pop-guide" data-close=".pop-guide">
+            <div class="pop-guide_box pop-guide_slogan">
+                <span class="words word-guide_title1 translate_centerX">戳左右箭头可选择更多宣言也可写下你的美丽主张~</span>
+                <div class="translate_centerX"></div>
+            </div>
+            <div class="pop-guide_box pop-guide_photo hide">
+                <span class="words word-guide_title2 translate_centerX">这个姿势拍照更好看哦~PS.请上传无遮挡的人身图像</span>
+                <div class="translate_centerX"><img src="" /></div>
             </div>
         </section>
     </div>

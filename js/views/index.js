@@ -17,6 +17,9 @@
     // 计时器
     var timer = null;
 
+    // cdn
+    var cdn = 'http://cdn.nabaiji.yuncoupons.com/';
+
     // 元素
     var $elem = {
         wrap: $('.wrap'),
@@ -515,6 +518,32 @@
         arr.push('<textarea class="photo-item photo-item_word" rows="2" cols="20" wrap="hard" maxlength="20">' + info.word + '</textarea>');
 
         $('.photo-template').html(arr.join('')).css('display', 'block');
+    };
+
+    // 显示引导
+    var createGuide = function() {
+        var src = cdn + 'images/theme-' + info.theme + '_guide.png';
+
+        $('.pop-guide_photo').find('img').attr('src', src);
+
+        if ($('.pop-guide_slogan').hasClass('hide')) {
+            $('.pop-guide_slogan').removeClass('hide');
+        }
+
+        if (!$('.pop-guide_photo').hasClass('hide')) {
+            $('.pop-guide_photo').addClass('hide');
+        }
+
+        ee.trigger(cmd.SHOW_POP, ['.pop-guide']);
+
+        setTimeout(function() {
+            $('.pop-guide_slogan').addClass('hide');
+            $('.pop-guide_photo').removeClass('hide')
+        }, 3000);
+
+        timer = setTimeout(function() {
+            ee.trigger(cmd.CLOSE_POP, ['.pop-guide']);
+        }, 6000);
     };
 
     /*
@@ -1186,6 +1215,8 @@
 
             goToNextScene(function() {
                 createTemplate();
+
+                createGuide();
             });
         });
 
