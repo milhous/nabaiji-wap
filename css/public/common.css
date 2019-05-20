@@ -459,6 +459,7 @@ textarea{resize:none;}
 .btn-pop_copy{width: 2.3rem; height: .82rem; background-image: url(../../images/btn-copy.png);}
 .btn-slogan_prev{width: .6rem; height: .6rem; background-image: url(../../images/btn-slogan_prev.png);}
 .btn-slogan_next{width: .6rem; height: .6rem; background-image: url(../../images/btn-slogan_next.png);}
+.btn-pass{width: 1.9rem; height: .7rem; background-image: url(../../images/btn-pass.png);}
 
 /* WORDS */
 .words{display: block; position: relative; border: none; background-repeat: no-repeat; background-position: 0 0; text-indent: -99rem; background-size: 100% 100%;}
@@ -603,6 +604,7 @@ textarea{resize:none;}
 .pop .pop-guide_slogan div{position: absolute; left: 50%; top: 6.98rem; width: 5.98rem; height: 1.8rem; background: url(../../images/theme-guide_slogan.png) no-repeat center center; background-size: 100% 100%;}
 .pop .pop-guide_photo div{position: absolute; left: 50%; top: 2.14rem; width: 5.02rem; height: 7.42rem;}
 .pop .pop-guide_photo img{display: block; width: 100%; height: 100%;}
+.pop .pop-guide .btn-pass{position: absolute; right: .8rem; bottom: 1rem;}
 
 /* FORM */
 
