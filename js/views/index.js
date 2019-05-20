@@ -529,7 +529,7 @@
         arr.push('<span class="photo-item photo-item_border"></span>');
         arr.push('<span class="photo-item photo-item_QRcode"></span>');
         arr.push('<span class="photo-item photo-item_tag"></span>');
-        arr.push('<span class="words word-photo_tips"></span>');
+        // arr.push('<span class="words word-photo_tips"></span>');
         arr.push('<span class="photo-item photo-item_shadow"></span>');
         arr.push('<span class="photo-item photo-item_cursor animation-flash ' + info.theme + '"></span>');
         arr.push('<textarea class="photo-item photo-item_word" rows="2" cols="20" wrap="hard" maxlength="20">' + info.word + '</textarea>');
@@ -545,19 +545,19 @@
 
         $('.pop-guide_photo').find('img').attr('src', src);
 
-        if ($('.pop-guide_slogan').hasClass('hide')) {
-            $('.pop-guide_slogan').removeClass('hide');
+        if ($('.pop-guide_photo').hasClass('hide')) {
+            $('.pop-guide_photo').removeClass('hide');
         }
 
-        if (!$('.pop-guide_photo').hasClass('hide')) {
-            $('.pop-guide_photo').addClass('hide');
+        if (!$('.pop-guide_slogan').hasClass('hide')) {
+            $('.pop-guide_slogan').addClass('hide');
         }
 
         ee.trigger(cmd.SHOW_POP, ['.pop-guide']);
 
         setTimeout(function() {
-            $('.pop-guide_slogan').addClass('hide');
-            $('.pop-guide_photo').removeClass('hide')
+            $('.pop-guide_slogan').removeClass('hide');
+            $('.pop-guide_photo').addClass('hide')
         }, 3000);
 
         timer = setTimeout(function() {

@@ -364,13 +364,13 @@
             </div>
         </section>
         <section class="pop-guide" data-close=".pop-guide">
-            <div class="pop-guide_box pop-guide_slogan">
-                <span class="words word-guide_title1 translate_centerX">戳左右箭头可选择更多宣言也可写下你的美丽主张~</span>
-                <div class="translate_centerX"></div>
-            </div>
-            <div class="pop-guide_box pop-guide_photo hide">
+            <div class="pop-guide_box pop-guide_photo">
                 <span class="words word-guide_title2 translate_centerX">这个姿势拍照更好看哦~PS.请上传无遮挡的人身图像</span>
                 <div class="translate_centerX"><img src="" /></div>
+            </div>
+            <div class="pop-guide_box pop-guide_slogan hide">
+                <span class="words word-guide_title1 translate_centerX">戳左右箭头可选择更多宣言也可写下你的美丽主张~</span>
+                <div class="translate_centerX"></div>
             </div>
         </section>
     </div>
