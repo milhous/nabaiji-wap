@@ -363,14 +363,16 @@
                 <span class="words word-tips_copy">复制成功</span>
             </div>
         </section>
-        <section class="pop-guide" data-close=".pop-guide">
+        <section class="pop-guide">
             <div class="pop-guide_box pop-guide_photo">
                 <span class="words word-guide_title2 translate_centerX">这个姿势拍照更好看哦~PS.请上传无遮挡的人身图像</span>
                 <div class="translate_centerX"><img src="" /></div>
+                <a class="btns btn-pass" href="javascript:;" title="知道了" data-index="0">知道了</a>
             </div>
             <div class="pop-guide_box pop-guide_slogan hide">
                 <span class="words word-guide_title1 translate_centerX">戳左右箭头可选择更多宣言也可写下你的美丽主张~</span>
                 <div class="translate_centerX"></div>
+                <a class="btns btn-pass" href="javascript:;" title="知道了" data-index="1">知道了</a>
             </div>
         </section>
     </div>

@@ -43,6 +43,8 @@
         height: 0,
         url: null
     };
+    // 是否引导过
+    var isGuide = false;
 
     // 场景名称与索引值映射关系
     var SCENE = {
@@ -545,24 +547,15 @@
 
         $('.pop-guide_photo').find('img').attr('src', src);
 
-        if ($('.pop-guide_photo').hasClass('hide')) {
-            $('.pop-guide_photo').removeClass('hide');
-        }
-
         if (!$('.pop-guide_slogan').hasClass('hide')) {
             $('.pop-guide_slogan').addClass('hide');
         }
 
+        if ($('.pop-guide_photo').hasClass('hide')) {
+            $('.pop-guide_photo').removeClass('hide');
+        }
+
         ee.trigger(cmd.SHOW_POP, ['.pop-guide']);
-
-        setTimeout(function() {
-            $('.pop-guide_slogan').removeClass('hide');
-            $('.pop-guide_photo').addClass('hide')
-        }, 3000);
-
-        timer = setTimeout(function() {
-            ee.trigger(cmd.CLOSE_POP, ['.pop-guide']);
-        }, 6000);
     };
 
     /*
@@ -1286,7 +1279,7 @@
             if (index < 0) {
                 index = 2;
             }
-                
+
             var str = slogaData[index].word;
             $('.photo-item_word').val(str);
 
@@ -1315,6 +1308,8 @@
             }
 
             var str = slogaData[index].word;
+            $('.photo-item_word').val(str);
+            
             $('.photo-item_cursor').removeClass('sandbeach1')
                 .removeClass('sandbeach2')
                 .removeClass('pool1')
@@ -1322,11 +1317,31 @@
                 .removeClass('underwater1')
                 .removeClass('underwater2')
                 .addClass(slogaData[index].class);
-            
+
             info.sloganType = index;
             info.word = str;
 
             console.log(info);
+        });
+
+        // 按钮 - 知道了
+        $(document).on('click', '.btn-pass', function(evt) {
+            var index = $(this).attr('data-index');
+
+            console.log(index, typeof index);
+
+            if (index === '0') {
+                if (!isGuide) {
+                    isGuide = true;
+
+                    $('.pop-guide_photo').addClass('hide');
+                    $('.pop-guide_slogan').removeClass('hide');
+                } else {
+                    ee.trigger(cmd.CLOSE_POP, ['.pop-guide']);
+                }
+            } else if (index === '1') {
+                ee.trigger(cmd.CLOSE_POP, ['.pop-guide']);
+            }
         });
     };
 
