@@ -47,7 +47,7 @@
 .stage-form_select span{color: #848484; font-size: .44rem; font-family: VerlagBook, FZZhunYuan, Arial, Microsoft Yahei;}
 
 .stage-landing li{margin: 0 .1rem;}
-.stage-landing div{position: relative; width: 100%; min-height: 11rem; padding: .9rem 0 .7rem;}
+.stage-landing div{position: relative; width: 100%; min-height: 11rem; padding: .7rem 0;}
 .stage-landing div{
   box-sizing: border-box;
 }
