@@ -100,14 +100,16 @@
     <div class="wrap">
         <div class="scene-flipper">
             <div class="scene-flipper_front">
-                <section class="stage stage-landing flex flex-direction_column flex-justify_between flex-align_center">
+                <section class="stage stage-landing flex flex-direction_column flex-justify_center flex-align_center">
+                    <div class="flex flex-direction_column flex-justify_between flex-align_center">
+                        <h2 class="words word-landing_title">晒出最美泳姿 赢迪卡侬大奖</h2>
+                        <ul class="flex flex-justify_center flex-align_center">
+                            <li><a class="btns btn-start" href="javascript:;">晒照赢奖</a></li>
+                            <li><a class="btns btn-buy" href="javascript:;">购买泳衣</a></li>
+                        </ul>
+                    </div>
                     <a class="btns btn-photoWall" href="javascript:;">照片墙</a>
                     <a class="btns btn-rule" href="javascript:;">活动规则</a>
-                    <h2 class="words word-landing_title">晒出最美泳姿 赢迪卡侬大奖</h2>
-                    <ul class="flex flex-justify_center flex-align_center">
-                        <li><a class="btns btn-start" href="javascript:;">晒照赢奖</a></li>
-                        <li><a class="btns btn-buy" href="javascript:;">购买泳衣</a></li>
-                    </ul>
                 </section>
             </div>
             <div class="scene-flipper_back">

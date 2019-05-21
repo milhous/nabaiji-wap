@@ -618,7 +618,7 @@
         timer = setTimeout(function() {
             ee.trigger(cmd.CLOSE_POP, ['.pop-error']);
 
-            goToScene(SCENE.THEME, initSwiper);
+            // goToScene(SCENE.THEME, initSwiper);
         }, 2000);
     };
 

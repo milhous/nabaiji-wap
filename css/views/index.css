@@ -5,7 +5,7 @@
 .stage .btn-back{position: absolute; left: .25rem; top: .2rem; z-index: 200;}
 
 .stage-coming{background: #fff url(../../images/bg-comming.jpg) no-repeat center bottom; background-size: 100%;}
-.stage-landing{padding: .9rem 0 .7rem; background: #fff url(../../images/bg-landing.jpg) no-repeat center bottom; background-size: 100%}
+.stage-landing{background-color: #fff;}
 .stage-theme{padding: .85rem 0 .4rem; background: #fff url(../../images/bg-theme.jpg) no-repeat center bottom; background-size: 100%;}
 .stage-form{padding-top: .5rem;}
 .stage-photo{background: #fff url(../../images/bg-photo.jpg) no-repeat center bottom; background-size: 100%;}
@@ -47,8 +47,13 @@
 .stage-form_select span{color: #848484; font-size: .44rem; font-family: VerlagBook, FZZhunYuan, Arial, Microsoft Yahei;}
 
 .stage-landing li{margin: 0 .1rem;}
-.stage-landing .btn-photoWall{position: absolute; right: .2rem; top: .2rem;}
-.stage-landing .btn-rule{position: absolute; right: 2.2rem; top: .24rem;}
+.stage-landing div{position: relative; width: 100%; min-height: 11rem; padding: .9rem 0 .7rem;}
+.stage-landing div{
+  box-sizing: border-box;
+}
+.stage-landing div:before{content: '.'; display: block; position: absolute; left: 0; top: .1rem; width: 100%; height: 13.5rem; background: #fff url(../../images/bg-landing.jpg) no-repeat center 0; background-size: 100%}
+.stage-landing .btn-photoWall{position: absolute; right: .2rem; top: .4rem;}
+.stage-landing .btn-rule{position: absolute; right: 2.2rem; top: .44rem;}
 
 .stage-theme .theme-panel{position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 100;}
 .stage-theme .theme-item{width: 4.46rem; height: 6.54rem; margin: 0 auto;}

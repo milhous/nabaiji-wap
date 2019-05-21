@@ -30,14 +30,16 @@
     <div class="wrap">
         <div class="scene-flipper">
             <div class="scene-flipper_front">
-                <section class="stage stage-landing flex flex-direction_column flex-justify_between flex-align_center">
+                <section class="stage stage-landing flex flex-direction_column flex-justify_center flex-align_center">
+                    <div class="flex flex-direction_column flex-justify_between flex-align_center">
+                        <h2 class="words word-landing_title">晒出最美泳姿 赢迪卡侬大奖</h2>
+                        <ul class="flex flex-justify_center flex-align_center">
+                            <li><a class="btns btn-start" href="javascript:;">晒照赢奖</a></li>
+                            <li><a class="btns btn-buy" href="javascript:;">购买泳衣</a></li>
+                        </ul>
+                    </div>
                     <a class="btns btn-photoWall" href="javascript:;">照片墙</a>
                     <a class="btns btn-rule" href="javascript:;">活动规则</a>
-                    <h2 class="words word-landing_title">晒出最美泳姿 赢迪卡侬大奖</h2>
-                    <ul class="flex flex-justify_center flex-align_center">
-                        <li><a class="btns btn-start" href="javascript:;">晒照赢奖</a></li>
-                        <li><a class="btns btn-buy" href="javascript:;">购买泳衣</a></li>
-                    </ul>
                 </section>
             </div>
             <div class="scene-flipper_back">
@@ -128,6 +130,7 @@
         </li>
         <li>
             <section class="stage stage-photo flex flex-direction_column flex-justify_center flex-align_center">
+                <span class="words word-tips_photo"></span>
                 <div class="photo-container">
                     <div class="photo-canvas"><!-- js create elem --></div>
                     <div class="photo-template"><!-- js create elem --></div>
@@ -154,8 +157,8 @@
         <li>
             <section class="stage stage-wall">
                 <ul class="tab flex flex-justify_center flex-align_center">
-                    <li><span class="btns btn-photoWall_disable">照片墙</span></li>
-                    <li><a class="btns btn-playbill" href="javascript:;" title="个人海报">个人海报</a></li>
+                    <li><span class="btns btn-photoWall">照片墙</span></li>
+                    <li><a class="btns btn-playbill_disable" href="javascript:;" title="个人海报">个人海报</a></li>
                 </ul>
                 <a class="btns btn-home" href="javascript:;">首页</a>
                 <div class="wall-list flex flex-wrap_wrap flex-justify_center"><!-- js create elem --></div>
@@ -193,7 +196,7 @@
         <section class="pop-tmall">
             <div class="pop-tmall_box flex flex-direction_column flex-justify_center flex-align_center">
                 <div></div>
-                <div>
+                <div class="flex flex-direction_column flex-justify_center flex-align_center">
                     <h3 class="words word-tmall_title">复制淘口令，打开天猫</h3>
                     <p>復|制这段描述￥o5VaY0wrOCD￥后到☞淘♂寳♀☜</p>
                     <a class="btns btn-pop_copy" href="javascript:;" title="一键复制">一键复制</a>
@@ -285,6 +288,23 @@
         <section class="pop-error" data-close=".pop-error">
             <div class="pop-error_box flex flex-justify_center flex-align_center">
                 <span class="words word-tips_error">Opps，您的图片无法识别试试背景更干净的美照吧~</span>
+            </div>
+        </section>
+        <section class="pop-copy" data-close=".pop-copy">
+            <div class="pop-copy_box flex flex-justify_center flex-align_center">
+                <span class="words word-tips_copy">复制成功</span>
+            </div>
+        </section>
+        <section class="pop-guide">
+            <div class="pop-guide_box pop-guide_photo">
+                <span class="words word-guide_title2 translate_centerX">这个姿势拍照更好看哦~PS.请上传无遮挡的人身图像</span>
+                <div class="translate_centerX"><img src="" /></div>
+                <a class="btns btn-pass" href="javascript:;" title="知道了" data-index="0">知道了</a>
+            </div>
+            <div class="pop-guide_box pop-guide_slogan hide">
+                <span class="words word-guide_title1 translate_centerX">戳左右箭头可选择更多宣言也可写下你的美丽主张~</span>
+                <div class="translate_centerX"></div>
+                <a class="btns btn-pass" href="javascript:;" title="知道了" data-index="1">知道了</a>
             </div>
         </section>
     </div>
