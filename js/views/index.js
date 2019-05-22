@@ -648,6 +648,8 @@
             return;
         }
 
+        ee.trigger(cmd.SHOW_POP, ['.pop-create']);
+
         var dataURL = canvas.toDataURL('image/jpeg');
 
         $.ajax({
@@ -657,6 +659,8 @@
             data: { 'base64': dataURL },
             dataType: 'json',
             success: function(data) {
+                ee.trigger(cmd.CLOSE_POP, ['.pop-create']);
+
                 if (data.error_code == 0) {
                     goToNextScene(function() {
                         $('.wrap .stage-save').find('img').attr('src', data.url);
@@ -666,6 +670,8 @@
                 }
             },
             error: function(data) {
+                ee.trigger(cmd.CLOSE_POP, ['.pop-create']);
+                
                 alert("生成失败,请刷新重试!");
             }
         });

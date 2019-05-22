@@ -83,8 +83,8 @@
     <meta http-equiv='expires' content='0' />
     <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/libs/normalize.css" />
     <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/plugins/swiper.min.css" />
-    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/public/common.css" />
-    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/views/index.css?v=1.0.2" />
+    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/public/common.css?v=1.0.6" />
+    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/views/index.css?v=1.0.6" />
     <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/libs/zepto.min.js"></script>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/plugins/flexible.js"></script>
@@ -334,7 +334,7 @@
                 </p>
                 <h3 class="flex flex-justify_center flex-align_center"><i class="icons icon-notice"></i><span>获奖须知</span></h3>
                 <ul>
-                    <li>1、中奖中户需如实填写信息，如信息填写错误或在3个工作日内未填写，则视为自动放弃。</li>
+                    <li>1、中奖用户需如实填写信息，如信息填写错误或在3个工作日内未填写，则视为自动放弃。</li>
                     <li>2、第1-3名中奖用户，迪卡侬将在收到信息后的10个工作日内与您联系领奖。</li>
                     <li>3、第4-6名中奖用户，迪卡侬将在收到正确收货信息后的10个工作日内为您寄出礼品。</li>
                 </ul>
@@ -353,6 +353,14 @@
             <div class="pop-loading_box flex flex-justify_center flex-align_center">
                 <dl class="flex flex-justify_center flex-align_center">
                     <dt><span class="words word-loading_title"></span></dt>
+                    <dd class="animation-loading"></dd>
+                </dl>
+            </div>
+        </section>
+        <section class="pop-create">
+            <div class="pop-create_box flex flex-justify_center flex-align_center">
+                <dl class="flex flex-justify_center flex-align_center">
+                    <dt><span class="words word-create_title"></span></dt>
                     <dd class="animation-loading"></dd>
                 </dl>
             </div>
@@ -381,7 +389,7 @@
         </section>
     </div>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/public/common.js"></script>
-    <script src="http://cdn.nabaiji.yuncoupons.com/js/views/index.js?v=1.0.2"></script>
+    <script src="http://cdn.nabaiji.yuncoupons.com/js/views/index.js?v=1.0.6"></script>
 </body>
 
 </html>
