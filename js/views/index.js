@@ -322,7 +322,7 @@
             var img = new Image();
             img.onload = loadAssets;
             img.onerror = loadAssets;
-            img.src = assets.path + assets.file[i];
+            img.src = cdn + assets.path + assets.file[i];
         }
     };
 
@@ -351,10 +351,21 @@
         var arr = [];
         var len = list.length;
 
+        if (list.length === 0) {
+            return;
+        }
+
+        if (list.length > 1) {
+            $('.wrap .swiper-button-next').css('display', 'block');
+            $('.wrap .swiper-button-prev').css('display', 'block');
+        }
+
+        $('.wrap .swiper-container').css('opacity', 1);
+
         for (var i = 0; i < len; i++) {
             var item = list[i];
 
-            arr.push('<div class="swiper-slide" data-pid="' + item.id + '" data-uid="' + item.uid + '"><img src="' + item.image + '" /></div>');
+            arr.push('<div class="swiper-slide" data-pid="' + item.id + '" data-uid="' + item.uid + '"><img src="' + cdn + item.image + '" /></div>');
         }
 
         $('.wrap .swiper-container').find('.swiper-wrapper').html(arr.join(''));
@@ -950,7 +961,12 @@
                         timestamp: data.timestamp, // 必填，生成签名的时间戳
                         nonceStr: data.nonceStr, // 必填，生成签名的随机串
                         signature: data.signature, // 必填，签名
-                        jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] // 必填，需要使用的JS接口列表
+                        jsApiList: [
+                            'updateAppMessageShareData',
+                            'updateTimelineShareData',
+                            'onMenuShareTimeline',
+                            'onMenuShareAppMessage'
+                        ] // 必填，需要使用的JS接口列表
                     });
 
                     initShare();
@@ -1095,7 +1111,32 @@
                     // 设置成功
                     console.log('自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容设置成功');
                 }
-            })
+            });
+
+            // 获取“分享到朋友圈”按钮点击状态及自定义分享内容接口（即将废弃），兼容老版本微信
+            wx.onMenuShareTimeline({
+                title: title, // 分享标题
+                link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: imgUrl, // 分享图标
+                success: function () {
+                  // 设置成功
+                  console.log('自定义“分享到朋友圈”按钮的分享内容设置成功');
+                }
+            });
+
+            // 获取“分享给朋友”按钮点击状态及自定义分享内容接口（即将废弃），兼容老版本微信
+            wx.onMenuShareAppMessage({
+                title: title, // 分享标题
+                desc: desc, // 分享描述
+                link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: imgUrl, // 分享图标
+                type: 'link', // 分享类型,music、video或link，不填默认为link
+                dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                success: function () {
+                  // 设置成功
+                  console.log('自定义“分享给朋友”按钮的分享内容设置成功');
+                }
+            });
         });
     };
 
@@ -1116,6 +1157,50 @@
     // 停止轮播
     var stopBanner = function() {
         clearInterval(timer);
+    };
+
+    // 复制
+    var copy = function() {
+        if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) { //区分iPhone设备  
+            var input = document.createElement('input');
+            input.setAttribute('readonly', 'readonly');
+            input.setAttribute('value', '￥HEEtYda3F15￥');
+            document.body.appendChild(input);
+            input.setSelectionRange(0, 9999);
+
+            if (document.execCommand('copy')) {
+                document.execCommand('copy');
+
+                // 显示弹层
+                ee.trigger(cmd.SHOW_POP, ['.pop-copy']);
+
+                timer = setTimeout(function() {
+                    ee.trigger(cmd.CLOSE_POP, ['.pop-copy']);
+                }, 2000);
+
+                console.log('复制成功');
+            }
+
+            document.body.removeChild(input);
+        } else {
+            var save = function(e) {
+                e.clipboardData.setData('text/plain', '￥HEEtYda3F15￥');
+                e.preventDefault();
+
+                // 显示弹层
+                ee.trigger(cmd.SHOW_POP, ['.pop-copy']);
+
+                timer = setTimeout(function() {
+                    ee.trigger(cmd.CLOSE_POP, ['.pop-copy']);
+                }, 2000);
+
+                console.log('复制成功');
+            }
+            
+            document.addEventListener('copy', save);
+            document.execCommand('copy');
+            document.removeEventListener('copy', save);
+        }
     };
 
     // 初始化事件
@@ -1173,7 +1258,9 @@
             evt.preventDefault();
 
             // 显示弹层
-            ee.trigger(cmd.SHOW_POP, ['.pop-buy']);
+            // ee.trigger(cmd.SHOW_POP, ['.pop-buy']);
+
+            ee.trigger(cmd.SHOW_POP, ['.pop-tmall']);
         });
 
         // 天猫
@@ -1244,26 +1331,7 @@
 
         // 按钮 - 一键复制
         $(document).on('click', '.btn-pop_copy', function() {
-            var input = document.createElement('input');
-            input.setAttribute('readonly', 'readonly');
-            input.setAttribute('value', '復|制这段描述￥o5VaY0wrOCD￥后到☞淘♂寳♀☜');
-            document.body.appendChild(input);
-            input.setSelectionRange(0, 9999);
-
-            if (document.execCommand('copy')) {
-                document.execCommand('copy');
-
-                // 显示弹层
-                ee.trigger(cmd.SHOW_POP, ['.pop-copy']);
-
-                timer = setTimeout(function() {
-                    ee.trigger(cmd.CLOSE_POP, ['.pop-copy']);
-                }, 2000);
-
-                console.log('复制成功');
-            }
-
-            document.body.removeChild(input);
+            copy();
         });
 
         if (document.execCommand('copy')) {
@@ -1309,7 +1377,7 @@
 
             var str = slogaData[index].word;
             $('.photo-item_word').val(str);
-            
+
             $('.photo-item_cursor').removeClass('sandbeach1')
                 .removeClass('sandbeach2')
                 .removeClass('pool1')

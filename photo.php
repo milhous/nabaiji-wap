@@ -81,19 +81,19 @@
     <meta name='x5-fullscreen' content='true' />
     <meta name='360-fullscreen' content='true' />
     <meta http-equiv='expires' content='0' />
-    <link rel="stylesheet" href="css/libs/normalize.css" />
-    <link rel="stylesheet" href="css/plugins/swiper.min.css" />
-    <link rel="stylesheet" href="css/public/common.css" />
-    <link rel="stylesheet" href="css/views/index.css" />
+    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/libs/normalize.css" />
+    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/plugins/swiper.min.css" />
+    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/public/common.css" />
+    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/views/index.css?v=1.0.2" />
     <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
-    <script src="js/libs/zepto.min.js"></script>
-    <script src="js/plugins/flexible.js"></script>
-    <script src="js/plugins/swiper.min.js"></script>
-    <script src="js/plugins/EventEmitter.min.js"></script>
-    <script src="js/plugins/polyfill.min.js"></script>
-    <script src="js/plugins/alloy_paper.js"></script>
-    <script src="js/plugins/alloy_finger.js"></script>
-    <script src="js/plugins/exif.js"></script>
+    <script src="http://cdn.nabaiji.yuncoupons.com/js/libs/zepto.min.js"></script>
+    <script src="http://cdn.nabaiji.yuncoupons.com/js/plugins/flexible.js"></script>
+    <script src="http://cdn.nabaiji.yuncoupons.com/js/plugins/swiper.min.js"></script>
+    <script src="http://cdn.nabaiji.yuncoupons.com/js/plugins/EventEmitter.min.js"></script>
+    <script src="http://cdn.nabaiji.yuncoupons.com/js/plugins/polyfill.min.js"></script>
+    <script src="http://cdn.nabaiji.yuncoupons.com/js/plugins/alloy_paper.js"></script>
+    <script src="http://cdn.nabaiji.yuncoupons.com/js/plugins/alloy_finger.js"></script>
+    <script src="http://cdn.nabaiji.yuncoupons.com/js/plugins/exif.js"></script>
 </head>
 
 <body>
@@ -119,14 +119,16 @@
     </div>
     <ul class="stage-list">
         <li>
-            <section class="stage stage-landing flex flex-direction_column flex-justify_between flex-align_center">
+            <section class="stage stage-landing flex flex-direction_column flex-justify_center flex-align_center">
+                <div class="flex flex-direction_column flex-justify_between flex-align_center">
+                    <h2 class="words word-landing_title">晒出最美泳姿 赢迪卡侬大奖</h2>
+                    <ul class="flex flex-justify_center flex-align_center">
+                        <li><a class="btns btn-start" href="javascript:;">晒照赢奖</a></li>
+                        <li><a class="btns btn-buy" href="javascript:;">购买泳衣</a></li>
+                    </ul>
+                </div>
                 <a class="btns btn-photoWall" href="javascript:;">照片墙</a>
                 <a class="btns btn-rule" href="javascript:;">活动规则</a>
-                <h2 class="words word-landing_title">晒出最美泳姿 赢迪卡侬大奖</h2>
-                <ul class="flex flex-justify_center flex-align_center">
-                    <li><a class="btns btn-start" href="javascript:;">晒照赢奖</a></li>
-                    <li><a class="btns btn-buy" href="javascript:;">购买泳衣</a></li>
-                </ul>
             </section>
         </li>
         <li>
@@ -136,32 +138,32 @@
                     <ul class="theme-list">
                         <li class="theme-sandbeach theme-ani">
                             <div>
-                                <img src="images/theme-sandbeach1_pic.jpg" />
+                                <img src="http://cdn.nabaiji.yuncoupons.com/images/theme-sandbeach1_pic.jpg" />
                             </div>
                         </li>
                         <li class="theme-sandbeach">
                             <div>
-                                <img src="images/theme-sandbeach2_pic.jpg" />
+                                <img src="http://cdn.nabaiji.yuncoupons.com/images/theme-sandbeach2_pic.jpg" />
                             </div>
                         </li>
                         <li class="theme-pool">
                             <div>
-                                <img src="images/theme-pool1_pic.jpg" />
+                                <img src="http://cdn.nabaiji.yuncoupons.com/images/theme-pool1_pic.jpg" />
                             </div>
                         </li>
                         <li class="theme-pool">
                             <div>
-                                <img src="images/theme-pool2_pic.jpg" />
+                                <img src="http://cdn.nabaiji.yuncoupons.com/images/theme-pool2_pic.jpg" />
                             </div>
                         </li>
                         <li class="theme-underwater">
                             <div>
-                                <img src="images/theme-underwater1_pic.jpg" />
+                                <img src="http://cdn.nabaiji.yuncoupons.com/images/theme-underwater1_pic.jpg" />
                             </div>
                         </li>
                         <li class="theme-underwater">
                             <div>
-                                <img src="images/theme-underwater2_pic.jpg" />
+                                <img src="http://cdn.nabaiji.yuncoupons.com/images/theme-underwater2_pic.jpg" />
                             </div>
                         </li>
                     </ul>
@@ -268,7 +270,7 @@
                 <div></div>
                 <div class="flex flex-direction_column flex-justify_center flex-align_center">
                     <h3 class="words word-tmall_title">复制淘口令，打开天猫</h3>
-                    <p>復|制这段描述￥o5VaY0wrOCD￥后到☞淘♂寳♀☜</p>
+                    <p>￥HEEtYda3F15￥</p>
                     <a class="btns btn-pop_copy" href="javascript:;" title="一键复制">一键复制</a>
                 </div>
             </div>
@@ -281,8 +283,8 @@
                 <p>一等奖：第1名</p>
                 <p>价值5000元SEAISEE水下魅力写真拍摄一组</p>
                 <div class="rule-banner">
-                    <img class="active" src="images/pic-prize1_banner2.jpg" alt="一等奖：价值5000元SEAISEE水下魅力写真拍摄一组" />
-                    <img src="images/pic-prize1_banner1.jpg" alt="一等奖：价值5000元SEAISEE水下魅力写真拍摄一组" />
+                    <img class="active" src="http://cdn.nabaiji.yuncoupons.com/images/pic-prize1_banner2.jpg" alt="一等奖：价值5000元SEAISEE水下魅力写真拍摄一组" />
+                    <img src="http://cdn.nabaiji.yuncoupons.com/images/pic-prize1_banner1.jpg" alt="一等奖：价值5000元SEAISEE水下魅力写真拍摄一组" />
                     <ul class="flex flex-justify_center flex-align_center">
                         <li class="active"></li>
                         <li></li>
@@ -300,7 +302,7 @@
                 </div>
                 <p>二等奖：第2-3名</p>
                 <p>价值2000 元专业游泳教程一套，共计两名。</p>
-                <div class="rule-pic"><img src="images/pic-prize2.jpg" alt="二等奖：价值2000 元专业游泳教程一套，共计两名。" /></div>
+                <div class="rule-pic"><img src="http://cdn.nabaiji.yuncoupons.com/images/pic-prize2.jpg" alt="二等奖：价值2000 元专业游泳教程一套，共计两名。" /></div>
                 <input type="checkbox" id="rule-more2" name="rule-more2">
                 <div class="prize-notice flex flex-direction_column flex-justify_center flex-align_center">
                     <label for="rule-more2">点击了解更多</label>
@@ -310,12 +312,12 @@
                 </div>
                 <p>三等奖：第4-6名</p>
                 <p>价值 1000元迪卡侬清凉一夏礼品卡一张，共计三名。</p>
-                <div class="rule-pic"><img src="images/pic-prize3.jpg" alt="价值 1000元迪卡侬清凉一夏礼品卡一张，共计三名。" /></div>
+                <div class="rule-pic"><img src="http://cdn.nabaiji.yuncoupons.com/images/pic-prize3.jpg" alt="价值 1000元迪卡侬清凉一夏礼品卡一张，共计三名。" /></div>
                 <h3 class="flex flex-justify_center flex-align_center"><i class="icons icon-time"></i><span>活动时间</span></h3>
-                <p>5月10日—7月31日期间，活动分为2个阶段。</p>
+                <p>5月22日—7月31日期间，活动分为2个阶段。</p>
                 <h3 class="flex flex-justify_center flex-align_center"><i class="icons icon-time"></i><span>参与方式</span></h3>
                 <dl>
-                    <dt>第一阶段（5.10-7.14）【晒照互动】：</dt>
+                    <dt>第一阶段（5.22-7.14）【晒照互动】：</dt>
                     <dd>1.上传穿着迪卡侬暗夜精灵泳衣的照片，选择心仪模板，可生成个性泳装海报，保存海报即可晒出。</dd>
                     <dd><span>（*特别说明：穿着其他服装也可参与晒图互动，但不具备后期领奖资格）</span></dd>
                 </dl>
@@ -378,8 +380,8 @@
             </div>
         </section>
     </div>
-    <script src="js/public/common.js"></script>
-    <script src="js/views/index.js"></script>
+    <script src="http://cdn.nabaiji.yuncoupons.com/js/public/common.js"></script>
+    <script src="http://cdn.nabaiji.yuncoupons.com/js/views/index.js?v=1.0.2"></script>
 </body>
 
 </html>
