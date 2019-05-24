@@ -1,15 +1,15 @@
 (function() {
-    // 人形抠像
+    // 获取照片信息
     var REQUEST_PHOTO = 'http://nabaiji.yuncoupons.com/interface/get_photo.php';
+    // 投票
+    var REQUEST_LOVE = 'http://nabaiji.yuncoupons.com/interface/love_pic.php';
+
+    // cdn
+    var cdn = 'http://cdn.nabaiji.yuncoupons.com/';
 
     // 元素
     var $elem = {
-        wrap: $('.wrap'),
-        stageList: $('.stage-list .stage'),
-        sceneFlipperFront: $('.scene-flipper_front'),
-        sceneFlipperBack: $('.scene-flipper_back'),
-        themeList: $('.theme-list li'),
-        preview: $('#preview')
+        wrap: $('.wrap')
     };
 
     // 合成图片文字阴影
@@ -105,11 +105,13 @@
             type: 'post',
             cache: false,
             data: {
-                photo_id: 65
+                photo_id: 22
             },
             dataType: 'json',
             success: function(data) {
                 if (data.error_code == 0) {
+                    update(data.photo);
+
                     console.log(data);
                 } else {
                     alert(data.error_msg);
@@ -119,6 +121,16 @@
                 alert("获取失败,请刷新重试!");
             }
         });
+    };
+
+    // 更新
+    var update = function(data) {
+        $('.vote-candidate_avatar').html('<img src="' + data.headimg + '" alt="' + data.nickname + '" />');
+        $('.vote-candidate_name').html(data.nickname);
+        $('.vote-playbill').html('<img src="' + cdn + data.image + '" alt="' + data.nickname + '" />');
+
+        $('.vote-btn').html(data.tickets + '票');
+        $('.vote-rank').html('当前排名 ' + data.rank);
     };
 
     // 定义分享
