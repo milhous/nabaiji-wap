@@ -83,8 +83,8 @@
     <meta http-equiv='expires' content='0' />
     <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/libs/normalize.css" />
     <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/plugins/swiper.min.css" />
-    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/public/common.css?v=1.0.6" />
-    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/views/index.css?v=1.0.6" />
+    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/public/common.css?v=1.0.7" />
+    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/views/index.css?v=1.0.7" />
     <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/libs/zepto.min.js"></script>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/plugins/flexible.js"></script>
@@ -389,7 +389,7 @@
         </section>
     </div>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/public/common.js"></script>
-    <script src="http://cdn.nabaiji.yuncoupons.com/js/views/index.js?v=1.0.6"></script>
+    <script src="http://cdn.nabaiji.yuncoupons.com/js/views/index.js?v=1.0.7"></script>
 </body>
 
 </html>
