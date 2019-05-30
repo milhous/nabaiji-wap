@@ -1238,17 +1238,17 @@
         // 场景 - 首页
         $(document).on('click', '.btn-start', function() {
             // 是否初次
-            var isNewer = localStorage.getItem('isNewer');
+            var isNewer = localStorage.getItem('isFirst');
 
-            if (isNewer === null || isNewer !== '0') {
-                localStorage.setItem('isNewer', 0);
+            if (isNewer === 0 || isNewer === '0') {
+                goToNextScene(initSwiper);
+            } else {
+                localStorage.setItem('isFirst', 0);
 
                 // 显示弹层
                 ee.trigger(cmd.SHOW_POP, ['.pop-rule']);
 
                 playBanner();
-            } else {
-                goToNextScene(initSwiper);
             }
         });
 
