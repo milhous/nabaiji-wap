@@ -1170,7 +1170,7 @@
         if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) { //区分iPhone设备  
             var input = document.createElement('input');
             input.setAttribute('readonly', 'readonly');
-            input.setAttribute('value', '￥HEEtYda3F15￥');
+            input.setAttribute('value', '￥HuiFY3eLNFV￥');
             document.body.appendChild(input);
             input.setSelectionRange(0, 9999);
 
