@@ -163,7 +163,7 @@
             type: 'post',
             cache: false,
             data: {
-                photo_id: pid
+                id: pid
             },
             dataType: 'json',
             success: function(data) {

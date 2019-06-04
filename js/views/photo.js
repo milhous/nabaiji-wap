@@ -1022,7 +1022,7 @@
                         if (item.already_love) {
                             str += '<dd><i class="icons icon-love"></i>';
                         } else {
-                            str += '<dd class="btn-vote_wall" data-pid="' + item.id + '"><i class="icons icon-unlove"></i>';
+                            str += '<dd class="btn-vote_wall" data-index="' + i + '" data-pid="' + item.id + '"><i class="icons icon-unlove"></i>';
                         }
                         
                         str += '<span>' + item.tickets + '</span>票</dd></dl></div>';
@@ -1235,7 +1235,7 @@
     };
 
     // 投票
-    var votePhoto = function(pid) {
+    var votePhoto = function(pid, index) {
         if (pid === null) {
             alert("投票失败,请刷新重试!");
 
@@ -1247,12 +1247,15 @@
             type: 'post',
             cache: false,
             data: {
-                photo_id: pid
+                id: pid
             },
             dataType: 'json',
             success: function(data) {
                 if (data.error_code == 0) {
-                    update(data.photo);
+                    var elem = $('.wall-item').eq(index);
+
+                    elem.find('.btn-vote_wall').removeClass('btn-vote_wall');
+                    elem.find('.icon-unlove').removeClass('icon-unlove').addClass('icon-love');
 
                     console.log(data);
                 } else {
@@ -1480,9 +1483,10 @@
 
         // 投票
         $(document).on('click', '.btn-vote_wall', function(evt) {
-            const pid = $(this).attr('data-pid');
+            var pid = $(this).attr('data-pid');
+            var index = Number($(this).attr('data-index'));
 
-            votePhoto(pid);
+            votePhoto(pid, index);
         });
     };
 
