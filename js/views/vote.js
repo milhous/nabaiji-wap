@@ -68,9 +68,7 @@
         var assets = {
             'path': 'images/',
             'file': [
-                'bg-landing.jpg', 'bg-pop_buy.png', 'btn-close.png',
-                'btn-buy.png', 'btn-decathlon.png', 'btn-photoWall.png', 'btn-rule.png',
-                'btn-start.png', 'btn-tmall.png', 'word-landing_title.png', 'word-tmall_title.png'
+                'bg-vote.jpg'
             ]
         };
 
@@ -87,6 +85,8 @@
 
             if (counter === 0) {
                 console.log('loading: complete');
+
+                getPhoto();
             }
         };
 
@@ -98,14 +98,37 @@
         }
     };
 
+    /*
+     * 获取url参数值
+     * @param {string} name 参数名称
+     */ 
+    var getQueryString = function(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+
+        if (r != null) {
+            return unescape(r[2]);
+        };
+
+        return null;
+    };
+
     // 获取个人海报照片
     var getPhoto = function() {
+        var pid = getQueryString('pid');
+
+        if (pid === null) {
+            alert("获取失败,请刷新重试!");
+
+            return;
+        }
+
         $.ajax({
             url: REQUEST_PHOTO,
             type: 'post',
             cache: false,
             data: {
-                photo_id: 22
+                photo_id: pid
             },
             dataType: 'json',
             success: function(data) {
@@ -123,13 +146,46 @@
         });
     };
 
+    // 投票
+    var votePhoto = function() {
+        var pid = getQueryString('pid');
+
+        if (pid === null) {
+            alert("投票失败,请刷新重试!");
+
+            return;
+        }
+
+        $.ajax({
+            url: REQUEST_LOVE,
+            type: 'post',
+            cache: false,
+            data: {
+                photo_id: 'aadada'
+            },
+            dataType: 'json',
+            success: function(data) {
+                if (data.error_code == 0) {
+                    update(data.photo);
+
+                    console.log(data);
+                } else {
+                    alert(data.error_msg);
+                }
+            },
+            error: function(data) {
+                alert("投票失败,请刷新重试!");
+            }
+        });
+    };
+
     // 更新
     var update = function(data) {
         $('.vote-candidate_avatar').html('<img src="' + data.headimg + '" alt="' + data.nickname + '" />');
         $('.vote-candidate_name').html(data.nickname);
         $('.vote-playbill').html('<img src="' + cdn + data.image + '" alt="' + data.nickname + '" />');
 
-        $('.vote-btn').html(data.tickets + '票');
+        $('.vote-btn').html('<span class="words word-vote_tips">为她投上一票吧！</span><a class="btns btn-vote" href="javascript:;" title="为她投上一票吧！">为她投上一票吧！</a>' + data.tickets + ' 票');
         $('.vote-rank').html('当前排名 ' + data.rank);
     };
 
@@ -168,19 +224,20 @@
 
     // 初始化事件
     var initEvent = function() {
-        // 弹层 - 协议状态
-        $(document).on('change', '#agreement', function(evt) {
-            var isChecked = $(this).prop('checked');
+        // 投票
+        $(document).on('click', '.btn-vote', function(evt) {
+            votePhoto();
+        });
 
-            setAgreeStatus(isChecked);
+        // 发现
+        $(document).on('click', '.btn-find', function(evt) {
+            location.href = 'http://nabaiji.yuncoupons.com';
         });
     };
 
     // 初始化
     var init = function() {
         initEvent();
-
-        getPhoto();
 
         // 预加载资源图片
         $(document).ready(preloadAssets);

@@ -436,6 +436,7 @@ textarea{resize:none;}
 .icon-notice{width: .24rem; height: .24rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/icon-notice.png);}
 .icon-member{width: .24rem; height: .24rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/icon-member.png);}
 .icon-checked{width: .24rem; height: .24rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/icon-checked.png);}
+.icon-love{width: .54rem; height: .5rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/btn-vote_disable.png);}
 
 /* BTNS */
 .btns{display: block; position: relative; cursor: pointer; border: none; background-repeat: no-repeat; background-position: 0 0; text-indent: -99rem; background-size: 100% 100%;}
@@ -460,6 +461,8 @@ textarea{resize:none;}
 .btn-slogan_prev{width: .6rem; height: .6rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/btn-slogan_prev.png);}
 .btn-slogan_next{width: .6rem; height: .6rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/btn-slogan_next.png);}
 .btn-pass{width: 1.9rem; height: .7rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/btn-pass.png);}
+.btn-find{width: 2.72rem; height: 1.04rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/btn-find.png);}
+.btn-vote{width: .54rem; height: .5rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/btn-vote.png);}
 
 /* WORDS */
 .words{display: block; position: relative; border: none; background-repeat: no-repeat; background-position: 0 0; text-indent: -99rem; background-size: 100% 100%;}
@@ -474,6 +477,7 @@ textarea{resize:none;}
 .word-save_title{width: 4.18rem; height: .38rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-save_title.png)}
 .word-wall_title{width: 2.78rem; height: .38rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-wall_title.png);}
 .word-playbill_title{width: 4.74rem; height: .82rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-playbill_title.png);}
+.word-playbill_title2{width: 5.02rem; height: .36rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-playbill_title2.png);}
 .word-tips_upload{width: 2.38rem; height: .48rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-tips_upload.png);}
 .word-loading_title{width: 2.7rem; height: 1.3rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-loading_title.png);}
 .word-create_title{width: 2.7rem; height: 1.3rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-create_title.png);}
@@ -482,6 +486,7 @@ textarea{resize:none;}
 .word-tips_photo{width: 5.22rem; height: .4rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-tips_photo.png);}
 .word-guide_title1{width: 5.78rem; height: 1.22rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-guide_title1.png);}
 .word-guide_title2{width: 5.22rem; height: 1.14rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-guide_title2.png);}
+.word-vote_tips{width: 2.62rem; height: .74rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-vote_tips.png);}
 
 /* POP */
 .pop{display: none; position: fixed; left: 0; right: 0; top: 0; bottom: 0; z-index: 1000; background-color: rgba(0, 0, 0, .8); opacity: 0;}
