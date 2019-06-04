@@ -3,10 +3,37 @@
   box-sizing: border-box;
 }
 .stage-vote{background: #fff url(../../images/bg-vote.jpg) no-repeat center bottom; background-size: 100%;}
+.stage-vote .btn-find{margin-top: .8rem;}
+.stage-vote .btn-vote{position: absolute; right: 0; top: 50%;}
+.stage-vote .btn-vote{
+	-webkit-transform: translate(-110%, -44%);
+	transform: translate(-110%, -44%);
+}
+.stage-vote .word-vote_tips{position: absolute; right: 0; top: 50%;}
+.stage-vote .word-vote_tips{
+	-webkit-transform: translate(25%, -10%);
+	transform: translate(25%, -10%);
+}
 
-.vote-playbill{width: 4.71rem; height: 6.91rem; background-color: #fff;}
+.vote-candidate{width: 100%; padding: 0 .4rem;}
+.vote-candidate{
+	box-sizing: border-box;
+}
+
+.vote-candidate_avatar{overflow: hidden; width: 1rem; height: 1rem; margin-right: .2rem; border-radius: 50%; background-color: #fff;}
+.vote-candidate_avatar{
+	box-shadow: .04rem .04rem .1rem rgba(0, 0, 0, .14);
+}
+.vote-candidate_avatar img{width: 100%; height: 100%;}
+
+.vote-candidate_name{color: #606162; font-size: .3rem; line-height: .3rem;}
+
+.vote-playbill{width: 4.7rem; height: 6.9rem; margin-top: .15rem; background-color: #fff;}
 .vote-playbill{
   box-shadow: .1rem .1rem .1rem rgba(0, 0, 0, .18);
 }
 .vote-playbill img{display: block; width: 100%; height: 100%;}
 
+.vote-info{margin-top: .2rem;}
+.vote-info li{position: relative; margin: 0 .24rem; color: #606162; font-size: .3rem; line-height: .4rem;}
+.vote-info li:last-child:before{content: '.'; display: block; position: absolute; top: 50%; left: -.24rem; width: .02rem; height: .4rem; margin-top: -.2rem; background-color: #7b7b7b; text-indent: -9999rem;}
