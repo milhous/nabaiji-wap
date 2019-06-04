@@ -1247,7 +1247,7 @@
             type: 'post',
             cache: false,
             data: {
-                photo_id: 'aadada'
+                photo_id: pid
             },
             dataType: 'json',
             success: function(data) {
