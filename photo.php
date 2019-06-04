@@ -83,8 +83,8 @@
     <meta http-equiv='expires' content='0' />
     <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/libs/normalize.css" />
     <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/plugins/swiper.min.css" />
-    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/public/common.css?v=1.0.8" />
-    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/views/index.css?v=1.0.8" />
+    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/public/common.css?v=1.0.11" />
+    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/views/index.css?v=1.0.11" />
     <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/libs/zepto.min.js"></script>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/plugins/flexible.js"></script>
@@ -270,7 +270,7 @@
                 <div></div>
                 <div class="flex flex-direction_column flex-justify_center flex-align_center">
                     <h3 class="words word-tmall_title">复制淘口令，打开天猫</h3>
-                    <p>￥HEEtYda3F15￥</p>
+                    <p>￥HuiFY3eLNFV￥</p>
                     <a class="btns btn-pop_copy" href="javascript:;" title="一键复制">一键复制</a>
                 </div>
             </div>
@@ -389,7 +389,7 @@
         </section>
     </div>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/public/common.js"></script>
-    <script src="http://cdn.nabaiji.yuncoupons.com/js/views/index.js?v=1.0.8"></script>
+    <script src="http://cdn.nabaiji.yuncoupons.com/js/views/index.js?v=1.0.11"></script>
 </body>
 
 </html>

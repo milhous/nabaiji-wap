@@ -1,4 +1,6 @@
 (function() {
+    // 获取参数
+    var REQUEST_WX = 'http://nabaiji.yuncoupons.com/interface/get_wx_tickets.php';
     // 获取照片信息
     var REQUEST_PHOTO = 'http://nabaiji.yuncoupons.com/interface/get_photo.php';
     // 投票
@@ -161,7 +163,7 @@
             type: 'post',
             cache: false,
             data: {
-                photo_id: 'aadada'
+                photo_id: pid
             },
             dataType: 'json',
             success: function(data) {
@@ -189,12 +191,59 @@
         $('.vote-rank').html('当前排名 ' + data.rank);
     };
 
+    // 获取分享信息
+    var getShareInfo = function() {
+        var link = location.href.split('#')[0];
+
+        $.ajax({
+            url: REQUEST_WX,
+            type: 'post',
+            cache: false,
+            data: {
+                link: link
+            },
+            dataType: 'json',
+            success: function(data) {
+                if (data.error_code == 0) {
+                    wx.config({
+                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                        appId: data.appid, // 必填，公众号的唯一标识
+                        timestamp: data.timestamp, // 必填，生成签名的时间戳
+                        nonceStr: data.nonceStr, // 必填，生成签名的随机串
+                        signature: data.signature, // 必填，签名
+                        jsApiList: [
+                            'updateAppMessageShareData',
+                            'updateTimelineShareData',
+                            'onMenuShareTimeline',
+                            'onMenuShareAppMessage'
+                        ] // 必填，需要使用的JS接口列表
+                    });
+
+                    initShare();
+                } else {
+                    alert(data.error_msg);
+                }
+            },
+            error: function(data) {
+                alert("获取失败,请刷新重试!");
+            }
+        });
+    };
+
     // 定义分享
     var initShare = function() {
-        var title = '晒出最美泳姿 赢迪卡侬大奖';
+        var pid = getQueryString('pid');
+        var nickname = getQueryString('nickname');
+
+        var title = '暗夜精灵泳衣, 带你C位出道';
         var link = 'http://nabaiji.yuncoupons.com';
-        var desc = '暗夜精灵泳衣，SHOW出你的美';
+        var desc = '1秒拍最美泳装照, Show出魅力姿态, 赢迪卡侬大奖';
         var imgUrl = 'http://nabaiji.yuncoupons.com/share.png';
+
+        if (!!pid && !!nickname) {
+            title = nickname + '的最美泳姿照已上线，快投票助她C位出道！';
+            link = 'http://nabaiji.yuncoupons.com/vote.php?pid=' + pid + '&nickname=' + nickname;
+        }
 
         wx.ready(function() {
             // 自定义“分享给朋友”及“分享到QQ”按钮的分享内容
@@ -218,7 +267,32 @@
                     // 设置成功
                     console.log('自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容设置成功');
                 }
-            })
+            });
+
+            // 获取“分享到朋友圈”按钮点击状态及自定义分享内容接口（即将废弃），兼容老版本微信
+            wx.onMenuShareTimeline({
+                title: title, // 分享标题
+                link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: imgUrl, // 分享图标
+                success: function () {
+                  // 设置成功
+                  console.log('自定义“分享到朋友圈”按钮的分享内容设置成功');
+                }
+            });
+
+            // 获取“分享给朋友”按钮点击状态及自定义分享内容接口（即将废弃），兼容老版本微信
+            wx.onMenuShareAppMessage({
+                title: title, // 分享标题
+                desc: desc, // 分享描述
+                link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: imgUrl, // 分享图标
+                type: 'link', // 分享类型,music、video或link，不填默认为link
+                dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                success: function () {
+                  // 设置成功
+                  console.log('自定义“分享给朋友”按钮的分享内容设置成功');
+                }
+            });
         });
     };
 
@@ -238,6 +312,8 @@
     // 初始化
     var init = function() {
         initEvent();
+
+        getShareInfo();
 
         // 预加载资源图片
         $(document).ready(preloadAssets);
