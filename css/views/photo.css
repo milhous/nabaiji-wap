@@ -217,6 +217,7 @@
 .stage-wall .wall-item dl span{overflow: hidden; max-width: 1.2rem; color: #606162; font-size: .24rem; line-height: .34rem; white-space: nowrap; text-overflow: ellipsis;}
 .stage-wall .wall-item_empty{width: 2.94rem; margin: 0 .2rem .4rem;}
 .stage-wall .wall-item .icon-love{width: .34rem; height: .3rem; background-size: 100% 100%;}
+.stage-wall .wall-item .icon-unlove{width: .34rem; height: .3rem; background-size: 100% 100%;}
 
 .stage-playbill .btn-home{position: absolute; right: .4rem; top: .4rem;}
 .stage-playbill .word-playbill_title,

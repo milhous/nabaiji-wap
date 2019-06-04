@@ -9,10 +9,14 @@
     var REQUEST_PHOTO = 'http://nabaiji.yuncoupons.com/interface/get_my_photos.php';
     // 获取所有照片
     var REQUEST_ALL = 'http://nabaiji.yuncoupons.com/interface/get_all_photos.php';
+    // 获取分页照片
+    var REQUEST_PAGE = 'http://nabaiji.yuncoupons.com/interface/get_page_photos.php';
     // 设置协议状态
     var REQUEST_SET_AGREE = 'http://nabaiji.yuncoupons.com/interface/set_agree_status.php';
     // 获取协议状态
     var REQUEST_GET_AGREE = 'http://nabaiji.yuncoupons.com/interface/get_agree_status.php';
+    // 投票
+    var REQUEST_LOVE = 'http://nabaiji.yuncoupons.com/interface/love_pic.php';
 
     // 计时器
     var timer = null;
@@ -391,7 +395,7 @@
         $('.wrap .playbill-votes').html(data.tickets + ' 票');
         $('.wrap .playbill-rank').html('当前排名 ' + data.rank);
 
-        initShare(data.id);
+        initShare(data.id, data.nickname);
     };
 
     /*
@@ -999,7 +1003,7 @@
     // 获取所有人海报照片
     var getAllImgs = function() {
         $.ajax({
-            url: REQUEST_ALL,
+            url: REQUEST_PAGE,
             type: 'post',
             cache: false,
             dataType: 'json',
@@ -1014,7 +1018,14 @@
                         var str = '<div class="wall-item" data-index="' + i + '" data-pid="' + item.id + '" data-uid="' + item.uid + '">';
                         str += '<div><img src="' + imgArr[0] + '_thumb.' + imgArr[1] + '" /></div>';
                         str += '<dl><dt><img src="' + item.headimg + '" /><span>' + item.nickname + '</span></dt>';
-                        str += '<dd><i class="icons icon-love"></i><span>' + item.tickets + '</span>票</dd></dl></div>';
+
+                        if (item.already_love) {
+                            str += '<dd><i class="icons icon-love"></i>';
+                        } else {
+                            str += '<dd class="btn-vote_wall" data-pid="' + item.id + '"><i class="icons icon-unlove"></i>';
+                        }
+                        
+                        str += '<span>' + item.tickets + '</span>票</dd></dl></div>';
 
                         arr.push(str);
                     }
@@ -1098,14 +1109,15 @@
     };
 
     // 定义分享
-    var initShare = function(pid) {
+    var initShare = function(pid, nickname) {
         var title = '暗夜精灵泳衣, 带你C位出道';
         var link = 'http://nabaiji.yuncoupons.com';
         var desc = '1秒拍最美泳装照, Show出魅力姿态, 赢迪卡侬大奖';
         var imgUrl = 'http://nabaiji.yuncoupons.com/share.png';
 
         if (!!pid) {
-            link = 'http://nabaiji.yuncoupons.com/vote.php?pid=' + pid;
+            title = nickname + '的最美泳姿照已上线，快投票助她C位出道！';
+            link = 'http://nabaiji.yuncoupons.com/vote.php?pid=' + pid + '&nickname=' + nickname;
         }
 
         wx.ready(function() {
@@ -1220,6 +1232,37 @@
             document.execCommand('copy');
             document.removeEventListener('copy', save);
         }
+    };
+
+    // 投票
+    var votePhoto = function(pid) {
+        if (pid === null) {
+            alert("投票失败,请刷新重试!");
+
+            return;
+        }
+
+        $.ajax({
+            url: REQUEST_LOVE,
+            type: 'post',
+            cache: false,
+            data: {
+                photo_id: 'aadada'
+            },
+            dataType: 'json',
+            success: function(data) {
+                if (data.error_code == 0) {
+                    update(data.photo);
+
+                    console.log(data);
+                } else {
+                    alert(data.error_msg);
+                }
+            },
+            error: function(data) {
+                alert("投票失败,请刷新重试!");
+            }
+        });
     };
 
     // 初始化事件
@@ -1433,6 +1476,13 @@
             } else if (index === '1') {
                 ee.trigger(cmd.CLOSE_POP, ['.pop-guide']);
             }
+        });
+
+        // 投票
+        $(document).on('click', '.btn-vote_wall', function(evt) {
+            const pid = $(this).attr('data-pid');
+
+            votePhoto(pid);
         });
     };
 
