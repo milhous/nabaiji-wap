@@ -587,11 +587,32 @@
      * 获取人形抠图数据
      * @param (function) callback 回调函数
      */
-    var getSegmentData = function(file, callback) {
+    var getPhtotData = function(file, callback) {
         var formData = new FormData();
 
-        formData.append('file', file);
+        if (file.size / 1024 > 2050) { //大于1M，进行压缩上传
 
+            photoCompress(file, {
+                width: 2048
+            }, function(base64Codes) {
+                var blob = convertBase64UrlToBlob(base64Codes);
+                formData.append('file', blob, 'file_' + Date.parse(new Date()) + '.jpg');
+
+                getSegmentData(formData, callback);
+            });
+        } else { //小于等于1M 原图上传
+            formData.append("file", file);
+
+            getSegmentData(formData, callback);
+        }
+    };
+
+    /*
+     * 获取人形抠图
+     * @param {object} formData 表单数据
+     * @param (function) callback 回调函数
+     */
+    var getSegmentData = function(formData, callback) {
         $.ajax({
             url: REQUEST_SEGMENT,
             type: 'post',
@@ -634,7 +655,78 @@
                 showError();
             }
         });
-    };
+    }
+
+    /*
+     * 压缩图片
+     * @param {object} file 文件(类型是图片格式)，
+     * @param {number} opts 配置选项
+     * @param {function} callback 回调函数
+     */
+    var photoCompress = function(file, opts, callback) {
+        var ready = new FileReader();
+        /*开始读取指定的Blob对象或File对象中的内容. 当读取操作完成时,readyState属性的值会成为DONE,如果设置了onloadend事件处理程序,则调用之.同时,result属性中将包含一个data: URL格式的字符串以表示所读取文件的内容.*/
+        ready.readAsDataURL(file);
+
+        ready.onload = function() {
+            var result = this.result;
+
+            var img = new Image();
+            img.onload = function() {
+                // 默认按比例压缩
+                var w = img.width;
+                var h = img.height;
+                var scale = w / h;
+
+                w = opts.width || w;
+                h = opts.height || (w / scale);
+
+                var quality = 0.8; // 默认图片质量为0.7
+
+                // 图像质量
+                if (opts.quality && opts.quality <= 1 && opts.quality > 0) {
+                    quality = opts.quality;
+                }
+
+                //生成canvas
+                var canvas = document.createElement('canvas');
+                var ctx = canvas.getContext('2d');
+                // 创建属性节点
+                var anw = document.createAttribute('width');
+                anw.nodeValue = w;
+                var anh = document.createAttribute('height');
+                anh.nodeValue = h;
+                canvas.setAttributeNode(anw);
+                canvas.setAttributeNode(anh);
+                ctx.drawImage(img, 0, 0, w, h);
+
+                // quality值越小，所绘制出的图像越模糊
+                var base64 = canvas.toDataURL('image/jpeg', quality);
+
+                // 回调函数返回base64的值
+                typeof callback === 'function' && callback(base64);
+            };
+
+            img.src = result;
+        }
+    }
+
+    /**
+     * 将以base64的图片url数据转换为Blob
+     * @param urlData
+     *            用url方式表示的base64图片数据
+     */
+    var convertBase64UrlToBlob = function(urlData) {
+        var arr = urlData.split(','),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]),
+            n = bstr.length,
+            u8arr = new Uint8Array(n);
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new Blob([u8arr], { type: mime });
+    }
 
     // 报错提示
     var showError = function() {
@@ -685,7 +777,7 @@
             },
             error: function(data) {
                 ee.trigger(cmd.CLOSE_POP, ['.pop-create']);
-                
+
                 alert("生成失败,请刷新重试!");
             }
         });
@@ -731,7 +823,7 @@
 
         ee.trigger(cmd.SHOW_POP, ['.pop-loading']);
 
-        getSegmentData(file, function(url) {
+        getPhtotData(file, function(url) {
             compoundPhoto();
 
             ee.trigger(cmd.CLOSE_POP, ['.pop-loading']);
@@ -1024,7 +1116,7 @@
                         } else {
                             str += '<dd class="btn-vote_wall" data-index="' + i + '" data-pid="' + item.id + '"><i class="icons icon-unlove"></i>';
                         }
-                        
+
                         str += '<span>' + item.tickets + '</span>票</dd></dl></div>';
 
                         arr.push(str);
@@ -1149,9 +1241,9 @@
                 title: title, // 分享标题
                 link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                 imgUrl: imgUrl, // 分享图标
-                success: function () {
-                  // 设置成功
-                  console.log('自定义“分享到朋友圈”按钮的分享内容设置成功');
+                success: function() {
+                    // 设置成功
+                    console.log('自定义“分享到朋友圈”按钮的分享内容设置成功');
                 }
             });
 
@@ -1163,9 +1255,9 @@
                 imgUrl: imgUrl, // 分享图标
                 type: 'link', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-                success: function () {
-                  // 设置成功
-                  console.log('自定义“分享给朋友”按钮的分享内容设置成功');
+                success: function() {
+                    // 设置成功
+                    console.log('自定义“分享给朋友”按钮的分享内容设置成功');
                 }
             });
         });
@@ -1227,7 +1319,7 @@
 
                 console.log('复制成功');
             }
-            
+
             document.addEventListener('copy', save);
             document.execCommand('copy');
             document.removeEventListener('copy', save);
