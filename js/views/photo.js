@@ -726,7 +726,7 @@
             u8arr[n] = bstr.charCodeAt(n);
         }
         return new Blob([u8arr], { type: mime });
-    }
+    };
 
     // 报错提示
     var showError = function() {
@@ -1117,7 +1117,7 @@
                             str += '<dd class="btn-vote_wall" data-index="' + i + '" data-pid="' + item.id + '"><i class="icons icon-unlove"></i>';
                         }
 
-                        str += '<span>' + item.tickets + '</span>票</dd></dl></div>';
+                        str += '<span class="wall-item_tickets">' + item.tickets + '</span>票</dd></dl></div>';
 
                         arr.push(str);
                     }
@@ -1348,6 +1348,7 @@
 
                     elem.find('.btn-vote_wall').removeClass('btn-vote_wall');
                     elem.find('.icon-unlove').removeClass('icon-unlove').addClass('icon-love');
+                    elem.find('.wall-item_tickets').html(data.tickets);
 
                     console.log(data);
                 } else {
