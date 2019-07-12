@@ -389,7 +389,7 @@
         </section>
     </div>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/public/common.js"></script>
-    <script src="http://cdn.nabaiji.yuncoupons.com/js/views/index.js?v=1.0.12"></script>
+    <script src="http://cdn.nabaiji.yuncoupons.com/js/views/index.js?v=1.0.13"></script>
 </body>
 
 </html>
