@@ -1117,7 +1117,7 @@
                             str += '<dd class="btn-vote_wall" data-index="' + i + '" data-pid="' + item.id + '"><i class="icons icon-unlove"></i>';
                         }
 
-                        str += '<span>' + item.tickets + '</span>票</dd></dl></div>';
+                        str += '<span class="wall-item_tickets">' + item.tickets + '</span>票</dd></dl></div>';
 
                         arr.push(str);
                     }
@@ -1307,7 +1307,7 @@
             document.body.removeChild(input);
         } else {
             var save = function(e) {
-                e.clipboardData.setData('text/plain', '￥HEEtYda3F15￥');
+                e.clipboardData.setData('text/plain', '￥vkcQYgDKHQD￥');
                 e.preventDefault();
 
                 // 显示弹层
@@ -1348,6 +1348,7 @@
 
                     elem.find('.btn-vote_wall').removeClass('btn-vote_wall');
                     elem.find('.icon-unlove').removeClass('icon-unlove').addClass('icon-love');
+                    elem.find('.wall-item_tickets').html(data.tickets);
 
                     console.log(data);
                 } else {

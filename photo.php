@@ -270,7 +270,7 @@
                 <div></div>
                 <div class="flex flex-direction_column flex-justify_center flex-align_center">
                     <h3 class="words word-tmall_title">复制淘口令，打开天猫</h3>
-                    <p>￥HuiFY3eLNFV￥</p>
+                    <p>￥vkcQYgDKHQD￥</p>
                     <a class="btns btn-pop_copy" href="javascript:;" title="一键复制">一键复制</a>
                 </div>
             </div>
