@@ -4,8 +4,10 @@
 }
 .stage-vote{background: #fff url(../../images/bg-vote.jpg) no-repeat center bottom; background-size: 100%;}
 .stage-vote .btn-find{margin-top: .8rem;}
-.stage-vote .btn-vote{position: absolute; right: 0; top: 50%;}
-.stage-vote .btn-vote{
+.stage-vote .btn-vote,
+.stage-vote .btn-vote_disable{position: absolute; right: 0; top: 50%;}
+.stage-vote .btn-vote,
+.stage-vote .btn-vote_disable{
 	-webkit-transform: translate(-110%, -44%);
 	transform: translate(-110%, -44%);
 }

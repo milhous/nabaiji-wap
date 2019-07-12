@@ -464,6 +464,8 @@ textarea{resize:none;}
 .btn-pass{width: 1.9rem; height: .7rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/btn-pass.png);}
 .btn-find{width: 2.72rem; height: 1.04rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/btn-find.png);}
 .btn-vote{width: .54rem; height: .5rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/btn-vote.png);}
+.btn-vote_disable{width: .54rem; height: .5rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/btn-vote_disable.png);}
+
 
 /* WORDS */
 .words{display: block; position: relative; border: none; background-repeat: no-repeat; background-position: 0 0; text-indent: -99rem; background-size: 100% 100%;}

@@ -168,7 +168,8 @@
             dataType: 'json',
             success: function(data) {
                 if (data.error_code == 0) {
-                    update(data.photo);
+                    $('.tickets').html(data.tickets);
+                    $('.btn-vote').removeClass('btn-vote').addClass('btn-vote_disable');
 
                     console.log(data);
                 } else {
@@ -187,7 +188,7 @@
         $('.vote-candidate_name').html(data.nickname);
         $('.vote-playbill').html('<img src="' + cdn + data.image + '" alt="' + data.nickname + '" />');
 
-        $('.vote-btn').html('<span class="words word-vote_tips">为她投上一票吧！</span><a class="btns btn-vote" href="javascript:;" title="为她投上一票吧！">为她投上一票吧！</a>' + data.tickets + ' 票');
+        $('.vote-btn').html('<span class="words word-vote_tips">为她投上一票吧！</span><a class="btns btn-vote" href="javascript:;" title="为她投上一票吧！">为她投上一票吧！</a><span class="tickets">' + data.tickets + '</span> 票');
         $('.vote-rank').html('当前排名 ' + data.rank);
     };
 
