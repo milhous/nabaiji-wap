@@ -1282,7 +1282,7 @@
             document.body.removeChild(input);
         } else {
             var save = function(e) {
-                e.clipboardData.setData('text/plain', '￥HEEtYda3F15￥');
+                e.clipboardData.setData('text/plain', '￥vkcQYgDKHQD￥');
                 e.preventDefault();
 
                 // 显示弹层
