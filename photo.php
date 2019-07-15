@@ -83,8 +83,8 @@
     <meta http-equiv='expires' content='0' />
     <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/libs/normalize.css" />
     <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/plugins/swiper.min.css" />
-    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/public/common.css?v=1.0.13" />
-    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/views/photo.css?v=1.0.1" />
+    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/public/common.css?v=1.0.14" />
+    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/views/photo.css?v=1.0.2" />
     <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/libs/zepto.min.js"></script>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/plugins/flexible.js"></script>
@@ -223,7 +223,7 @@
                 <div>
                     <img src="">
                 </div>
-                <span class="words word-save_title translate_centerX">长按保存图片 晒出你的美</span>
+                <span class="words word-save_title2 translate_centerX">点击照片墙，进入个人海报页分享最美泳装照，赢迪卡侬大奖</span>
             </section>
         </li>
         <li>
