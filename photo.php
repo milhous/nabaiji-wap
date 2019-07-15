@@ -252,7 +252,7 @@
                 </ul>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
-                <span class="words word-playbill_title3 translate_centerX">点击照片墙，进入个人海报页分享最美泳装照，赢迪卡侬大奖</span>
+                <span class="words word-playbill_title2 translate_centerX">点击右上角晒出美照，获得更多点赞</span>
             </section>
         </li>
     </ul>
@@ -274,7 +274,7 @@
                 <div></div>
                 <div class="flex flex-direction_column flex-justify_center flex-align_center">
                     <h3 class="words word-tmall_title">复制淘口令，打开天猫</h3>
-                    <p>￥HEEtYda3F15￥</p>
+                    <p>￥vkcQYgDKHQD￥</p>
                     <a class="btns btn-pop_copy" href="javascript:;" title="一键复制">一键复制</a>
                 </div>
             </div>
