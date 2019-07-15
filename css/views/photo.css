@@ -221,7 +221,8 @@
 
 .stage-playbill .btn-home{position: absolute; right: .4rem; top: .4rem;}
 .stage-playbill .word-playbill_title,
-.stage-playbill .word-playbill_title2{position: absolute; left: 50%; bottom: .26rem;}
+.stage-playbill .word-playbill_title2,
+.stage-playbill .word-playbill_title3{position: absolute; left: 50%; bottom: .26rem;}
 .stage-playbill .swiper-container{width: 4.86rem; height: 7.12rem; opacity: 0;}
 .stage-playbill img{display: block; width: 100%; height: 100%;}
 .stage-playbill .swiper-container{
