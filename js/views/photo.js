@@ -1112,12 +1112,12 @@
                         str += '<dl><dt><img src="' + item.headimg + '" /><span>' + item.nickname + '</span></dt>';
 
                         if (item.already_love) {
-                            str += '<dd><i class="icons icon-love"></i>';
+                            str += '<dd><a href="javascript:;"><i class="icons icon-love"></i>';
                         } else {
-                            str += '<dd class="btn-vote_wall" data-index="' + i + '" data-pid="' + item.id + '"><i class="icons icon-unlove"></i>';
+                            str += '<dd><a class="btn-vote_wall" href="javascript:;" data-index="' + i + '" data-pid="' + item.id + '"><i class="icons icon-unlove"></i>';
                         }
 
-                        str += '<span class="wall-item_tickets">' + item.tickets + '</span>票</dd></dl></div>';
+                        str += '<span class="wall-item_tickets">' + item.tickets + '</span>票</a></dd></dl></div>';
 
                         arr.push(str);
                     }

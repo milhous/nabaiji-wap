@@ -84,7 +84,7 @@
     <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/libs/normalize.css" />
     <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/plugins/swiper.min.css" />
     <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/public/common.css?v=1.0.14" />
-    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/views/photo.css?v=1.0.2" />
+    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/views/photo.css?v=1.0.4" />
     <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/libs/zepto.min.js"></script>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/plugins/flexible.js"></script>
@@ -393,7 +393,7 @@
         </section>
     </div>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/public/common.js"></script>
-    <script src="http://cdn.nabaiji.yuncoupons.com/js/views/photo.js?v=1.0.8"></script>
+    <script src="http://cdn.nabaiji.yuncoupons.com/js/views/photo.js?v=1.0.9"></script>
 </body>
 
 </html>
