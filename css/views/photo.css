@@ -166,7 +166,7 @@
 }
 .stage-save div img{display: block; width: 100%; height: 100%;}
 .stage-save .word-save_title{position: absolute; left: 50%; bottom: .26rem;}
-.stage-save .word-save_title2{position: absolute; left: 50%; bottom: .26rem; height: .44rem; background-size: 100% .88rem;}
+.stage-save .word-save_title2{position: absolute; left: 50%; bottom: .26rem;}
 .stage-save .btn-photoWall{position: absolute; right: .25rem; top: .25rem;}
 .stage-save .btn-restart{position: absolute; right: 2.1rem; top: .25rem;}
 

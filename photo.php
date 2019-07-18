@@ -84,7 +84,7 @@
     <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/libs/normalize.css" />
     <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/plugins/swiper.min.css" />
     <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/public/common.css?v=1.0.14" />
-    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/views/photo.css?v=1.0.5" />
+    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/views/photo.css?v=1.0.6" />
     <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/libs/zepto.min.js"></script>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/plugins/flexible.js"></script>
@@ -252,7 +252,7 @@
                 </ul>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
-                <!-- <span class="words word-playbill_title2 translate_centerX">点击右上角晒出美照，获得更多点赞</span> -->
+                <span class="words word-playbill_title2 translate_centerX">点击右上角晒出美照，获得更多点赞</span>
             </section>
         </li>
     </ul>
