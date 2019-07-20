@@ -9,10 +9,14 @@
     var REQUEST_PHOTO = 'http://nabaiji.yuncoupons.com/interface/get_my_photos.php';
     // 获取所有照片
     var REQUEST_ALL = 'http://nabaiji.yuncoupons.com/interface/get_all_photos.php';
+    // 获取分页照片
+    var REQUEST_PAGE = 'http://nabaiji.yuncoupons.com/interface/get_page_photos.php';
     // 设置协议状态
     var REQUEST_SET_AGREE = 'http://nabaiji.yuncoupons.com/interface/set_agree_status.php';
     // 获取协议状态
     var REQUEST_GET_AGREE = 'http://nabaiji.yuncoupons.com/interface/get_agree_status.php';
+    // 投票
+    var REQUEST_LOVE = 'http://nabaiji.yuncoupons.com/interface/love_pic.php';
 
     // 计时器
     var timer = null;
@@ -375,13 +379,23 @@
             loop: true,
             on: {
                 init: function() {},
-                slideChange: function() {}
+                slideChange: function() {
+                    updatePlaybillInfo(list[this.realIndex]);
+                }
             },
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev'
             }
         });
+    };
+
+    // 更新文案
+    var updatePlaybillInfo = function(data) {
+        $('.wrap .playbill-votes').html(data.tickets + ' 票');
+        $('.wrap .playbill-rank').html('当前排名 ' + data.rank);
+
+        initShare(data.id, data.nickname);
     };
 
     /*
@@ -763,7 +777,7 @@
             },
             error: function(data) {
                 ee.trigger(cmd.CLOSE_POP, ['.pop-create']);
-                
+
                 alert("生成失败,请刷新重试!");
             }
         });
@@ -1081,7 +1095,7 @@
     // 获取所有人海报照片
     var getAllImgs = function() {
         $.ajax({
-            url: REQUEST_ALL,
+            url: REQUEST_PAGE,
             type: 'post',
             cache: false,
             dataType: 'json',
@@ -1096,8 +1110,14 @@
                         var str = '<div class="wall-item" data-index="' + i + '" data-pid="' + item.id + '" data-uid="' + item.uid + '">';
                         str += '<div><img src="' + imgArr[0] + '_thumb.' + imgArr[1] + '" /></div>';
                         str += '<dl><dt><img src="' + item.headimg + '" /><span>' + item.nickname + '</span></dt>';
-                        str += '<dd> </dd></dl></div>';
-                        // str += '<dd><span>' + item.tickets + '</span>票</dd></dl></div>';
+
+                        if (item.already_love) {
+                            str += '<dd><a href="javascript:;"><i class="icons icon-love"></i>';
+                        } else {
+                            str += '<dd><a class="btn-vote_wall" href="javascript:;" data-index="' + i + '" data-pid="' + item.id + '"><i class="icons icon-unlove"></i>';
+                        }
+
+                        str += '<span class="wall-item_tickets">' + item.tickets + '</span>票</a></dd></dl></div>';
 
                         arr.push(str);
                     }
@@ -1181,11 +1201,16 @@
     };
 
     // 定义分享
-    var initShare = function() {
+    var initShare = function(pid, nickname) {
         var title = '暗夜精灵泳衣, 带你C位出道';
         var link = 'http://nabaiji.yuncoupons.com';
         var desc = '1秒拍最美泳装照, Show出魅力姿态, 赢迪卡侬大奖';
         var imgUrl = 'http://nabaiji.yuncoupons.com/share.png';
+
+        if (!!pid) {
+            title = nickname + '的最美泳姿照已上线，快投票助她C位出道！';
+            link = 'http://nabaiji.yuncoupons.com/vote.php?pid=' + pid + '&nickname=' + nickname;
+        }
 
         wx.ready(function() {
             // 自定义“分享给朋友”及“分享到QQ”按钮的分享内容
@@ -1216,9 +1241,9 @@
                 title: title, // 分享标题
                 link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                 imgUrl: imgUrl, // 分享图标
-                success: function () {
-                  // 设置成功
-                  console.log('自定义“分享到朋友圈”按钮的分享内容设置成功');
+                success: function() {
+                    // 设置成功
+                    console.log('自定义“分享到朋友圈”按钮的分享内容设置成功');
                 }
             });
 
@@ -1230,9 +1255,9 @@
                 imgUrl: imgUrl, // 分享图标
                 type: 'link', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-                success: function () {
-                  // 设置成功
-                  console.log('自定义“分享给朋友”按钮的分享内容设置成功');
+                success: function() {
+                    // 设置成功
+                    console.log('自定义“分享给朋友”按钮的分享内容设置成功');
                 }
             });
         });
@@ -1262,7 +1287,7 @@
         if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) { //区分iPhone设备  
             var input = document.createElement('input');
             input.setAttribute('readonly', 'readonly');
-            input.setAttribute('value', '￥HuiFY3eLNFV￥');
+            input.setAttribute('value', '￥HEEtYda3F15￥');
             document.body.appendChild(input);
             input.setSelectionRange(0, 9999);
 
@@ -1294,11 +1319,46 @@
 
                 console.log('复制成功');
             }
-            
+
             document.addEventListener('copy', save);
             document.execCommand('copy');
             document.removeEventListener('copy', save);
         }
+    };
+
+    // 投票
+    var votePhoto = function(pid, index) {
+        if (pid === null) {
+            alert("投票失败,请刷新重试!");
+
+            return;
+        }
+
+        $.ajax({
+            url: REQUEST_LOVE,
+            type: 'post',
+            cache: false,
+            data: {
+                id: pid
+            },
+            dataType: 'json',
+            success: function(data) {
+                if (data.error_code == 0) {
+                    var elem = $('.wall-item').eq(index);
+
+                    elem.find('.btn-vote_wall').removeClass('btn-vote_wall');
+                    elem.find('.icon-unlove').removeClass('icon-unlove').addClass('icon-love');
+                    elem.find('.wall-item_tickets').html(data.tickets);
+
+                    console.log(data);
+                } else {
+                    alert(data.error_msg);
+                }
+            },
+            error: function(data) {
+                alert("投票失败,请刷新重试!");
+            }
+        });
     };
 
     // 初始化事件
@@ -1330,17 +1390,17 @@
         // 场景 - 首页
         $(document).on('click', '.btn-start', function() {
             // 是否初次
-            var isNewer = localStorage.getItem('isFirst');
+            var isNewer = localStorage.getItem('isNewer');
 
-            if (isNewer === 0 || isNewer === '0') {
-                goToNextScene(initSwiper);
-            } else {
-                localStorage.setItem('isFirst', 0);
+            if (isNewer === null || isNewer !== '0') {
+                localStorage.setItem('isNewer', 0);
 
                 // 显示弹层
                 ee.trigger(cmd.SHOW_POP, ['.pop-rule']);
 
                 playBanner();
+            } else {
+                goToNextScene(initSwiper);
             }
         });
 
@@ -1381,6 +1441,8 @@
 
         // 照片墙
         $(document).on('click', 'a.btn-photoWall, a.btn-photoWall_disable', function() {
+            initShare();
+
             goToScene(SCENE.WALL, getAllImgs);
         });
 
@@ -1396,6 +1458,8 @@
 
         // 首页
         $(document).on('click', '.btn-home', function() {
+            initShare();
+
             goToScene(SCENE.LANDING);
         });
 
@@ -1508,6 +1572,14 @@
             } else if (index === '1') {
                 ee.trigger(cmd.CLOSE_POP, ['.pop-guide']);
             }
+        });
+
+        // 投票
+        $(document).on('click', '.btn-vote_wall', function(evt) {
+            var pid = $(this).attr('data-pid');
+            var index = Number($(this).attr('data-index'));
+
+            votePhoto(pid, index);
         });
     };
 
