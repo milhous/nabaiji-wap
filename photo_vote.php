@@ -391,6 +391,14 @@
                 <a class="btns btn-pass" href="javascript:;" title="知道了" data-index="1">知道了</a>
             </div>
         </section>
+        <section class="pop-form">
+            <div class="pop-form_box flex flex-direction_column flex-justify_center">
+                <span class="words word-form_title1">提交中奖信息</span>
+
+                <span class="words word-form_title2">暗夜精灵购买渠道</span>
+                <a class="btns btn-submit" href="javascript:;" title="确认提交">确认提交</a>
+            </div>
+        </section>
     </div>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/public/common.js"></script>
     <script src="js/views/prize.js?v=1.0.9"></script>
