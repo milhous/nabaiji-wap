@@ -17,6 +17,8 @@
     var REQUEST_GET_AGREE = 'http://nabaiji.yuncoupons.com/interface/get_agree_status.php';
     // 投票
     var REQUEST_LOVE = 'http://nabaiji.yuncoupons.com/interface/love_pic.php';
+    // 记录信息
+    var REQUEST_INFO = 'http://nabaiji.yuncoupons.com/interface/save_info.php';
 
     // 计时器
     var timer = null;
@@ -180,6 +182,51 @@
             x: 50,
             y: 735
         }
+    };
+
+    // 省份
+    var provinceList = [
+        '请选择', '宁夏', '陕西', '重庆', '云南', '四川', '贵州', '湖南', '湖北', '海南', '广西', '江西',
+        '福建', '广东', '江苏', '安徽', '浙江', '山东', '山西', '内蒙古', '新疆', '黑龙江', '天津', '河南',
+        '河北', '吉林', '辽宁', '北京', '上海'
+    ];
+    // 城市
+    var cityList = {
+        '请选择': ['请选择'],
+        '宁夏': ['银川'],
+        '陕西': ['汉中', '西安'],
+        '重庆': ['重庆'],
+        '云南': ['昆明'],
+        '四川': ['绵阳', '泸州', '宜宾', '成都'],
+        '贵州': ['贵阳'],
+        '湖南': ['常德', '株洲', '湘潭', '长沙', '衡阳'],
+        '湖北': ['武汉', '黄石', '襄阳'],
+        '海南': ['海口'],
+        '广西': ['桂林', '南宁', '柳州', '北海'],
+        '江西': ['九江', '上饶', '南昌', '萍乡'],
+        '福建': ['漳州', '福州', '厦门', '莆田'],
+        '广东': ['阳江', '珠海', '湛江', '中山', '江门', '佛山', '深圳', '东莞', '河源', '广州', '梅州'],
+        '江苏': ['苏州', '南通', '昆山', '泰州', '徐州', '淮安', '南京', '扬州', '盐城', '镇江', '常州', '江阴', '无锡', '张家港'],
+        '安徽': ['蚌埠', '芜湖', '合肥', '马鞍山'],
+        '浙江': ['宁波', '杭州', '嘉兴', '绍兴', '温州'],
+        '山东': ['青岛', '淄博', '菏泽', '潍坊', '东营', '威海', '济南', '烟台'],
+        '山西': ['晋中', '大同', '临汾'],
+        '内蒙古': ['乌海', '包头'],
+        '新疆': ['乌鲁木齐'],
+        '黑龙江': ['哈尔滨', '大庆'],
+        '天津': ['天津'],
+        '河南': ['许昌', '平顶山', '洛阳', '郑州'],
+        '河北': ['邯郸', '三河', '唐山', '廊坊', '石家庄'],
+        '吉林': ['长春', '吉林', '四平', '松原'],
+        '辽宁': ['抚顺', '沈阳', '营口', '盘锦', '鞍山', '大连'],
+        '北京': ['北京'],
+        '上海': ['上海']
+    };
+
+    // 门店地址
+    var storeAddress = {
+        province: '',
+        city: ''
     };
 
     // 验证工具
@@ -1361,6 +1408,106 @@
         });
     };
 
+    // 保存记录
+    var saveInfo = function() {
+        var pid = $('.stage-playbill .swiper-slide-active').attr('data-pid');
+        var username = $('#username').val();
+        var mobile = $('#mobile').val();
+        var address = $('#address').val();
+        var channel = $('input[name="channel"]:checked').val();
+
+        username = username.replace(/\s/g, '');
+
+        if (username === '') {
+            alert('请输入姓名');
+
+            return;
+        }
+
+        mobile = mobile.replace(/\s/g, '');
+
+        if (mobile === '') {
+            alert('请输入手机号码');
+
+            return;
+        }
+
+        address = address.replace(/\s/g, '');
+
+        if (address === '') {
+            alert('请输入地址');
+
+            return;
+        }
+
+        if (channel === '门店') {
+            channel += '-' + storeAddress.province + '-' + storeAddress.city + '-' + $('#storename').val();
+        }
+
+        $.ajax({
+            url: REQUEST_INFO,
+            type: 'post',
+            cache: false,
+            data: {
+                id: pid,
+                name: username,
+                phone: mobile,
+                address: address,
+                channel: channel
+            },
+            dataType: 'json',
+            success: function(data) {
+                if (data.error_code == 0) {
+                    alert('提交成功');
+
+                    console.log(data);
+                } else {
+                    alert(data.error_msg);
+                }
+            },
+            error: function(data) {
+                alert('提交失败，请刷新重试!');
+            },
+            complete: function() {
+                ee.trigger(cmd.CLOSE_POP, ['.pop-form']);
+            }
+        });
+
+        console.log(username, mobile, address, channel);
+    };
+
+    // 初始化省份下拉
+    var initProvinceSelect = function() {
+        var str = '';
+        
+        for (var i = 0, len = provinceList.length; i < len; i++) {
+            str += '<option value="' + provinceList[i] + '">' + provinceList[i] + '</option>';
+        }
+
+        $('#province').find('select').html(str).find('option').eq(0).prop('selected', true);
+
+        $('#province').find('span').html(provinceList[0]);
+
+        storeAddress.province = provinceList[0];
+    };
+
+    // 初始化城市下拉
+    var initCitySelect = function() {
+        var province = provinceList[0];
+        var arr = cityList[province];
+        var str = '';
+        
+        for (var i = 0, len = arr.length; i < len; i++) {
+            str += '<option value="' + arr[i] + '">' + arr[i] + '</option>';
+        }
+
+        $('#city').find('select').html(str).find('option').eq(0).prop('selected', true);
+
+        $('#city').find('span').html(arr[0]);
+
+        storeAddress.city = arr[0];
+    };
+
     // 初始化事件
     var initEvent = function() {
         // 弹层 - 协议状态
@@ -1581,11 +1728,69 @@
 
             votePhoto(pid, index);
         });
+
+        // 领取大奖
+        $(document).on('click', '.btn-get', function(evt) {
+            ee.trigger(cmd.SHOW_POP, ['.pop-form']);
+        });
+
+        // 选择渠道
+        $(document).on('change', 'input[name="channel"]:checked', function(evt) {
+            if($(this).val() !== '门店') {
+                $('.store-detail').addClass('hide');
+            } else {
+                $('.store-detail').removeClass('hide');
+            }
+        });
+
+        // 省份
+        $(document).on('change', '#province select', function(evt) {
+            var province = $(this).val();
+
+            $('#province').find('span').html(province);
+
+            storeAddress.province = province;
+
+            var str = '';
+            var arr = cityList[province];
+        
+            for (var i = 0, len = arr.length; i < len; i++) {
+                str += '<option value="' + arr[i] + '">' + arr[i] + '</option>';
+            }
+
+            $('#city').find('select').html(str).find('option').eq(0).prop('selected', true);
+
+            $('#city').find('span').html(arr[0]);
+
+            storeAddress.city = arr[0];
+
+            $('#storename').val('');
+        });
+
+        // 城市
+        $(document).on('change', '#city select', function(evt) {
+            var city = $(this).val();
+
+            $('#city').find('span').html(city);
+
+            storeAddress.city = city;
+
+            $('#storename').val('');
+        });
+
+        // 提交信息
+        $(document).on('click', '.btn-pop_confirm', function(evt) {
+            saveInfo();
+        });
     };
 
     // 初始化
     var init = function() {
         initEvent();
+
+        initProvinceSelect();
+
+        initCitySelect();
 
         getShareInfo();
 

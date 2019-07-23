@@ -392,11 +392,83 @@
             </div>
         </section>
         <section class="pop-form">
-            <div class="pop-form_box flex flex-direction_column flex-justify_center">
+            <div class="pop-form_box flex flex-direction_column flex-align_center">
                 <span class="words word-form_title1">提交中奖信息</span>
-
+                <dl>
+                    <dt>
+                        <label class="words word-form_name" for="username">姓名</label>
+                    </dt>
+                    <dd>
+                        <input type="text" id="username" name="username" />
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <label class="words word-form_mobile" for="mobile">手机</label>
+                    </dt>
+                    <dd>
+                        <input type="tel" id="mobile" name="mobile" />
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <label class="words word-form_address" for="address">地址</label>
+                    </dt>
+                    <dd>
+                        <input type="text" id="address" name="address" />
+                    </dd>
+                </dl>
                 <span class="words word-form_title2">暗夜精灵购买渠道</span>
-                <a class="btns btn-submit" href="javascript:;" title="确认提交">确认提交</a>
+                <ul class="channel-list">
+                    <li>
+                        <label for="tmall">
+                            <input type="radio" name="channel" id="tmall" value="天猫旗舰店" checked />
+                            <i></i>
+                            <span class="words word-form_tmall">天猫旗舰店</span>
+                        </label>
+                    </li>
+                     <li>
+                        <label for="web">
+                            <input type="radio" name="channel" id="web" value="官网" />
+                            <i></i>
+                            <span class="words word-form_web">官网</span>
+                        </label>
+                    </li>
+                     <li>
+                        <label for="store">
+                            <input type="radio" name="channel" id="store" value="门店" />
+                            <i></i>
+                            <span class="words word-form_store">门店</span>
+                        </label>
+                    </li>
+                </ul>
+                <div class="store-detail hide">
+                    <ul>
+                        <li><span class="words word-form_province">省</span></li>
+                        <li>
+                            <div id="province" class="form-select">
+                                <span></span>
+                                <select><!-- js create element --></select>
+                            </div>
+                        </li>
+                        <li><span class="words word-form_city">市</span></li>
+                        <li>
+                            <div id="city" class="form-select">
+                                <span></span>
+                                <select><!-- js create element --></select>
+                            </div>
+                        </li>
+                    </ul>
+                    <dl>
+                        <dt>
+                            <label class="words word-form_storename" for="storename">门店名称</label>
+                        </dt>
+                        <dd>
+                            <input type="text" id="storename" name="storename" />
+                        </dd>
+                    </dl>
+                </div>
+                <a class="btns btn-pop_confirm" href="javascript:;" title="确认提交">确认提交</a>
             </div>
         </section>
     </div>

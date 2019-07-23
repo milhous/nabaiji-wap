@@ -466,6 +466,7 @@ textarea{resize:none;}
 .btn-vote{width: .54rem; height: .5rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/btn-vote.png);}
 .btn-vote_disable{width: .54rem; height: .5rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/btn-vote_disable.png);}
 .btn-get{width: 2.5rem; height: .88rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/btn-get.png);}
+.btn-pop_confirm{width: 2.72rem; height: .88rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/btn-confirm.png);}
 
 /* WORDS */
 .words{display: block; position: relative; border: none; background-repeat: no-repeat; background-position: 0 0; text-indent: -99rem; background-size: 100% 100%;}
@@ -491,6 +492,17 @@ textarea{resize:none;}
 .word-guide_title1{width: 5.78rem; height: 1.22rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-guide_title1.png);}
 .word-guide_title2{width: 5.22rem; height: 1.14rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-guide_title2.png);}
 .word-vote_tips{width: 2.62rem; height: .74rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-vote_tips.png);}
+.word-form_title1{width: 4.06rem; height: .66rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-form_title1.png);}
+.word-form_title2{width: 3.86rem; height: .56rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-form_title2.png);}
+.word-form_name{width: .96rem; height: .36rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-form_name.png);}
+.word-form_mobile{width: 1.02rem; height: .3rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-form_mobile.png);}
+.word-form_address{width: 1.02rem; height: .3rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-form_address.png);}
+.word-form_tmall{width: 1.78rem; height: .38rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-form_tmall.png);}
+.word-form_web{width: .7rem; height: .34rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-form_web.png);}
+.word-form_store{width: .66rem; height: .32rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-form_store.png);}
+.word-form_province{width: .26rem; height: .3rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-form_province.png);}
+.word-form_city{width: .24rem; height: .3rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-form_city.png);}
+.word-form_storename{width: 1.24rem; height: .3rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-form_storename.png);}
 
 /* POP */
 .pop{display: none; position: fixed; left: 0; right: 0; top: 0; bottom: 0; z-index: 1000; background-color: rgba(0, 0, 0, .8); opacity: 0;}
@@ -626,6 +638,102 @@ textarea{resize:none;}
 .pop .pop-guide_photo div{position: absolute; left: 50%; top: 2.14rem; width: 5.02rem; height: 7.42rem;}
 .pop .pop-guide_photo img{display: block; width: 100%; height: 100%;}
 .pop .pop-guide .btn-pass{position: absolute; right: .8rem; bottom: 1rem;}
+
+.pop-form{overflow: hidden; width: 6.8rem; height: 9.8rem; padding-top: .6rem; border-radius: .2rem; background-color: #e7eef8;}
+.pop .pop-form_box{width: 100%; height: 100%;}
+.pop-form dl{margin-bottom: .3rem;}
+.pop-form dl{
+  display: -webkit-box;
+  display: -webkit-flex; 
+  display: -moz-flex;
+  display: flex;
+  -webkit-box-align: center;
+  box-align: center;
+  -webkit-flex-align: center;
+  flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.pop-form dt{width: 1.3rem;}
+.pop-form dd{width: 4.3rem; height: .68rem; padding: 0 .1rem; background-color: #fff; border-radius: .1rem;}
+.pop-form dd{
+  box-shadow: .04rem .1rem .08rem rgba(0, 0, 0, .15);
+}
+.pop-form .word-form_title1{margin-bottom: .7rem;}
+.pop-form .word-form_title2{margin-top: .7rem;}
+.pop-form .btn-pop_confirm{margin-top: .6rem;}
+.pop-form .channel-list{margin-top: .5rem;}
+.pop-form .channel-list{
+  display: -webkit-box;
+  display: -webkit-flex; 
+  display: -moz-flex;
+  display: flex;
+  -webkit-box-align: center;
+  box-align: center;
+  -webkit-flex-align: center;
+  flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.pop-form .channel-list li{padding: 0 .2rem;}
+.pop-form .channel-list label{
+  display: -webkit-box;
+  display: -webkit-flex; 
+  display: -moz-flex;
+  display: flex;
+  -webkit-box-align: center;
+  box-align: center;
+  -webkit-flex-align: center;
+  flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.pop-form .channel-list i{display: block; position: relative; width: .34rem; height: .34rem; margin-right: .1rem; border-radius: .06rem; background-color: #fff;}
+.pop-form .channel-list i{
+  box-shadow: .04rem .1rem .08rem rgba(0, 0, 0, .15);
+}
+.pop-form .channel-list i:before{content: '.'; display: none; position: absolute; left: 50%; top: 50%; width: .16rem; height: .16rem; border-radius: .04rem; background-color: #114766; text-indent: -9999rem;}
+.pop-form .channel-list i:before{
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+}
+.pop-form .channel-list input{display: none;}
+.pop-form .channel-list input[type="radio"]:checked + i:before{display: block;}
+.pop-form .store-detail,
+.pop-form .store-detail ul{
+  display: -webkit-box;
+  display: -webkit-flex; 
+  display: -moz-flex;
+  display: flex;
+  -webkit-box-align: center;
+  box-align: center;
+  -webkit-flex-align: center;
+  flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.pop-form .store-detail{margin-top: .4rem;}
+.pop-form .store-detail li{margin-right: .2rem;}
+.pop-form .store-detail dl{margin: 0;}
+.pop-form .store-detail dt{width: auto; margin-right: .16rem;}
+.pop-form .store-detail dd{width: 1.76rem; height: .54rem;}
+.pop-form .form-select{overflow: hidden; position: relative; width: .9rem; height: .54rem; padding: 0 .1rem; background-color: #fff; border-radius: .1rem;}
+.pop-form .form-select{
+  box-sizing: border-box;
+  box-shadow: .04rem .1rem .08rem rgba(0, 0, 0, .15);
+  display: -webkit-box;
+  display: -webkit-flex; 
+  display: -moz-flex;
+  display: flex;
+  -webkit-box-align: center;
+  box-align: center;
+  -webkit-flex-align: center;
+  flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.pop-form .form-select select{position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0;}
+.pop-form .form-select span{white-space: nowrap;}
 
 /* FORM */
 
