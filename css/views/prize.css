@@ -177,7 +177,7 @@
 .stage-wall .wall-item{
   box-shadow: .1rem .1rem .1rem rgba(0, 0, 0, .18);
 }
-.stage-wall .wall-item div{width: 100%; height: 4.34rem;}
+.stage-wall .wall-item div{position: relative; width: 100%; height: 4.34rem;}
 .stage-wall .wall-item div img{display: block; width: 100%; height: 100%;}
 .stage-wall .wall-item dl{width: 100%; height: .86rem; padding: 0 .1rem;}
 .stage-wall .wall-item dl,
@@ -219,6 +219,9 @@
 .stage-wall .wall-item_empty{width: 2.94rem; margin: 0 .2rem .4rem;}
 .stage-wall .wall-item .icon-love{width: .34rem; height: .3rem; background-size: 100% 100%;}
 .stage-wall .wall-item .icon-unlove{width: .34rem; height: .3rem; background-size: 100% 100%;}
+.stage-wall .wall-item .icon-prize_1,
+.stage-wall .wall-item .icon-prize_2,
+.stage-wall .wall-item .icon-prize_3{position: absolute; left: .15rem; top: .15rem;}
 
 .stage-playbill .btn-home{position: absolute; right: .4rem; top: .4rem;}
 .stage-playbill .btn-get{margin-top: .5rem;}

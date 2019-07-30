@@ -229,6 +229,11 @@
         city: ''
     };
 
+    // 中奖id
+    var prizeId = null;
+    // 中奖类型
+    var prizeType = null;
+
     // 验证工具
     var tool = {
         trim: function(value) {
@@ -1155,8 +1160,24 @@
                         var item = data.photos[i];
                         var imgArr = item.image.split('.');
                         var str = '<div class="wall-item" data-index="' + i + '" data-pid="' + item.id + '" data-uid="' + item.uid + '">';
-                        str += '<div><img src="' + imgArr[0] + '_thumb.' + imgArr[1] + '" /></div>';
-                        str += '<dl><dt><img src="' + item.headimg + '" /><span>' + item.nickname + '</span></dt>';
+                        str += '<div><img src="' + imgArr[0] + '_thumb.' + imgArr[1] + '" />';
+
+                        switch (item.lotty_id) {
+                            case '1':
+                                str += '<i class="icons icon-prize_1"></i>';
+
+                                break;
+                            case '2':
+                                str += '<i class="icons icon-prize_2"></i>';
+
+                                break;
+                            case '3':
+                                str += '<i class="icons icon-prize_3"></i>';
+
+                                break;
+                        }
+
+                        str += '</div><dl><dt><img src="' + item.headimg + '" /><span>' + item.nickname + '</span></dt>';
 
                         if (item.already_love) {
                             str += '<dd><a href="javascript:;"><i class="icons icon-love"></i>';
@@ -1193,6 +1214,37 @@
             dataType: 'json',
             success: function(data) {
                 if (data.error_code == 0) {
+                    for (var i = 0, len = data.photos.length; i < len; i++) {
+                        var item = data.photos[i];
+
+                        if (Number(item.lotty_id) > 0) {
+                            prizeId = item.id;
+                            prizeType = item.lotty_id;
+
+                            switch (item.lotty_id) {
+                                case '1':
+                                    $('.pop-prize').find('.word-prize_title1').css('display', 'block');
+                                    $('.pop-prize').find('.word-prize_desc1').css('display', 'block');
+                                    
+                                    break;
+                                case '2':
+                                    $('.pop-prize').find('.word-prize_title2').css('display', 'block');
+                                    $('.pop-prize').find('.word-prize_desc2').css('display', 'block');
+
+                                    break;
+                                case '3':
+                                    $('.pop-prize').find('.word-prize_title3').css('display', 'block');
+                                    $('.pop-prize').find('.word-prize_desc3').css('display', 'block');
+
+                                    break;
+                            }
+
+                            break;
+                        } else {
+                            $('.btn-get').remove();
+                        }
+                    }
+
                     initPlaybillSwiper(data.photos);
                 } else {
                     alert(data.error_msg);
@@ -1415,6 +1467,11 @@
         var mobile = $('#mobile').val();
         var address = $('#address').val();
         var channel = $('input[name="channel"]:checked').val();
+        var storename = $('#storename').val();
+
+        if (prizeId === null) {
+            return;
+        }
 
         username = username.replace(/\s/g, '');
 
@@ -1434,8 +1491,16 @@
 
         address = address.replace(/\s/g, '');
 
-        if (address === '') {
+        if (address === '' && prizeType === '3') {
             alert('请输入地址');
+
+            return;
+        }
+
+        storename = storename.replace(/\s/g, '');
+
+        if (channel === '门店' && storename === '') {
+            alert('请输入门店名称');
 
             return;
         }
@@ -1449,7 +1514,7 @@
             type: 'post',
             cache: false,
             data: {
-                id: pid,
+                id: prizeId,
                 name: username,
                 phone: mobile,
                 address: address,
@@ -1506,6 +1571,57 @@
         $('#city').find('span').html(arr[0]);
 
         storeAddress.city = arr[0];
+    };
+
+    // 获取中奖类型和中奖图片ID
+    var getPrizeInfo = function() {
+        $.ajax({
+            url: REQUEST_PHOTO,
+            type: 'post',
+            cache: false,
+            dataType: 'json',
+            success: function(data) {
+                if (data.error_code == 0) {
+                    for (var i = 0, len = data.photos.length; i < len; i++) {
+                        var item = data.photos[i];
+
+                        if (Number(item.lotty_id) > 0) {
+                            prizeId = item.id;
+                            prizeType = item.lotty_id;
+
+                            switch (item.lotty_id) {
+                                case '1':
+                                    $('.pop-prize').find('.word-prize_title1').css('display', 'block');
+                                    $('.pop-prize').find('.word-prize_desc1').css('display', 'block');
+                                    
+                                    break;
+                                case '2':
+                                    $('.pop-prize').find('.word-prize_title2').css('display', 'block');
+                                    $('.pop-prize').find('.word-prize_desc2').css('display', 'block');
+
+                                    break;
+                                case '3':
+                                    $('.pop-prize').find('.word-prize_title3').css('display', 'block');
+                                    $('.pop-prize').find('.word-prize_desc3').css('display', 'block');
+
+                                    break;
+                            }
+
+                            ee.trigger(cmd.SHOW_POP, ['.pop-prize'])
+
+                            break;
+                        } else {
+                            $('.btn-get').remove();
+                        }
+                    }
+                } else {
+                    alert(data.error_msg);
+                }
+            },
+            error: function(data) {
+                alert("网络异常, 请刷新重试!");
+            }
+        });
     };
 
     // 初始化事件
@@ -1731,6 +1847,10 @@
 
         // 领取大奖
         $(document).on('click', '.btn-get', function(evt) {
+            if (prizeType === '3') {
+                $('.pop-form').find('.address').removeClass('hide');
+            }
+
             ee.trigger(cmd.SHOW_POP, ['.pop-form']);
         });
 
@@ -1782,6 +1902,15 @@
         $(document).on('click', '.btn-pop_confirm', function(evt) {
             saveInfo();
         });
+
+        // 领取奖励
+        $(document).on('click', '.btn-pop_get', function(evt) {
+            if (prizeType === '3') {
+                $('.pop-form').find('.address').removeClass('hide');
+            }
+
+            ee.trigger(cmd.SHOW_POP, ['.pop-form']);
+        });
     };
 
     // 初始化
@@ -1795,6 +1924,8 @@
         getShareInfo();
 
         getAgreeStatus();
+
+        getPrizeInfo();
 
         // 预加载资源图片
         $(document).ready(preloadAssets);

@@ -394,7 +394,7 @@
         <section class="pop-form">
             <div class="pop-form_box flex flex-direction_column flex-align_center">
                 <span class="words word-form_title1">提交中奖信息</span>
-                <dl>
+                <dl class="username">
                     <dt>
                         <label class="words word-form_name" for="username">姓名</label>
                     </dt>
@@ -402,7 +402,7 @@
                         <input type="text" id="username" name="username" />
                     </dd>
                 </dl>
-                <dl>
+                <dl class="mobile">
                     <dt>
                         <label class="words word-form_mobile" for="mobile">手机</label>
                     </dt>
@@ -410,7 +410,7 @@
                         <input type="tel" id="mobile" name="mobile" />
                     </dd>
                 </dl>
-                <dl>
+                <dl class="address hide">
                     <dt>
                         <label class="words word-form_address" for="address">地址</label>
                     </dt>
@@ -469,6 +469,18 @@
                     </dl>
                 </div>
                 <a class="btns btn-pop_confirm" href="javascript:;" title="确认提交">确认提交</a>
+            </div>
+        </section>
+        <section class="pop-prize">
+            <div class="pop-prize_box flex flex-direction_column flex-justify_center flex-align_center">
+                <h3 class="words word-prize_title1">恭喜您获得一等奖</h3>
+                <h4 class="words word-prize_desc1">水下魅力写真拍摄一组！</h4>
+                <h3 class="words word-prize_title2">恭喜您获得二等奖</h3>
+                <h4 class="words word-prize_desc2">专业游泳教程一套！</h4>
+                <h3 class="words word-prize_title3">恭喜您获得三等奖</h3>
+                <h4 class="words word-prize_desc3">价值1000元的迪卡侬礼品卡一张！</h4>
+                <p class="words word-prize_tips">* 请正确填写您的联系信息将有工作人员与您联系</p>
+                <a class="btns btn-pop_get" href="javascript:;" title="点击领奖">点击领奖</a>
             </div>
         </section>
     </div>
