@@ -9,16 +9,10 @@
     var REQUEST_PHOTO = 'http://nabaiji.yuncoupons.com/interface/get_my_photos.php';
     // 获取所有照片
     var REQUEST_ALL = 'http://nabaiji.yuncoupons.com/interface/get_all_photos.php';
-    // 获取分页照片
-    var REQUEST_PAGE = 'http://nabaiji.yuncoupons.com/interface/get_page_photos.php';
     // 设置协议状态
     var REQUEST_SET_AGREE = 'http://nabaiji.yuncoupons.com/interface/set_agree_status.php';
     // 获取协议状态
     var REQUEST_GET_AGREE = 'http://nabaiji.yuncoupons.com/interface/get_agree_status.php';
-    // 投票
-    var REQUEST_LOVE = 'http://nabaiji.yuncoupons.com/interface/love_pic.php';
-    // 记录信息
-    var REQUEST_INFO = 'http://nabaiji.yuncoupons.com/interface/save_info.php';
 
     // 计时器
     var timer = null;
@@ -183,57 +177,6 @@
             y: 735
         }
     };
-
-    // 省份
-    var provinceList = [
-        '请选择', '北京', '上海', '广东', '江苏', '浙江', '福建', '湖北', '湖南', 
-        '四川', '陕西', '重庆', '云南', '贵州', '海南', '广西', '江西',
-        '安徽', '山东', '山西', '黑龙江', '天津', '河南',
-        '河北', '吉林', '辽宁', '宁夏', '内蒙古', '新疆'
-    ];
-    // 城市
-    var cityList = {
-        '请选择': ['请选择'],
-        '北京': ['北京'],
-        '上海': ['上海'],
-        '广东': ['阳江', '珠海', '湛江', '中山', '江门', '佛山', '深圳', '东莞', '河源', '广州', '梅州'],
-        '江苏': ['苏州', '南通', '昆山', '泰州', '徐州', '淮安', '南京', '扬州', '盐城', '镇江', '常州', '江阴', '无锡', '张家港'],
-        '浙江': ['宁波', '杭州', '嘉兴', '绍兴', '温州'],
-        '福建': ['漳州', '福州', '厦门', '莆田'],
-        '湖北': ['武汉', '黄石', '襄阳'],
-        '湖南': ['常德', '株洲', '湘潭', '长沙', '衡阳'],
-        '四川': ['绵阳', '泸州', '宜宾', '成都'],
-        '陕西': ['汉中', '西安'],
-        '重庆': ['重庆'],
-        '云南': ['昆明'],
-        '贵州': ['贵阳'],
-        '海南': ['海口'],
-        '广西': ['桂林', '南宁', '柳州', '北海'],
-        '江西': ['九江', '上饶', '南昌', '萍乡'],
-        '安徽': ['蚌埠', '芜湖', '合肥', '马鞍山'],
-        '山东': ['青岛', '淄博', '菏泽', '潍坊', '东营', '威海', '济南', '烟台'],
-        '山西': ['晋中', '大同', '临汾'],
-        '黑龙江': ['哈尔滨', '大庆'],
-        '天津': ['天津'],
-        '河南': ['许昌', '平顶山', '洛阳', '郑州'],
-        '河北': ['邯郸', '三河', '唐山', '廊坊', '石家庄'],
-        '吉林': ['长春', '吉林', '四平', '松原'],
-        '辽宁': ['抚顺', '沈阳', '营口', '盘锦', '鞍山', '大连'],
-        '宁夏': ['银川'],
-        '内蒙古': ['乌海', '包头'],
-        '新疆': ['乌鲁木齐'],
-    };
-
-    // 门店地址
-    var storeAddress = {
-        province: '',
-        city: ''
-    };
-
-    // 中奖id
-    var prizeId = null;
-    // 中奖类型
-    var prizeType = null;
 
     // 验证工具
     var tool = {
@@ -432,23 +375,13 @@
             loop: true,
             on: {
                 init: function() {},
-                slideChange: function() {
-                    updatePlaybillInfo(list[this.realIndex]);
-                }
+                slideChange: function() {}
             },
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev'
             }
         });
-    };
-
-    // 更新文案
-    var updatePlaybillInfo = function(data) {
-        $('.wrap .playbill-votes').html(data.tickets + ' 票');
-        $('.wrap .playbill-rank').html('当前排名 ' + data.rank);
-
-        initShare(data.id, data.nickname);
     };
 
     /*
@@ -830,7 +763,7 @@
             },
             error: function(data) {
                 ee.trigger(cmd.CLOSE_POP, ['.pop-create']);
-
+                
                 alert("生成失败,请刷新重试!");
             }
         });
@@ -1148,7 +1081,7 @@
     // 获取所有人海报照片
     var getAllImgs = function() {
         $.ajax({
-            url: REQUEST_PAGE,
+            url: REQUEST_ALL,
             type: 'post',
             cache: false,
             dataType: 'json',
@@ -1161,32 +1094,10 @@
                         var item = data.photos[i];
                         var imgArr = item.image.split('.');
                         var str = '<div class="wall-item" data-index="' + i + '" data-pid="' + item.id + '" data-uid="' + item.uid + '">';
-                        str += '<div><img src="' + imgArr[0] + '_thumb.' + imgArr[1] + '" />';
-
-                        switch (item.lotty_id) {
-                            case '1':
-                                str += '<i class="icons icon-prize_1"></i>';
-
-                                break;
-                            case '2':
-                                str += '<i class="icons icon-prize_2"></i>';
-
-                                break;
-                            case '3':
-                                str += '<i class="icons icon-prize_3"></i>';
-
-                                break;
-                        }
-
-                        str += '</div><dl><dt><img src="' + item.headimg + '" /><span>' + item.nickname + '</span></dt>';
-
-                        if (item.already_love) {
-                            str += '<dd><a href="javascript:;"><i class="icons icon-love"></i>';
-                        } else {
-                            str += '<dd><a class="btn-vote_wall" href="javascript:;" data-index="' + i + '" data-pid="' + item.id + '"><i class="icons icon-unlove"></i>';
-                        }
-
-                        str += '<span class="wall-item_tickets">' + item.tickets + '</span>票</a></dd></dl></div>';
+                        str += '<div><img src="' + imgArr[0] + '_thumb.' + imgArr[1] + '" /></div>';
+                        str += '<dl><dt><img src="' + item.headimg + '" /><span>' + item.nickname + '</span></dt>';
+                        str += '<dd> </dd></dl></div>';
+                        // str += '<dd><span>' + item.tickets + '</span>票</dd></dl></div>';
 
                         arr.push(str);
                     }
@@ -1215,40 +1126,6 @@
             dataType: 'json',
             success: function(data) {
                 if (data.error_code == 0) {
-                    for (var i = 0, len = data.photos.length; i < len; i++) {
-                        var item = data.photos[i];
-
-                        if (Number(item.lotty_id) > 0) {
-                            prizeId = item.id;
-                            prizeType = item.lotty_id;
-
-                            switch (item.lotty_id) {
-                                case '1':
-                                    $('.pop-prize').find('.word-prize_title1').css('display', 'block');
-                                    $('.pop-prize').find('.word-prize_desc1').css('display', 'block');
-                                    $('.pop-prize').find('.word-prize_tips').css('display', 'block');
-                                    
-                                    break;
-                                case '2':
-                                    $('.pop-prize').find('.word-prize_title2').css('display', 'block');
-                                    $('.pop-prize').find('.word-prize_desc2').css('display', 'block');
-                                    $('.pop-prize').find('.word-prize_tips').css('display', 'block');
-
-                                    break;
-                                case '3':
-                                    $('.pop-prize').find('.word-prize_title3').css('display', 'block');
-                                    $('.pop-prize').find('.word-prize_desc3').css('display', 'block');
-                                    $('.pop-prize').find('.word-prize_tips3').css('display', 'block');
-
-                                    break;
-                            }
-
-                            break;
-                        } else {
-                            $('.btn-get').remove();
-                        }
-                    }
-
                     initPlaybillSwiper(data.photos);
                 } else {
                     alert(data.error_msg);
@@ -1304,16 +1181,11 @@
     };
 
     // 定义分享
-    var initShare = function(pid, nickname) {
+    var initShare = function() {
         var title = '暗夜精灵泳衣, 带你C位出道';
         var link = 'http://nabaiji.yuncoupons.com';
         var desc = '1秒拍最美泳装照, Show出魅力姿态, 赢迪卡侬大奖';
         var imgUrl = 'http://nabaiji.yuncoupons.com/share.png';
-
-        if (!!pid) {
-            title = nickname + '的最美泳姿照已上线，快投票助她C位出道！';
-            link = 'http://nabaiji.yuncoupons.com/vote.php?pid=' + pid + '&nickname=' + nickname;
-        }
 
         wx.ready(function() {
             // 自定义“分享给朋友”及“分享到QQ”按钮的分享内容
@@ -1344,9 +1216,9 @@
                 title: title, // 分享标题
                 link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                 imgUrl: imgUrl, // 分享图标
-                success: function() {
-                    // 设置成功
-                    console.log('自定义“分享到朋友圈”按钮的分享内容设置成功');
+                success: function () {
+                  // 设置成功
+                  console.log('自定义“分享到朋友圈”按钮的分享内容设置成功');
                 }
             });
 
@@ -1358,9 +1230,9 @@
                 imgUrl: imgUrl, // 分享图标
                 type: 'link', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-                success: function() {
-                    // 设置成功
-                    console.log('自定义“分享给朋友”按钮的分享内容设置成功');
+                success: function () {
+                  // 设置成功
+                  console.log('自定义“分享给朋友”按钮的分享内容设置成功');
                 }
             });
         });
@@ -1390,7 +1262,7 @@
         if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) { //区分iPhone设备  
             var input = document.createElement('input');
             input.setAttribute('readonly', 'readonly');
-            input.setAttribute('value', '￥HEEtYda3F15￥');
+            input.setAttribute('value', '￥HuiFY3eLNFV￥');
             document.body.appendChild(input);
             input.setSelectionRange(0, 9999);
 
@@ -1422,213 +1294,11 @@
 
                 console.log('复制成功');
             }
-
+            
             document.addEventListener('copy', save);
             document.execCommand('copy');
             document.removeEventListener('copy', save);
         }
-    };
-
-    // 投票
-    var votePhoto = function(pid, index) {
-        if (pid === null) {
-            alert("投票失败,请刷新重试!");
-
-            return;
-        }
-
-        $.ajax({
-            url: REQUEST_LOVE,
-            type: 'post',
-            cache: false,
-            data: {
-                id: pid
-            },
-            dataType: 'json',
-            success: function(data) {
-                if (data.error_code == 0) {
-                    var elem = $('.wall-item').eq(index);
-
-                    elem.find('.btn-vote_wall').removeClass('btn-vote_wall');
-                    elem.find('.icon-unlove').removeClass('icon-unlove').addClass('icon-love');
-                    elem.find('.wall-item_tickets').html(data.tickets);
-
-                    console.log(data);
-                } else {
-                    alert(data.error_msg);
-                }
-            },
-            error: function(data) {
-                alert("投票失败,请刷新重试!");
-            }
-        });
-    };
-
-    // 保存记录
-    var saveInfo = function() {
-        var pid = $('.stage-playbill .swiper-slide-active').attr('data-pid');
-        var username = $('#username').val();
-        var mobile = $('#mobile').val();
-        var address = $('#address').val();
-        var channel = $('input[name="channel"]:checked').val();
-        var storename = $('#storename').val();
-
-        if (prizeId === null) {
-            return;
-        }
-
-        username = username.replace(/\s/g, '');
-
-        if (username === '') {
-            alert('请输入姓名');
-
-            return;
-        }
-
-        mobile = mobile.replace(/\s/g, '');
-
-        if (mobile === '') {
-            alert('请输入手机号码');
-
-            return;
-        }
-
-        address = address.replace(/\s/g, '');
-
-        if (address === '' && prizeType === '3') {
-            alert('请输入地址');
-
-            return;
-        }
-
-        storename = storename.replace(/\s/g, '');
-
-        if (channel === '门店' && storename === '') {
-            alert('请输入门店名称');
-
-            return;
-        }
-
-        if (channel === '门店') {
-            channel += '-' + storeAddress.province + '-' + storeAddress.city + '-' + $('#storename').val();
-        }
-
-        $.ajax({
-            url: REQUEST_INFO,
-            type: 'post',
-            cache: false,
-            data: {
-                id: prizeId,
-                name: username,
-                phone: mobile,
-                address: address,
-                channel: channel
-            },
-            dataType: 'json',
-            success: function(data) {
-                if (data.error_code == 0) {
-                    alert('提交成功');
-
-                    console.log(data);
-                } else {
-                    alert(data.error_msg);
-                }
-            },
-            error: function(data) {
-                alert('提交失败，请刷新重试!');
-            },
-            complete: function() {
-                ee.trigger(cmd.CLOSE_POP, ['.pop-form']);
-            }
-        });
-
-        console.log(username, mobile, address, channel);
-    };
-
-    // 初始化省份下拉
-    var initProvinceSelect = function() {
-        var str = '';
-        
-        for (var i = 0, len = provinceList.length; i < len; i++) {
-            str += '<option value="' + provinceList[i] + '">' + provinceList[i] + '</option>';
-        }
-
-        $('#province').find('select').html(str).find('option').eq(0).prop('selected', true);
-
-        $('#province').find('span').html(provinceList[0]);
-
-        storeAddress.province = provinceList[0];
-    };
-
-    // 初始化城市下拉
-    var initCitySelect = function() {
-        var province = provinceList[0];
-        var arr = cityList[province];
-        var str = '';
-        
-        for (var i = 0, len = arr.length; i < len; i++) {
-            str += '<option value="' + arr[i] + '">' + arr[i] + '</option>';
-        }
-
-        $('#city').find('select').html(str).find('option').eq(0).prop('selected', true);
-
-        $('#city').find('span').html(arr[0]);
-
-        storeAddress.city = arr[0];
-    };
-
-    // 获取中奖类型和中奖图片ID
-    var getPrizeInfo = function() {
-        $.ajax({
-            url: REQUEST_PHOTO,
-            type: 'post',
-            cache: false,
-            dataType: 'json',
-            success: function(data) {
-                if (data.error_code == 0) {
-                    for (var i = 0, len = data.photos.length; i < len; i++) {
-                        var item = data.photos[i];
-
-                        if (Number(item.lotty_id) > 0) {
-                            prizeId = item.id;
-                            prizeType = item.lotty_id;
-
-                            switch (item.lotty_id) {
-                                case '1':
-                                    $('.pop-prize').find('.word-prize_title1').css('display', 'block');
-                                    $('.pop-prize').find('.word-prize_desc1').css('display', 'block');
-                                    $('.pop-prize').find('.word-prize_tips').css('display', 'block');
-                                    
-                                    break;
-                                case '2':
-                                    $('.pop-prize').find('.word-prize_title2').css('display', 'block');
-                                    $('.pop-prize').find('.word-prize_desc2').css('display', 'block');
-                                    $('.pop-prize').find('.word-prize_tips').css('display', 'block');
-
-                                    break;
-                                case '3':
-                                    $('.pop-prize').find('.word-prize_title3').css('display', 'block');
-                                    $('.pop-prize').find('.word-prize_desc3').css('display', 'block');
-                                    $('.pop-prize').find('.word-prize_tips3').css('display', 'block');
-
-                                    break;
-                            }
-
-                            ee.trigger(cmd.SHOW_POP, ['.pop-prize'])
-
-                            break;
-                        } else {
-                            $('.btn-get').remove();
-                        }
-                    }
-                } else {
-                    alert(data.error_msg);
-                }
-            },
-            error: function(data) {
-                alert("网络异常, 请刷新重试!");
-            }
-        });
     };
 
     // 初始化事件
@@ -1660,17 +1330,17 @@
         // 场景 - 首页
         $(document).on('click', '.btn-start', function() {
             // 是否初次
-            var isNewer = localStorage.getItem('isNewer');
+            var isNewer = localStorage.getItem('isFirst');
 
-            if (isNewer === null || isNewer !== '0') {
-                localStorage.setItem('isNewer', 0);
+            if (isNewer === 0 || isNewer === '0') {
+                goToNextScene(initSwiper);
+            } else {
+                localStorage.setItem('isFirst', 0);
 
                 // 显示弹层
                 ee.trigger(cmd.SHOW_POP, ['.pop-rule']);
 
                 playBanner();
-            } else {
-                goToNextScene(initSwiper);
             }
         });
 
@@ -1711,8 +1381,6 @@
 
         // 照片墙
         $(document).on('click', 'a.btn-photoWall, a.btn-photoWall_disable', function() {
-            initShare();
-
             goToScene(SCENE.WALL, getAllImgs);
         });
 
@@ -1728,8 +1396,6 @@
 
         // 首页
         $(document).on('click', '.btn-home', function() {
-            initShare();
-
             goToScene(SCENE.LANDING);
         });
 
@@ -1843,96 +1509,15 @@
                 ee.trigger(cmd.CLOSE_POP, ['.pop-guide']);
             }
         });
-
-        // 投票
-        $(document).on('click', '.btn-vote_wall', function(evt) {
-            var pid = $(this).attr('data-pid');
-            var index = Number($(this).attr('data-index'));
-
-            votePhoto(pid, index);
-        });
-
-        // 领取大奖
-        $(document).on('click', '.btn-get', function(evt) {
-            if (prizeType === '3') {
-                $('.pop-form').find('.address').removeClass('hide');
-            }
-
-            ee.trigger(cmd.SHOW_POP, ['.pop-form']);
-        });
-
-        // 选择渠道
-        $(document).on('change', 'input[name="channel"]:checked', function(evt) {
-            if($(this).val() !== '门店') {
-                $('.store-detail').addClass('hide');
-            } else {
-                $('.store-detail').removeClass('hide');
-            }
-        });
-
-        // 省份
-        $(document).on('change', '#province select', function(evt) {
-            var province = $(this).val();
-
-            $('#province').find('span').html(province);
-
-            storeAddress.province = province;
-
-            var str = '';
-            var arr = cityList[province];
-        
-            for (var i = 0, len = arr.length; i < len; i++) {
-                str += '<option value="' + arr[i] + '">' + arr[i] + '</option>';
-            }
-
-            $('#city').find('select').html(str).find('option').eq(0).prop('selected', true);
-
-            $('#city').find('span').html(arr[0]);
-
-            storeAddress.city = arr[0];
-
-            $('#storename').val('');
-        });
-
-        // 城市
-        $(document).on('change', '#city select', function(evt) {
-            var city = $(this).val();
-
-            $('#city').find('span').html(city);
-
-            storeAddress.city = city;
-
-            $('#storename').val('');
-        });
-
-        // 提交信息
-        $(document).on('click', '.btn-pop_confirm', function(evt) {
-            saveInfo();
-        });
-
-        // 领取奖励
-        $(document).on('click', '.btn-pop_get', function(evt) {
-            if (prizeType === '3') {
-                $('.pop-form').find('.address').removeClass('hide');
-            }
-
-            ee.trigger(cmd.SHOW_POP, ['.pop-form']);
-        });
     };
 
     // 初始化
     var init = function() {
         initEvent();
 
-        initProvinceSelect();
-
-        initCitySelect();
-
         getShareInfo();
 
         getAgreeStatus();
-
-        getPrizeInfo();
 
         // 预加载资源图片
         $(document).ready(preloadAssets);

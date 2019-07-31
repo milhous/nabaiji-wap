@@ -480,6 +480,7 @@
                 <h3 class="words word-prize_title3">恭喜您获得三等奖</h3>
                 <h4 class="words word-prize_desc3">价值1000元的迪卡侬礼品卡一张！</h4>
                 <p class="words word-prize_tips">* 请正确填写您的联系信息将有工作人员与您联系</p>
+                <p class="words word-prize_tips3">* * 请正确填写您的联系信息礼品卡将尽快为您寄出</p>
                 <a class="btns btn-pop_get" href="javascript:;" title="点击领奖">点击领奖</a>
             </div>
         </section>
