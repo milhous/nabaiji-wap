@@ -166,6 +166,7 @@
 }
 .stage-save div img{display: block; width: 100%; height: 100%;}
 .stage-save .word-save_title{position: absolute; left: 50%; bottom: .26rem;}
+.stage-save .word-save_title2{position: absolute; left: 50%; bottom: .26rem;}
 .stage-save .btn-photoWall{position: absolute; right: .25rem; top: .25rem;}
 .stage-save .btn-restart{position: absolute; right: 2.1rem; top: .25rem;}
 
@@ -176,12 +177,12 @@
 .stage-wall .wall-item{
   box-shadow: .1rem .1rem .1rem rgba(0, 0, 0, .18);
 }
-.stage-wall .wall-item div{width: 100%; height: 4.34rem;}
+.stage-wall .wall-item div{position: relative; width: 100%; height: 4.34rem;}
 .stage-wall .wall-item div img{display: block; width: 100%; height: 100%;}
 .stage-wall .wall-item dl{width: 100%; height: .86rem; padding: 0 .1rem;}
 .stage-wall .wall-item dl,
 .stage-wall .wall-item dt,
-.stage-wall .wall-item dd{
+.stage-wall .wall-item dd a{
   display: -webkit-box;
   display: -webkit-flex; 
   display: -moz-flex;
@@ -202,7 +203,7 @@
   -webkit-justify-content: space-between;
   justify-content: space-between;
 }
-.stage-wall .wall-item dd{
+.stage-wall .wall-item dd a{
   -webkit-box-pack: end;
   box-pack: end;
   -webkit-flex-pack: end;
@@ -214,11 +215,18 @@
 .stage-wall .wall-item dt img{
   box-shadow: .06rem .08rem .07rem rgba(0, 0, 0, .18);
 }
-.stage-wall .wall-item dl span{color: #606162; font-size: .24rem; line-height: .34rem;}
+.stage-wall .wall-item dl span{overflow: hidden; max-width: 1.2rem; color: #606162; font-size: .24rem; line-height: .34rem; white-space: nowrap; text-overflow: ellipsis;}
 .stage-wall .wall-item_empty{width: 2.94rem; margin: 0 .2rem .4rem;}
+.stage-wall .wall-item .icon-love{width: .34rem; height: .3rem; background-size: 100% 100%;}
+.stage-wall .wall-item .icon-unlove{width: .34rem; height: .3rem; background-size: 100% 100%;}
+.stage-wall .wall-item .icon-prize_1,
+.stage-wall .wall-item .icon-prize_2,
+.stage-wall .wall-item .icon-prize_3{position: absolute; left: .15rem; top: .15rem;}
 
 .stage-playbill .btn-home{position: absolute; right: .4rem; top: .4rem;}
-.stage-playbill .word-playbill_title{position: absolute; left: 50%; bottom: .26rem;}
+.stage-playbill .btn-get{margin-top: .5rem;}
+.stage-playbill .word-playbill_title,
+.stage-playbill .word-playbill_title2{position: absolute; left: 50%; bottom: .26rem;}
 .stage-playbill .swiper-container{width: 4.86rem; height: 7.12rem; opacity: 0;}
 .stage-playbill img{display: block; width: 100%; height: 100%;}
 .stage-playbill .swiper-container{
@@ -226,6 +234,18 @@
 }
 .stage-playbill .swiper-button-next,
 .stage-playbill .swiper-button-prev{display: none;}
+.stage-playbill .playbill-info{width: 4.86rem; margin-top: .5rem;}
+.stage-playbill .playbill-info li{width: 50%;}
+.stage-playbill .playbill-info li{position: relative; width: 50%; color: #606162; font-size: .3rem; line-height: .4rem;}
+.stage-playbill .playbill-info li{
+  box-sizing: border-box;
+}
+.stage-playbill .playbill-info li:first-child{padding-right: .24rem;}
+.stage-playbill .playbill-info li:last-child{padding-left: .24rem;}
+.stage-playbill .playbill-info li:last-child:before{content: '.'; display: block; position: absolute; top: 50%; left: 0; width: .02rem; height: .4rem; margin-top: -.2rem; background-color: #7b7b7b; text-indent: -9999rem;}
+.stage-playbill .playbill-info .icon-love{
+  transform: translateY(10%);
+}
 
 #template{
   -webkit-transform-origin: left top;

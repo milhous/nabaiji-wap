@@ -1,72 +1,72 @@
 <?php
-	header('Content-type: text/html; charset=UTF-8');
-	
-	include_once 'interface/common.php';
+    header('Content-type: text/html; charset=UTF-8');
+    
+    include_once 'interface/common.php';
 
-	session_start();
+    session_start();
 
-	if(!empty($_GET) && isset($_GET['openid'])){
-		$wxinfo = $_GET;
-		$_SESSION['nabaiji_wx'] = $wxinfo;
+    if(!empty($_GET) && isset($_GET['openid'])){
+        $wxinfo = $_GET;
+        $_SESSION['nabaiji_wx'] = $wxinfo;
 
-		saveInfo($wxinfo);
-	}else if($_SESSION['nabaiji_wx']){
-		$wxinfo = $_SESSION['nabaiji_wx'];
+        saveInfo($wxinfo);
+    }else if($_SESSION['nabaiji_wx']){
+        $wxinfo = $_SESSION['nabaiji_wx'];
 
-		saveInfo($wxinfo);
-	}else{
-		header("Location:"."http://kipsta.yuncii.com/worldcup/wechat_author.php?scope=snsapi_base&redirect_uri=http://nabaiji.yuncoupons.com/index.php");
-		exit();
-	}
+        saveInfo($wxinfo);
+    }else{
+        header("Location:"."http://kipsta.yuncii.com/worldcup/wechat_author.php?scope=snsapi_base&redirect_uri=http://nabaiji.yuncoupons.com/index.php");
+        exit();
+    }
 
-	$str = "jsapi_ticket=kgt8ON7yVITDhtdwci0qeY9owq9VMNTb8r3pze3zvtGKUnUW3HiTXMSjpQ3q9Bzm5WqkzzSa9a_9b5uHQLkD1w&noncestr=kc8gilNUArkV0FhF1cwh1DvltnPhnIo8&timestamp=1557028353&url=http://nabaiji.yuncoupons.com/index.php";
+    $str = "jsapi_ticket=kgt8ON7yVITDhtdwci0qeY9owq9VMNTb8r3pze3zvtGKUnUW3HiTXMSjpQ3q9Bzm5WqkzzSa9a_9b5uHQLkD1w&noncestr=kc8gilNUArkV0FhF1cwh1DvltnPhnIo8&timestamp=1557028353&url=http://nabaiji.yuncoupons.com/index.php";
 
-	function saveInfo($info){
-		$pdo = getPDO();
+    function saveInfo($info){
+        $pdo = getPDO();
 
-		$sql = "SELECT id FROM user_info WHERE openid = :openid";
-		$stmt = $pdo->prepare($sql);
-		$stmt->bindParam(":openid", $info['openid']);
-		$stmt->execute();
-		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $sql = "SELECT id FROM user_info WHERE openid = :openid";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(":openid", $info['openid']);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-		if(empty($row)){
-			$sql = "INSERT INTO user_info 
-						(`openid`, `nickname`, `sex`, `city`, `province`, `country`, `language`, `headimgurl`, `insert_time`, `last_time`) 
-					VALUES 
-						(:openid, :nickname, :sex, :city, :province, :country, :language, :headimgurl, :now, :now)";
-			$stmt = $pdo->prepare($sql);
-			$stmt->bindParam(":openid", $info['openid']);
-			$stmt->bindParam(":nickname", $info['nickname']);
-			$stmt->bindParam(":sex", $info['sex']);
-			$stmt->bindParam(":city", $info['city']);
-			$stmt->bindParam(":province", $info['province']);
-			$stmt->bindParam(":country", $info['country']);
-			$stmt->bindParam(":language", $info['language']);
-			$stmt->bindParam(":headimgurl", $info['headimgurl']);
-			$stmt->bindParam(":now", $now);
-			$now = date('Y-m-d H:i:s');
-			$stmt->execute();
-		}else{
-			$sql = "UPDATE user_info SET nickname = :nickname, sex = :sex, city = :city, province = :province, country = :country, language = :language, 
-						headimgurl = :headimgurl, last_time = :now WHERE openid = :openid";
-			$stmt = $pdo->prepare($sql);
-			$stmt->bindParam(":openid", $info['openid']);
-			$stmt->bindParam(":nickname", $info['nickname']);
-			$stmt->bindParam(":sex", $info['sex']);
-			$stmt->bindParam(":city", $info['city']);
-			$stmt->bindParam(":province", $info['province']);
-			$stmt->bindParam(":country", $info['country']);
-			$stmt->bindParam(":language", $info['language']);
-			$stmt->bindParam(":headimgurl", $info['headimgurl']);
-			$stmt->bindParam(":now", $now);
-			$now = date('Y-m-d H:i:s');
-			$stmt->execute();
-		}
+        if(empty($row)){
+            $sql = "INSERT INTO user_info 
+                        (`openid`, `nickname`, `sex`, `city`, `province`, `country`, `language`, `headimgurl`, `insert_time`, `last_time`) 
+                    VALUES 
+                        (:openid, :nickname, :sex, :city, :province, :country, :language, :headimgurl, :now, :now)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":openid", $info['openid']);
+            $stmt->bindParam(":nickname", $info['nickname']);
+            $stmt->bindParam(":sex", $info['sex']);
+            $stmt->bindParam(":city", $info['city']);
+            $stmt->bindParam(":province", $info['province']);
+            $stmt->bindParam(":country", $info['country']);
+            $stmt->bindParam(":language", $info['language']);
+            $stmt->bindParam(":headimgurl", $info['headimgurl']);
+            $stmt->bindParam(":now", $now);
+            $now = date('Y-m-d H:i:s');
+            $stmt->execute();
+        }else{
+            $sql = "UPDATE user_info SET nickname = :nickname, sex = :sex, city = :city, province = :province, country = :country, language = :language, 
+                        headimgurl = :headimgurl, last_time = :now WHERE openid = :openid";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":openid", $info['openid']);
+            $stmt->bindParam(":nickname", $info['nickname']);
+            $stmt->bindParam(":sex", $info['sex']);
+            $stmt->bindParam(":city", $info['city']);
+            $stmt->bindParam(":province", $info['province']);
+            $stmt->bindParam(":country", $info['country']);
+            $stmt->bindParam(":language", $info['language']);
+            $stmt->bindParam(":headimgurl", $info['headimgurl']);
+            $stmt->bindParam(":now", $now);
+            $now = date('Y-m-d H:i:s');
+            $stmt->execute();
+        }
 
-		$stmt = null;
-		$pdo = null;
-	}
+        $stmt = null;
+        $pdo = null;
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -83,8 +83,8 @@
     <meta http-equiv='expires' content='0' />
     <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/libs/normalize.css" />
     <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/plugins/swiper.min.css" />
-    <link rel="stylesheet" href="css/public/common.css?v=1.0.8" />
-    <link rel="stylesheet" href="css/views/photo.css?v=1.0.0" />
+    <link rel="stylesheet" href="css/public/common.css" />
+    <link rel="stylesheet" href="css/views/prize.css" />
     <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/libs/zepto.min.js"></script>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/plugins/flexible.js"></script>
@@ -223,7 +223,7 @@
                 <div>
                     <img src="">
                 </div>
-                <span class="words word-save_title translate_centerX">长按保存图片 晒出你的美</span>
+                <span class="words word-save_title2 translate_centerX">点击照片墙，进入个人海报页分享最美泳装照，赢迪卡侬大奖</span>
             </section>
         </li>
         <li>
@@ -252,7 +252,7 @@
                 </ul>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
-                <span class="words word-playbill_title2 translate_centerX">击右上角晒出美照，获得更多点赞！</span>
+                <a class="btns btn-get" href="javascript:;">点击领取奖励</a>
             </section>
         </li>
     </ul>
@@ -274,7 +274,7 @@
                 <div></div>
                 <div class="flex flex-direction_column flex-justify_center flex-align_center">
                     <h3 class="words word-tmall_title">复制淘口令，打开天猫</h3>
-                    <p>￥HEEtYda3F15￥</p>
+                    <p>￥vkcQYgDKHQD￥</p>
                     <a class="btns btn-pop_copy" href="javascript:;" title="一键复制">一键复制</a>
                 </div>
             </div>
@@ -391,9 +391,101 @@
                 <a class="btns btn-pass" href="javascript:;" title="知道了" data-index="1">知道了</a>
             </div>
         </section>
+        <section class="pop-form">
+            <div class="pop-form_box flex flex-direction_column flex-align_center">
+                <span class="words word-form_title1">提交中奖信息</span>
+                <dl class="username">
+                    <dt>
+                        <label class="words word-form_name" for="username">姓名</label>
+                    </dt>
+                    <dd>
+                        <input type="text" id="username" name="username" />
+                    </dd>
+                </dl>
+                <dl class="mobile">
+                    <dt>
+                        <label class="words word-form_mobile" for="mobile">手机</label>
+                    </dt>
+                    <dd>
+                        <input type="tel" id="mobile" name="mobile" />
+                    </dd>
+                </dl>
+                <dl class="address hide">
+                    <dt>
+                        <label class="words word-form_address" for="address">地址</label>
+                    </dt>
+                    <dd>
+                        <input type="text" id="address" name="address" />
+                    </dd>
+                </dl>
+                <span class="words word-form_title2">暗夜精灵购买渠道</span>
+                <ul class="channel-list">
+                    <li>
+                        <label for="tmall">
+                            <input type="radio" name="channel" id="tmall" value="天猫旗舰店" checked />
+                            <i></i>
+                            <span class="words word-form_tmall">天猫旗舰店</span>
+                        </label>
+                    </li>
+                     <li>
+                        <label for="web">
+                            <input type="radio" name="channel" id="web" value="官网" />
+                            <i></i>
+                            <span class="words word-form_web">官网</span>
+                        </label>
+                    </li>
+                     <li>
+                        <label for="store">
+                            <input type="radio" name="channel" id="store" value="门店" />
+                            <i></i>
+                            <span class="words word-form_store">门店</span>
+                        </label>
+                    </li>
+                </ul>
+                <div class="store-detail hide">
+                    <ul>
+                        <li><span class="words word-form_province">省</span></li>
+                        <li>
+                            <div id="province" class="form-select">
+                                <span></span>
+                                <select><!-- js create element --></select>
+                            </div>
+                        </li>
+                        <li><span class="words word-form_city">市</span></li>
+                        <li>
+                            <div id="city" class="form-select">
+                                <span></span>
+                                <select><!-- js create element --></select>
+                            </div>
+                        </li>
+                    </ul>
+                    <dl>
+                        <dt>
+                            <label class="words word-form_storename" for="storename">门店名称</label>
+                        </dt>
+                        <dd>
+                            <input type="text" id="storename" name="storename" />
+                        </dd>
+                    </dl>
+                </div>
+                <a class="btns btn-pop_confirm" href="javascript:;" title="确认提交">确认提交</a>
+            </div>
+        </section>
+        <section class="pop-prize">
+            <div class="pop-prize_box flex flex-direction_column flex-justify_center flex-align_center">
+                <h3 class="words word-prize_title1">恭喜您获得一等奖</h3>
+                <h4 class="words word-prize_desc1">水下魅力写真拍摄一组！</h4>
+                <h3 class="words word-prize_title2">恭喜您获得二等奖</h3>
+                <h4 class="words word-prize_desc2">专业游泳教程一套！</h4>
+                <h3 class="words word-prize_title3">恭喜您获得三等奖</h3>
+                <h4 class="words word-prize_desc3">价值1000元的迪卡侬礼品卡一张！</h4>
+                <p class="words word-prize_tips">* 请正确填写您的联系信息将有工作人员与您联系</p>
+                <a class="btns btn-pop_get" href="javascript:;" title="点击领奖">点击领奖</a>
+            </div>
+        </section>
     </div>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/public/common.js"></script>
-    <script src="js/views/photo.js?v=1.0.8"></script>
+    <script src="js/views/prize.js?v=1.0.9"></script>
 </body>
 
 </html>
