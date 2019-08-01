@@ -221,7 +221,7 @@
 .stage-wall .wall-item .icon-unlove{width: .34rem; height: .3rem; background-size: 100% 100%;}
 .stage-wall .wall-item .icon-prize_1,
 .stage-wall .wall-item .icon-prize_2,
-.stage-wall .wall-item .icon-prize_3{position: absolute; left: 0; top: 0;}
+.stage-wall .wall-item .icon-prize_3{position: absolute; left: .15rem; top: .15rem;}
 
 .stage-playbill .btn-home{position: absolute; right: .4rem; top: .4rem;}
 .stage-playbill .btn-get{margin-top: .5rem;}

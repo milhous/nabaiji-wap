@@ -438,9 +438,9 @@ textarea{resize:none;}
 .icon-checked{width: .24rem; height: .24rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/icon-checked.png);}
 .icon-love{width: .54rem; height: .5rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/btn-vote_disable.png);}
 .icon-unlove{width: .54rem; height: .5rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/btn-vote.png);}
-.icon-prize_1{width: 1.12rem; height: 1.02rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/icon-prize_1.png);}
-.icon-prize_2{width: 1.12rem; height: 1.02rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/icon-prize_2.png);}
-.icon-prize_3{width: 1.12rem; height: 1.02rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/icon-prize_3.png);}
+.icon-prize_1{width: .76rem; height: .62rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/icon-prize_1.png?v=0801);}
+.icon-prize_2{width: .74rem; height: .62rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/icon-prize_2.png?v=0801);}
+.icon-prize_3{width: .74rem; height: .62rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/icon-prize_3.png?v=0801);}
 
 /* BTNS */
 .btns{display: block; position: relative; cursor: pointer; border: none; background-repeat: no-repeat; background-position: 0 0; text-indent: -99rem; background-size: 100% 100%;}
