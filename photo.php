@@ -83,8 +83,8 @@
     <meta http-equiv='expires' content='0' />
     <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/libs/normalize.css" />
     <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/plugins/swiper.min.css" />
-    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/public/common.css?v=1.0.14" />
-    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/views/photo.css?v=1.0.4" />
+    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/public/common.css?v=1.0.17" />
+    <link rel="stylesheet" href="http://cdn.nabaiji.yuncoupons.com/css/views/prize.css?v=1.0.16" />
     <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/libs/zepto.min.js"></script>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/plugins/flexible.js"></script>
@@ -252,7 +252,7 @@
                 </ul>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
-                <span class="words word-playbill_title2 translate_centerX">点击右上角晒出美照，获得更多点赞</span>
+                <a class="btns btn-get" href="javascript:;">点击领取奖励</a>
             </section>
         </li>
     </ul>
@@ -391,9 +391,102 @@
                 <a class="btns btn-pass" href="javascript:;" title="知道了" data-index="1">知道了</a>
             </div>
         </section>
+        <section class="pop-form">
+            <div class="pop-form_box flex flex-direction_column flex-align_center">
+                <span class="words word-form_title1">提交中奖信息</span>
+                <dl class="username">
+                    <dt>
+                        <label class="words word-form_name" for="username">姓名</label>
+                    </dt>
+                    <dd>
+                        <input type="text" id="username" name="username" />
+                    </dd>
+                </dl>
+                <dl class="mobile">
+                    <dt>
+                        <label class="words word-form_mobile" for="mobile">手机</label>
+                    </dt>
+                    <dd>
+                        <input type="tel" id="mobile" name="mobile" />
+                    </dd>
+                </dl>
+                <dl class="address hide">
+                    <dt>
+                        <label class="words word-form_address" for="address">地址</label>
+                    </dt>
+                    <dd>
+                        <input type="text" id="address" name="address" />
+                    </dd>
+                </dl>
+                <span class="words word-form_title2">暗夜精灵购买渠道</span>
+                <ul class="channel-list">
+                    <li>
+                        <label for="tmall">
+                            <input type="radio" name="channel" id="tmall" value="天猫旗舰店" checked />
+                            <i></i>
+                            <span class="words word-form_tmall">天猫旗舰店</span>
+                        </label>
+                    </li>
+                     <li>
+                        <label for="web">
+                            <input type="radio" name="channel" id="web" value="官网" />
+                            <i></i>
+                            <span class="words word-form_web">官网</span>
+                        </label>
+                    </li>
+                     <li>
+                        <label for="store">
+                            <input type="radio" name="channel" id="store" value="门店" />
+                            <i></i>
+                            <span class="words word-form_store">门店</span>
+                        </label>
+                    </li>
+                </ul>
+                <div class="store-detail hide">
+                    <ul>
+                        <li><span class="words word-form_province">省</span></li>
+                        <li>
+                            <div id="province" class="form-select">
+                                <span></span>
+                                <select><!-- js create element --></select>
+                            </div>
+                        </li>
+                        <li><span class="words word-form_city">市</span></li>
+                        <li>
+                            <div id="city" class="form-select">
+                                <span></span>
+                                <select><!-- js create element --></select>
+                            </div>
+                        </li>
+                    </ul>
+                    <dl>
+                        <dt>
+                            <label class="words word-form_storename" for="storename">门店名称</label>
+                        </dt>
+                        <dd>
+                            <input type="text" id="storename" name="storename" />
+                        </dd>
+                    </dl>
+                </div>
+                <a class="btns btn-pop_confirm" href="javascript:;" title="确认提交">确认提交</a>
+            </div>
+        </section>
+        <section class="pop-prize">
+            <div class="pop-prize_box flex flex-direction_column flex-justify_center flex-align_center">
+                <h3 class="words word-prize_title1">恭喜您获得一等奖</h3>
+                <h4 class="words word-prize_desc1">水下魅力写真拍摄一组！</h4>
+                <h3 class="words word-prize_title2">恭喜您获得二等奖</h3>
+                <h4 class="words word-prize_desc2">专业游泳教程一套！</h4>
+                <h3 class="words word-prize_title3">恭喜您获得三等奖</h3>
+                <h4 class="words word-prize_desc3">价值1000元的迪卡侬礼品卡一张！</h4>
+                <p class="words word-prize_tips">* 请正确填写您的联系信息将有工作人员与您联系</p>
+                <p class="words word-prize_tips3">* * 请正确填写您的联系信息礼品卡将尽快为您寄出</p>
+                <a class="btns btn-pop_get" href="javascript:;" title="点击领奖">点击领奖</a>
+            </div>
+        </section>
     </div>
     <script src="http://cdn.nabaiji.yuncoupons.com/js/public/common.js"></script>
-    <script src="http://cdn.nabaiji.yuncoupons.com/js/views/photo.js?v=1.0.9"></script>
+    <script src="http://cdn.nabaiji.yuncoupons.com/js/views/prize.js?v=1.0.15"></script>
 </body>
 
 </html>
