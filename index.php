@@ -83,8 +83,8 @@
     <meta http-equiv='expires' content='0' />
     <link rel="stylesheet" href="css/libs/normalize.css" />
     <link rel="stylesheet" href="css/plugins/swiper.min.css" />
-    <link rel="stylesheet" href="css/public/common.css" />
-    <link rel="stylesheet" href="css/views/index.css" />
+    <link rel="stylesheet" href="css/public/common.css?v=20190806" />
+    <link rel="stylesheet" href="css/views/index.css?v=20190806" />
     <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
     <script src="js/libs/zepto.min.js"></script>
     <script src="js/plugins/flexible.js"></script>
@@ -101,7 +101,7 @@
         <div class="scene-flipper">
             <div class="scene-flipper_front">
                 <section class="stage stage-coming flex flex-direction_column flex-justify_center flex-align_center">
-                    <span class="words word-coming_title">敬请期待</span>
+                    <span class="words word-end_title">活动已结束</span>
                 </section>
             </div>
             <div class="scene-flipper_back">

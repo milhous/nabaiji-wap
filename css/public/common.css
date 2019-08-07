@@ -475,6 +475,7 @@ textarea{resize:none;}
 /* WORDS */
 .words{display: block; position: relative; border: none; background-repeat: no-repeat; background-position: 0 0; text-indent: -99rem; background-size: 100% 100%;}
 .word-coming_title{width: 5rem; height: .86rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-coming_title.png);}
+.word-end_title{width: 4.94rem; height: 1.5rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-end_title.png);}
 .word-landing_title{width: 5.94rem; height: 1.7rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-landing_title.png);}
 .word-tmall_title{width: 4.18rem; height: .48rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-tmall_title.png);}
 .word-theme_title{width: 5.14rem; height: .86rem; background-image: url(http://cdn.nabaiji.yuncoupons.com/images/word-theme_title.png);}
